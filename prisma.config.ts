@@ -6,8 +6,4 @@ export default defineConfig({
   datasource: {
     url: env('DIRECT_URL'),
   },
-  generator: {
-    name: 'client',
-    provider: 'prisma-client-js',
-  },
 });
