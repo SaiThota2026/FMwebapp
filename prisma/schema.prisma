@@ -2,34 +2,33 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
-
 // ────────────────────────────────────────────────────────────
 // CORE MODELS
 // ────────────────────────────────────────────────────────────
 
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  name          String
-  role          Role      @default(USER)
-  phone         String?   // optional contact number
-  businessName  String?   // if they’re a business
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  role         Role     @default(USER)
+  phone        String? // optional contact number
+  businessName String? // if they’re a business
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  jobs      Job[]         @relation("UserJobs")
-  createdLeads Lead[]     @relation("CreatedByUser")
+  jobs            Job[]     @relation("UserJobs")
+  createdLeads    Lead[]    @relation("CreatedByUser")
+  authoredContent Content[] @relation("ContentByAuthor")
 }
 
 enum Role {
-  USER   // individual or business customer
-  ADMIN  // can manage users, jobs, content, locations
+  USER // individual or business customer
+  ADMIN // can manage users, jobs, content, locations
 }
 
 // ────────────────────────────────────────────────────────────
@@ -37,22 +36,22 @@ enum Role {
 // ────────────────────────────────────────────────────────────
 
 model Job {
-  id            String      @id @default(cuid())
-  title         String
-  description   String?
-  service       Service     @relation(fields: [serviceId], references: [id])
-  serviceId     String
-  user          User        @relation("UserJobs", fields: [userId], references: [id])
-  userId        String
-  location      Location    @relation(fields: [locationId], references: [id])
-  locationId    String
-  lead          Lead        @relation(fields: [leadId], references: [id])
-  leadId        String
-  status        JobStatus   @default(PENDING)
-  createdAt     DateTime    @default(now())
-  visitedAt     DateTime?   // when job was completed / visited
-  scheduledAt   DateTime?   // agreed cleaning time
-  notes         String?     // internal notes
+  id          String    @id @default(cuid())
+  title       String
+  description String?
+  service     Service   @relation(fields: [serviceId], references: [id], name: "ServiceJobs")
+  serviceId   String
+  user        User      @relation("UserJobs", fields: [userId], references: [id])
+  userId      String
+  location    Location  @relation(fields: [locationId], references: [id], name: "LocationJobs")
+  locationId  String
+  leadId      String    @unique // required for one‑to‑one
+  lead        Lead      @relation(fields: [leadId], references: [id], name: "LeadJob")
+  status      JobStatus @default(PENDING)
+  createdAt   DateTime  @default(now())
+  visitedAt   DateTime? // when job was completed / visited
+  scheduledAt DateTime? // agreed cleaning time
+  notes       String? // internal notes
 
   @@index([userId])
   @@index([status])
@@ -60,11 +59,11 @@ model Job {
 }
 
 enum JobStatus {
-  PENDING      // request submitted, not yet confirmed
-  CONFIRMED    // admin confirmed; date scheduled
-  ONGOING      // in progress
-  COMPLETED    // done
-  CANCELLED    // cancelled by user or admin
+  PENDING
+  CONFIRMED
+  ONGOING
+  COMPLETED
+  CANCELLED
 }
 
 // ────────────────────────────────────────────────────────────
@@ -72,15 +71,14 @@ enum JobStatus {
 // ────────────────────────────────────────────────────────────
 
 model Service {
-  id          String @id @default(cuid())
+  id          String  @id @default(cuid())
   name        String
-  slug        String @unique
+  slug        String  @unique
   description String?
 
-  jobs     Job[]   @relation("ServiceJobs")
-  contents Content[] @relation("ContentServices")
-
-  @@index([slug])
+  jobs     Job[]     @relation("ServiceJobs")
+  contents Content[] @relation("ContentByService")
+  leads    Lead[]    @relation("ServiceLeads") // added: two‑way to Lead.service
 }
 
 // ────────────────────────────────────────────────────────────
@@ -88,23 +86,24 @@ model Service {
 // ────────────────────────────────────────────────────────────
 
 model Lead {
-  id          String   @id @default(cuid())
+  id          String      @id @default(cuid())
   firstName   String?
   lastName    String?
-  email       String   @db.VarChar(254)
+  email       String      @db.VarChar(254)
   phone       String?
-  company     String?  // if they’re a business
-  service     Service  @relation(fields: [serviceId], references: [id])
+  company     String? // if they’re a business
+  service     Service     @relation(fields: [serviceId], references: [id], name: "ServiceLeads")
   serviceId   String
-  location    Location @relation(fields: [locationId], references: [id])
+  location    Location    @relation(fields: [locationId], references: [id], name: "LeadsAtLocation")
   locationId  String
-  message     String?  // e.g., special instructions
+  message     String? // e.g., special instructions
   source      LeadSource? @default(WEBSITE_CONTACT)
   convertedAt DateTime? // when turned into a confirmed job
-  status      LeadStatus @default(INBOX)
-  createdAt   DateTime @default(now())
-  createdBy   User?    @relation("CreatedByUser", fields: [createdById], references: [id])
+  status      LeadStatus  @default(INBOX)
+  createdAt   DateTime    @default(now())
+  createdBy   User?       @relation("CreatedByUser", fields: [createdById], references: [id])
   createdById String?
+  job         Job?        @relation("LeadJob")
 
   @@index([email])
   @@index([status])
@@ -120,11 +119,11 @@ enum LeadSource {
 }
 
 enum LeadStatus {
-  INBOX      // new, not yet handled
-  REVIEW     // being reviewed
-  QUOTED     // quote sent
-  CONVERTED  // became a job
-  LOST       // not interested
+  INBOX
+  REVIEW
+  QUOTED
+  CONVERTED
+  LOST
 }
 
 // ────────────────────────────────────────────────────────────
@@ -132,19 +131,17 @@ enum LeadStatus {
 // ────────────────────────────────────────────────────────────
 
 model Location {
-  id       String @id @default(cuid())
+  id       String  @id @default(cuid())
   name     String // e.g., "Newcastle, NSW"
-  slug     String @unique // e.g., "newcastle", "wollongong", "canberra"
+  slug     String  @unique
   city     String?
   state    String? // "NSW", "ACT"
-  country  String @default("Australia")
+  country  String  @default("Australia")
   timezone String?
 
-  jobs   Job[]     @relation("LocationJobs")
-  leads  Lead[]    @relation("LocationLeads")
-
-  @@index([slug])
-  @@index([city, state])
+  jobs     Job[]     @relation("LocationJobs")
+  leads    Lead[]    @relation("LeadsAtLocation")
+  contents Content[] @relation("ContentByLocation")
 }
 
 // ────────────────────────────────────────────────────────────
@@ -152,27 +149,28 @@ model Location {
 // ────────────────────────────────────────────────────────────
 
 model Content {
-  id          String   @id @default(cuid())
-  slug        String   @unique
-  title       String   @db.VarChar(200)
-  seoTitle    String?  @db.VarChar(200)
-  seoDescription String? @db.VarChar(300)
-  markdown    String?
-  html        String?  // rich text rendered from markdown
-  status      Status   @default(DRAFT)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  publishedAt DateTime?
-  author      User?    @relation(fields: [authorId], references: [id])
-  authorId    String?
-  location    Location? @relation(fields: [locationId], references: [id])
-  locationId  String?
-  service     Service?  @relation("ContentServices", fields: [serviceId], references: [id])
-  serviceId   String?
+  id             String    @id @default(cuid())
+  slug           String    @unique
+  title          String    @db.VarChar(200)
+  seoTitle       String?   @db.VarChar(200)
+  seoDescription String?   @db.VarChar(300)
+  markdown       String?
+  html           String? // rich text rendered from markdown
+  status         Status    @default(DRAFT)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  publishedAt    DateTime?
+  author         User?     @relation(fields: [authorId], references: [id], name: "ContentByAuthor")
+  authorId       String?
+  location       Location? @relation(fields: [locationId], references: [id], name: "ContentByLocation")
+  locationId     String?
+  service        Service?  @relation("ContentByService", fields: [serviceId], references: [id])
+  serviceId      String?
 
   @@index([status])
   @@index([locationId])
   @@index([serviceId])
+  @@index([authorId])
 }
 
 enum Status {
