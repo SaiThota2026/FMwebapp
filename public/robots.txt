@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+
+# Host
+Host: https://www.facilitiesman.com.au
+
+# Sitemaps
+Sitemap: https://www.facilitiesman.com.au/sitemap.xml

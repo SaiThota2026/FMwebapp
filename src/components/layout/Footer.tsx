@@ -1,0 +1,124 @@
+import Link from "next/link";
+import { Logo } from "@/components/layout/Logo";
+import {
+  COMPANY_LINKS,
+  LOCATIONS,
+  SERVICES,
+  SITE,
+} from "@/lib/site";
+
+export function Footer() {
+  const year = new Date().getFullYear();
+  const privacy = COMPANY_LINKS.find((l) => l.name === "Privacy Policy");
+  const sitemap = COMPANY_LINKS.find((l) => l.name === "Sitemap");
+
+  return (
+    <footer className="bg-brand-dark text-brand-offwhite">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <Logo variant="footer" />
+          <p className="mt-4 text-sm leading-relaxed">
+            Locally owned and operated in Newcastle, NSW
+          </p>
+          <p className="mt-2 text-sm">ABN {SITE.abn}</p>
+          <p className="mt-2 text-sm text-brand-offwhite/80">
+            [PLACEHOLDER — insert public liability insurance amount]
+          </p>
+        </div>
+
+        <div>
+          <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-brand-gold">
+            Services
+          </h2>
+          <ul className="mt-4 space-y-2 text-sm">
+            {SERVICES.map((s) => (
+              <li key={s.href}>
+                <Link href={s.href} className="hover:text-brand-gold">
+                  {s.name}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                href="/services/"
+                className="font-semibold text-brand-gold transition-colors hover:text-brand-offwhite"
+              >
+                View All Services
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-brand-gold">
+            Locations
+          </h2>
+          <ul className="mt-4 space-y-2 text-sm">
+            {LOCATIONS.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-brand-gold">
+                  {l.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-brand-gold">
+            Company
+          </h2>
+          <ul className="mt-4 space-y-2 text-sm">
+            {COMPANY_LINKS.filter(
+              (l) => l.name !== "Sitemap" && l.name !== "Privacy Policy",
+            ).map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-brand-gold">
+                  {l.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm">
+            <a
+              href={`tel:${SITE.phone}`}
+              className="font-semibold hover:text-brand-gold"
+            >
+              {SITE.phoneDisplay}
+            </a>
+          </p>
+          <p className="mt-1 text-sm">
+            <a
+              href={`mailto:${SITE.email}`}
+              className="hover:text-brand-gold"
+            >
+              {SITE.email}
+            </a>
+          </p>
+          <p className="mt-1 text-sm">{SITE.address}</p>
+        </div>
+      </div>
+
+      <div className="border-t border-brand-teal/30">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 text-center text-sm text-brand-offwhite/80 md:flex-row md:text-left">
+          <p>
+            © {year} {SITE.name}. ABN {SITE.abn}. All rights reserved.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {privacy && (
+              <Link href={privacy.href} className="hover:text-brand-gold">
+                Privacy Policy
+              </Link>
+            )}
+            {sitemap && (
+              <Link href={sitemap.href} className="hover:text-brand-gold">
+                Sitemap
+              </Link>
+            )}
+          </div>
+          <p className="text-xs">Designed and built with Australian pride.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
