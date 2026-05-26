@@ -22,6 +22,11 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+
+  .fm-reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes fmFadeUp {
@@ -46,6 +51,24 @@ html {
 }
 .fm-delay-3 {
   animation-delay: 240ms;
+}
+.fm-delay-4 {
+  animation-delay: 320ms;
+}
+.fm-delay-5 {
+  animation-delay: 400ms;
+}
+
+.fm-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fm-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .fm-hover-lift {

@@ -4,6 +4,7 @@ type ImagePlaceholderProps = {
   className?: string;
 };
 
+/** Dashed placeholder block — matches homepage pattern until real assets are added. */
 export function ImagePlaceholder({
   label,
   aspect = "video",
