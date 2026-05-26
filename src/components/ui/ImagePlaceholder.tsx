@@ -19,11 +19,11 @@ export function ImagePlaceholder({
 
   return (
     <div
-      className={`flex ${aspectClass} w-full items-center justify-center rounded-lg border-2 border-dashed border-brand-teal/40 bg-brand-cream px-4 text-center ${className}`}
+      className={`flex ${aspectClass} w-full min-w-0 items-center justify-center rounded-lg border-2 border-dashed border-brand-teal/40 bg-brand-cream px-3 py-4 text-center sm:px-4 ${className}`}
       role="img"
       aria-label={label}
     >
-      <p className="font-medium text-sm text-brand-dark/80 md:text-base">
+      <p className="max-w-full break-words font-medium text-xs leading-snug text-brand-dark/80 sm:text-sm md:text-base">
         [PLACEHOLDER — {label}]
       </p>
     </div>

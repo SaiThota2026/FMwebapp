@@ -31,8 +31,8 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
         height={640}
         decoding={isHeader ? "sync" : "async"}
         fetchPriority={isHeader ? "high" : "auto"}
-        className={`block w-auto object-contain object-left drop-shadow-[0_6px_16px_rgba(0,0,0,0.35)] ${
-          isHeader ? "h-16 sm:h-20 md:h-24" : "h-14 sm:h-16 md:h-20"
+        className={`block w-auto max-w-[min(100%,12rem)] object-contain object-left drop-shadow-[0_6px_16px_rgba(0,0,0,0.35)] sm:max-w-none ${
+          isHeader ? "h-12 sm:h-16 md:h-24" : "h-14 sm:h-16 md:h-20"
         }`}
       />
     </Link>

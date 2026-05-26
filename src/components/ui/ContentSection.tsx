@@ -7,15 +7,16 @@ type ContentSectionProps = {
   imagePosition?: "left" | "right";
 };
 
-export function ContentSection({
+function SectionText({
   heading,
   body,
-  imageLabel,
-  imagePosition = "right",
-}: ContentSectionProps) {
-  const text = (
-    <div>
-      <h2 className="font-display text-3xl font-bold text-brand-dark">
+}: {
+  heading: string;
+  body: string[];
+}) {
+  return (
+    <div className="min-w-0">
+      <h2 className="font-display text-2xl font-bold text-brand-dark lg:text-3xl">
         {heading}
       </h2>
       <div className="mt-4 space-y-4 text-brand-dark/90">
@@ -25,29 +26,31 @@ export function ContentSection({
       </div>
     </div>
   );
+}
 
-  const visual = (
-    <ImagePlaceholder label={imageLabel} aspect="video" />
-  );
-
+export function ContentSection({
+  heading,
+  body,
+  imageLabel,
+  imagePosition = "right",
+}: ContentSectionProps) {
   return (
-    <section className="mt-16">
-      <div
-        className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${
-          imagePosition === "left" ? "" : ""
-        }`}
-      >
-        {imagePosition === "left" ? (
-          <>
-            {visual}
-            {text}
-          </>
-        ) : (
-          <>
-            {text}
-            {visual}
-          </>
-        )}
+    <section className="mt-12 first:mt-0 lg:mt-16">
+      <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div
+          className={`order-1 min-w-0 ${
+            imagePosition === "left" ? "lg:order-2" : "lg:order-1"
+          }`}
+        >
+          <SectionText heading={heading} body={body} />
+        </div>
+        <div
+          className={`order-2 min-w-0 ${
+            imagePosition === "left" ? "lg:order-1" : "lg:order-2"
+          }`}
+        >
+          <ImagePlaceholder label={imageLabel} aspect="video" />
+        </div>
       </div>
     </section>
   );

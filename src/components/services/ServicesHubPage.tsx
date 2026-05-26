@@ -19,7 +19,7 @@ export function ServicesHubPage() {
         lead="FACILITIES MAN delivers a complete range of facilities management and cleaning services for commercial, strata, industrial and government clients across Newcastle, the Hunter Valley and the Central Coast. Every service runs from our Newcastle base under one ABN — no subcontracted unknowns."
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="fm-container py-10 sm:py-12 md:py-16">
         <p className="max-w-3xl text-brand-dark/90">
           Whether you need a single daily office clean or a fully integrated
           facilities programme covering cleaning, grounds maintenance, trades and
@@ -144,7 +144,7 @@ export function ServicesHubPage() {
           <h2 className="font-display text-3xl font-bold text-brand-dark">
             How We Engage
           </h2>
-          <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {[
               {
                 title: "Enquiry",

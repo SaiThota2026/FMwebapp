@@ -6,7 +6,10 @@ import { TrustStrip } from "@/components/ui/TrustStrip";
 import {
   HOME_FAQS,
   HOME_INDUSTRIES,
+  HOME_LOCATIONS,
+  HOME_MAP_IMAGE_LABEL,
   HOME_SERVICES,
+  HOME_WHY_CHOOSE,
 } from "@/data/home";
 import { SITE } from "@/lib/site";
 
@@ -27,28 +30,28 @@ export function HomePage() {
           aria-hidden="true"
           className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-brand-gold/10 blur-3xl"
         />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div className="relative fm-container py-16 md:py-24">
           <p className="text-sm font-semibold uppercase tracking-wider text-brand-gold">
             Locally owned and operated in Newcastle
           </p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight md:text-5xl">
+          <h1 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             Newcastle&apos;s Facilities Management &amp; Commercial Cleaning
             Specialists
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-brand-offwhite/90">
+          <p className="mt-4 max-w-2xl text-base text-brand-offwhite/90 md:text-lg">
             From one office to whole building portfolios — cleaning, grounds,
             maintenance and facilities management under one Newcastle team.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <Link
               href="/contact/"
-              className="inline-flex items-center justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-brand-dark fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40"
+              className="fm-touch-target inline-flex w-full items-center justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-brand-dark fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 sm:w-auto"
             >
               Get a Free Quote
             </Link>
             <a
               href={`tel:${SITE.phone}`}
-              className="inline-flex items-center justify-center rounded-md border-2 border-brand-teal px-6 py-3 font-semibold text-brand-teal fm-hover-lift fm-tap hover:bg-brand-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/40"
+              className="fm-touch-target inline-flex w-full items-center justify-center rounded-md border-2 border-brand-teal px-6 py-3 font-semibold text-brand-teal fm-hover-lift fm-tap hover:bg-brand-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/40 sm:w-auto"
             >
               Call {SITE.phoneDisplay}
             </a>
@@ -96,7 +99,7 @@ export function HomePage() {
 
       {/* Services */}
       <section className="bg-brand-offwhite py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="fm-container">
           <h2 className="font-display text-3xl font-bold text-brand-dark md:text-4xl">
             Facilities &amp; Cleaning Services
           </h2>
@@ -147,7 +150,7 @@ export function HomePage() {
 
       {/* Industries */}
       <section className="bg-brand-cream py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="fm-container">
           <h2 className="font-display text-3xl font-bold text-brand-dark">
             Industries We Serve
           </h2>
@@ -181,160 +184,105 @@ export function HomePage() {
 
       {/* Where We Work */}
       <section className="bg-brand-offwhite py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="fm-container">
           <h2 className="font-display text-3xl font-bold text-brand-dark">
             Where We Work
           </h2>
-          <div className="mt-8 grid gap-8 lg:grid-cols-2">
-            <div className="space-y-8">
-              <article>
-                <h3 className="font-display text-xl font-semibold text-brand-teal">
-                  Newcastle
-                </h3>
-                <p className="mt-2 text-brand-dark/90">
-                  Our home base covers Newcastle CBD, the Honeysuckle precinct,
-                  Hunter River waterfront, The Junction, Kotara, Mayfield and
-                  Charlestown. We mobilise quickly for commercial, strata and
-                  industrial sites near Newcastle Interchange and the port
-                  corridor.
-                </p>
-                <Link
-                  href="/locations/newcastle/"
-                  className="mt-2 inline-block font-semibold text-brand-teal"
-                >
-                  Newcastle facilities services
-                </Link>
+          <p className="mt-4 max-w-3xl text-brand-dark/90">
+            Locally owned in Newcastle — we mobilise across the Hunter, Lake
+            Macquarie and the Central Coast with the same documented standards
+            and owner oversight on every contract.
+          </p>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {HOME_LOCATIONS.map((location) => (
+              <article
+                key={location.href}
+                className="flex h-full flex-col overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm fm-hover-lift"
+              >
+                <div className="border-b border-brand-teal/10 bg-brand-cream/80 px-5 py-4">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-brand-gold">
+                    {location.badge}
+                  </p>
+                  <h3 className="mt-1 font-display text-xl font-semibold text-brand-teal">
+                    {location.name}
+                  </h3>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="flex-1 text-sm leading-relaxed text-brand-dark/90">
+                    {location.blurb}
+                  </p>
+                  <Link
+                    href={location.href}
+                    className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-dark hover:text-brand-teal"
+                  >
+                    {location.linkLabel}
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </article>
-              <article>
-                <h3 className="font-display text-xl font-semibold text-brand-teal">
-                  Maitland
-                </h3>
-                <p className="mt-2 text-brand-dark/90">
-                  We service the Hunter corridor growth areas including
-                  Thornton, Rutherford industrial estate and East Maitland
-                  aged-care and retail strips. Commercial cleaning and industrial
-                  programmes are tailored to Maitland&apos;s expanding commercial
-                  footprint.
-                </p>
-                <Link
-                  href="/locations/maitland/"
-                  className="mt-2 inline-block font-semibold text-brand-teal"
-                >
-                  Facilities services in Maitland
-                </Link>
-              </article>
-              <article>
-                <h3 className="font-display text-xl font-semibold text-brand-teal">
-                  Lake Macquarie
-                </h3>
-                <p className="mt-2 text-brand-dark/90">
-                  Australia&apos;s largest local government area includes
-                  Charlestown commercial centre, Warners Bay and Belmont. We
-                  deliver strata, office and grounds programmes across the lake
-                  suburbs with Newcastle-based coordination.
-                </p>
-                <Link
-                  href="/locations/lake-macquarie/"
-                  className="mt-2 inline-block font-semibold text-brand-teal"
-                >
-                  Lake Macquarie cleaning services
-                </Link>
-              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm">
+            <div className="border-b border-brand-teal/10 bg-brand-cream px-5 py-4">
+              <h3 className="font-display text-lg font-semibold text-brand-dark">
+                Service area overview
+              </h3>
+              <p className="mt-1 text-sm text-brand-dark/80">
+                Newcastle HQ with coverage across the wider Hunter and Central
+                Coast regions.
+              </p>
             </div>
-            <div className="space-y-8">
-              <article>
-                <h3 className="font-display text-xl font-semibold text-brand-teal">
-                  Hunter Valley
-                </h3>
-                <p className="mt-2 text-brand-dark/90">
-                  From Cessnock and Singleton mining and processing sites to
-                  Pokolbin wineries, we cover industrial cleaning and facilities
-                  support across the valley. Scopes account for dust, traffic
-                  and seasonal vineyard operations.
-                </p>
-                <Link
-                  href="/locations/hunter-valley/"
-                  className="mt-2 inline-block font-semibold text-brand-teal"
-                >
-                  Hunter Valley facilities services
-                </Link>
-              </article>
-              <article>
-                <h3 className="font-display text-xl font-semibold text-brand-teal">
-                  Central Coast
-                </h3>
-                <p className="mt-2 text-brand-dark/90">
-                  Gosford CBD, Tuggerah commercial precinct, Erina and Terrigal
-                  hospitality sites receive the same documented standards we
-                  apply in Newcastle. Contact us for Central Coast mobilisation
-                  and pricing.
-                </p>
-                <Link
-                  href="/locations/central-coast/"
-                  className="mt-2 inline-block font-semibold text-brand-teal"
-                >
-                  Central Coast cleaning services
-                </Link>
-              </article>
-              <ImagePlaceholder
-                label="newcastle-facilities-services-map.webp — Map showing FACILITIES MAN service areas"
-                aspect="video"
-              />
-            </div>
+            <ImagePlaceholder label={HOME_MAP_IMAGE_LABEL} aspect="wide" className="rounded-none border-0" />
           </div>
         </div>
       </section>
 
       {/* Why Choose */}
       <section className="bg-brand-cream py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="fm-container">
           <h2 className="font-display text-3xl font-bold text-brand-dark">
             Why Choose a Newcastle-Owned Facilities Team
           </h2>
-          <div className="mt-10 grid gap-8 md:grid-cols-3">
-            <article>
-              <h3 className="font-display text-xl font-semibold text-brand-teal">
-                Owner-Operated Accountability
-              </h3>
-              <p className="mt-3 text-brand-dark/90">
-                The owner answers the phone — not a call centre. You speak
-                directly with the decision-maker who scopes your site and
-                oversees delivery. Every contract is personally managed, so
-                issues are resolved quickly without ticket queues.
-              </p>
-            </article>
-            <article>
-              <h3 className="font-display text-xl font-semibold text-brand-teal">
-                Fully Insured &amp; Compliant
-              </h3>
-              <p className="mt-3 text-brand-dark/90">
-                ABN {SITE.abn}. Public liability insurance certificate available
-                on request — [PLACEHOLDER — insert public liability insurance
-                amount, e.g. $20 million]. All staff are police-checked; WWVP
-                checks are held for childcare and education sites.
-              </p>
-            </article>
-            <article>
-              <h3 className="font-display text-xl font-semibold text-brand-teal">
-                Modern Systems from Day One
-              </h3>
-              <p className="mt-3 text-brand-dark/90">
-                Digital scopes of work, photo reporting and clear task records
-                from your first service — no legacy paperwork. You receive
-                monthly reports your committee or facilities manager can audit
-                without chasing updates.
-              </p>
-            </article>
-          </div>
-          <p className="mt-8 rounded-lg border border-dashed border-brand-teal/40 bg-white p-4 text-center text-sm">
-            [PLACEHOLDER — insert founder name and headshot photo]
+          <p className="mt-4 max-w-3xl text-brand-dark/90">
+            You get direct access to the owner, modern reporting from day one,
+            and a team built for accountability — not a national franchise model.
           </p>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {HOME_WHY_CHOOSE.map((item, index) => (
+              <article
+                key={item.title}
+                className="flex h-full flex-col rounded-xl border border-brand-teal/15 bg-white p-6 shadow-sm fm-hover-lift"
+              >
+                <span className="font-display text-3xl font-bold leading-none text-brand-gold">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 font-display text-xl font-semibold text-brand-teal">
+                  {item.title}
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-brand-dark/90">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <article className="mt-8 rounded-xl border-2 border-dashed border-brand-teal/35 bg-white/80 p-6 text-center shadow-sm">
+            <p className="font-display text-lg font-semibold text-brand-dark">
+              Meet the owner
+            </p>
+            <p className="mt-2 text-sm text-brand-dark/80">
+              [PLACEHOLDER — insert founder name and headshot photo]
+            </p>
+          </article>
         </div>
       </section>
 
       {/* How We Work */}
       <section className="bg-brand-offwhite py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="fm-container">
           <h2 className="font-display text-3xl font-bold text-brand-dark">
             How We Work — Our Process
           </h2>
@@ -376,7 +324,7 @@ export function HomePage() {
 
       {/* Trust placeholders */}
       <section className="bg-brand-dark py-16 text-brand-offwhite">
-        <div className="mx-auto max-w-6xl px-4 text-center">
+        <div className="fm-container text-center">
           <h2 className="font-display text-2xl font-bold">
             [TRUST PLACEHOLDER] Reviews &amp; Recognition
           </h2>
@@ -401,7 +349,7 @@ export function HomePage() {
 
       {/* FAQ */}
       <section className="bg-brand-offwhite py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="fm-container">
           <h2 className="font-display text-3xl font-bold text-brand-dark">
             Frequently Asked Questions
           </h2>

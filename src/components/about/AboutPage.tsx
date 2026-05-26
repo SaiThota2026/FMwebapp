@@ -14,7 +14,7 @@ export function AboutPage() {
         lead="Locally owned, owner-operated facilities management and commercial cleaning — built in Newcastle for businesses that want accountability, not a call centre."
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="fm-container py-10 sm:py-12 md:py-16">
         <section>
           <h2 className="font-display text-3xl font-bold text-brand-dark">
             Who We Are

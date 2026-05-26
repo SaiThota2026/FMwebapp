@@ -27,7 +27,7 @@ export function LocationPageTemplate({ data }: { data: LocationPageData }) {
         visual={visual}
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <div className="fm-container py-12 md:py-16">
         <RevealOnScroll>
           <ProcessSteps
             heading={`What you can expect for ${data.name}`}
@@ -181,7 +181,7 @@ export function LocationPageTemplate({ data }: { data: LocationPageData }) {
             <iframe
               title={data.mapTitle}
               src={data.mapEmbed}
-              className="h-80 w-full border-0"
+              className="h-56 w-full border-0 sm:h-72 md:h-80"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

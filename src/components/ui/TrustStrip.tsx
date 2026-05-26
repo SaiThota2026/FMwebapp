@@ -10,7 +10,7 @@ export function TrustStrip({ variant = "dark" }: { variant?: "dark" | "light" })
           : "border border-brand-teal/20 bg-brand-cream py-4 text-brand-dark"
       }
     >
-      <ul className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 text-center text-sm md:text-base">
+      <ul className="fm-container flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-xs sm:text-sm md:text-base">
         <li>ABN {SITE.abn}</li>
         <li aria-hidden="true" className="hidden text-brand-gold md:inline">
           |

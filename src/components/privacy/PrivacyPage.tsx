@@ -60,7 +60,7 @@ export function PrivacyPage() {
         </section>
       </div>
 
-      <div className="prose prose-neutral mx-auto max-w-3xl px-4 py-12 prose-headings:font-display prose-headings:text-brand-dark prose-a:text-brand-teal">
+      <div className="prose prose-neutral fm-container max-w-3xl py-10 sm:py-12 prose-headings:font-display prose-headings:text-brand-dark prose-a:text-brand-teal prose-p:break-words">
         <section>
           <h2>About This Policy</h2>
           <p>

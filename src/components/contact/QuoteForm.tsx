@@ -77,7 +77,7 @@ export function QuoteForm() {
             type="text"
             required
             autoComplete="name"
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="fm-input mt-1"
           />
           <FieldError message={state.fieldErrors?.fullName} />
         </div>
@@ -90,7 +90,7 @@ export function QuoteForm() {
             name="businessName"
             type="text"
             autoComplete="organization"
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="fm-input mt-1"
           />
         </div>
         <div>
@@ -103,7 +103,7 @@ export function QuoteForm() {
             type="tel"
             required
             autoComplete="tel"
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="fm-input mt-1"
           />
           <FieldError message={state.fieldErrors?.phone} />
         </div>
@@ -117,7 +117,7 @@ export function QuoteForm() {
             type="email"
             required
             autoComplete="email"
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="fm-input mt-1"
           />
           <FieldError message={state.fieldErrors?.email} />
         </div>
@@ -160,7 +160,7 @@ export function QuoteForm() {
             name="siteAddress"
             type="text"
             required
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="fm-input mt-1"
           />
           <FieldError message={state.fieldErrors?.siteAddress} />
         </div>
@@ -171,7 +171,7 @@ export function QuoteForm() {
           <select
             id="frequency"
             name="frequency"
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="fm-input mt-1"
             defaultValue=""
           >
             <option value="" disabled>
@@ -194,7 +194,7 @@ export function QuoteForm() {
           id="additionalInfo"
           name="additionalInfo"
           rows={4}
-          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+          className="fm-input mt-1"
         />
       </div>
 
@@ -243,7 +243,7 @@ export function QuoteForm() {
       <button
         type="submit"
         disabled={pending}
-        className="mt-6 w-full rounded-md bg-brand-gold py-4 text-lg font-bold text-brand-dark fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+        className="fm-touch-target mt-6 w-full rounded-md bg-brand-gold py-4 text-base font-bold text-brand-dark sm:text-lg fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
       >
         {pending
           ? "Sending…"

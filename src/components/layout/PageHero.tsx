@@ -33,21 +33,21 @@ export function PageHero({
         className="absolute -bottom-24 left-0 h-64 w-64 rounded-full bg-brand-gold/15 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-10 md:py-14">
+      <div className="relative fm-container py-10 md:py-14">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
-          <div className="fm-fade-up">
+          <div className="fm-fade-up min-w-0">
             <Breadcrumbs items={breadcrumbs} variant="dark" />
-            <h1 className="font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-[2.5rem]">
+            <h1 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-[2.5rem]">
               {h1}
             </h1>
             {lead && (
-              <p className="mt-4 max-w-xl text-lg leading-relaxed text-brand-offwhite/90">
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-brand-offwhite/90 md:text-lg">
                 {lead}
               </p>
             )}
           </div>
 
-          <div className="fm-fade-up fm-delay-2">
+          <div className="fm-fade-up fm-delay-2 min-w-0">
             <ImagePlaceholder
               label={visual.heroLabel}
               aspect="video"

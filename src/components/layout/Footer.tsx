@@ -14,7 +14,7 @@ export function Footer() {
 
   return (
     <footer className="bg-brand-dark text-brand-offwhite">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="fm-container grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Logo variant="footer" />
           <p className="mt-4 text-sm leading-relaxed">
@@ -100,7 +100,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-brand-teal/30">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 text-center text-sm text-brand-offwhite/80 md:flex-row md:text-left">
+        <div className="fm-container flex flex-col items-center justify-between gap-4 py-6 text-center text-sm text-brand-offwhite/80 md:flex-row md:text-left">
           <p>
             © {year} {SITE.name}. ABN {SITE.abn}. All rights reserved.
           </p>

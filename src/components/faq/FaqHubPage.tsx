@@ -18,7 +18,7 @@ export function FaqHubPage() {
         lead={FAQ_HUB_INTRO}
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="fm-container py-10 sm:py-12 md:py-16">
         <section className="mb-16 rounded-xl border border-brand-teal/20 bg-brand-cream p-6 md:p-8">
           <h3 className="font-display text-xl font-semibold text-brand-dark">
             Start here: the top questions

@@ -27,7 +27,7 @@ export function ServicePageTemplate({ data }: { data: ServicePageData }) {
         visual={visual}
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <div className="fm-container py-12 md:py-16">
         <RevealOnScroll>
           <ProcessSteps
             heading="What happens after you enquire?"
@@ -75,8 +75,8 @@ export function ServicePageTemplate({ data }: { data: ServicePageData }) {
         ))}
 
         <RevealOnScroll delayMs={80}>
-          <section className="mt-16 overflow-hidden rounded-xl border border-brand-teal/15 bg-brand-cream">
-            <div className="grid lg:grid-cols-2">
+          <section className="mt-12 overflow-hidden rounded-xl border border-brand-teal/15 bg-brand-cream sm:mt-16">
+            <div className="grid min-w-0 lg:grid-cols-2">
               <div className="p-6 md:p-8">
                 <h2 className="font-display text-3xl font-bold text-brand-dark">
                   Areas We Serve

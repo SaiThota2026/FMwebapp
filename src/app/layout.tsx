@@ -34,6 +34,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,7 +58,7 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col antialiased">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 min-w-0">{children}</main>
         <Footer />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}

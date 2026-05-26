@@ -14,7 +14,7 @@ export function CtaSection({
 }: CtaSectionProps) {
   return (
     <section className="bg-brand-dark py-16 text-brand-offwhite md:py-20">
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="fm-container">
         <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
           {heading}
         </h2>
@@ -44,16 +44,16 @@ export function CtaSection({
           </div>
         )}
 
-        <div className="mt-8 flex flex-wrap gap-4">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <Link
             href="/contact/"
-            className="inline-flex items-center justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-brand-dark fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40"
+            className="fm-touch-target inline-flex w-full items-center justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-brand-dark fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 sm:w-auto"
           >
             Get a Free Quote
           </Link>
           <a
             href={`tel:${SITE.phone}`}
-            className="inline-flex items-center justify-center rounded-md border-2 border-brand-teal px-6 py-3 font-semibold text-brand-teal fm-hover-lift fm-tap hover:bg-brand-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/40"
+            className="fm-touch-target inline-flex w-full items-center justify-center rounded-md border-2 border-brand-teal px-6 py-3 font-semibold text-brand-teal fm-hover-lift fm-tap hover:bg-brand-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/40 sm:w-auto"
           >
             Call {SITE.phoneDisplay}
           </a>

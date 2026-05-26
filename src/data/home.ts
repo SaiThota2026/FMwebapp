@@ -1,4 +1,5 @@
 import type { FaqItem } from "@/lib/schema";
+import { SITE } from "@/lib/site";
 
 export const HOME_FAQS: FaqItem[] = [
   {
@@ -79,6 +80,69 @@ export const HOME_SERVICES = [
       "Warehouse, factory and distribution centre cleaning across Newcastle and the Hunter Valley.",
     imageLabel:
       "Industrial cleaning team in a Newcastle warehouse — services-industrial-cleaning.webp",
+  },
+] as const;
+
+export const HOME_LOCATIONS = [
+  {
+    name: "Newcastle",
+    href: "/locations/newcastle/",
+    badge: "Home base",
+    blurb:
+      "Our home base covers Newcastle CBD, the Honeysuckle precinct, Hunter River waterfront, The Junction, Kotara, Mayfield and Charlestown. We mobilise quickly for commercial, strata and industrial sites near Newcastle Interchange and the port corridor.",
+    linkLabel: "Newcastle facilities services",
+  },
+  {
+    name: "Maitland",
+    href: "/locations/maitland/",
+    badge: "Hunter corridor",
+    blurb:
+      "We service the Hunter corridor growth areas including Thornton, Rutherford industrial estate and East Maitland aged-care and retail strips. Commercial cleaning and industrial programmes are tailored to Maitland's expanding commercial footprint.",
+    linkLabel: "Facilities services in Maitland",
+  },
+  {
+    name: "Lake Macquarie",
+    href: "/locations/lake-macquarie/",
+    badge: "Lake suburbs",
+    blurb:
+      "Australia's largest local government area includes Charlestown commercial centre, Warners Bay and Belmont. We deliver strata, office and grounds programmes across the lake suburbs with Newcastle-based coordination.",
+    linkLabel: "Lake Macquarie cleaning services",
+  },
+  {
+    name: "Hunter Valley",
+    href: "/locations/hunter-valley/",
+    badge: "Industrial & wineries",
+    blurb:
+      "From Cessnock and Singleton mining and processing sites to Pokolbin wineries, we cover industrial cleaning and facilities support across the valley. Scopes account for dust, traffic and seasonal vineyard operations.",
+    linkLabel: "Hunter Valley facilities services",
+  },
+  {
+    name: "Central Coast",
+    href: "/locations/central-coast/",
+    badge: "Coastal NSW",
+    blurb:
+      "Gosford CBD, Tuggerah commercial precinct, Erina and Terrigal hospitality sites receive the same documented standards we apply in Newcastle. Contact us for Central Coast mobilisation and pricing.",
+    linkLabel: "Central Coast cleaning services",
+  },
+] as const;
+
+export const HOME_MAP_IMAGE_LABEL =
+  "newcastle-facilities-services-map.webp — Map showing FACILITIES MAN service areas";
+
+export const HOME_WHY_CHOOSE = [
+  {
+    title: "Owner-Operated Accountability",
+    description:
+      "The owner answers the phone — not a call centre. You speak directly with the decision-maker who scopes your site and oversees delivery. Every contract is personally managed, so issues are resolved quickly without ticket queues.",
+  },
+  {
+    title: "Fully Insured & Compliant",
+    description: `ABN ${SITE.abn}. Public liability insurance certificate available on request — [PLACEHOLDER — insert public liability insurance amount, e.g. $20 million]. All staff are police-checked; WWVP checks are held for childcare and education sites.`,
+  },
+  {
+    title: "Modern Systems from Day One",
+    description:
+      "Digital scopes of work, photo reporting and clear task records from your first service — no legacy paperwork. You receive monthly reports your committee or facilities manager can audit without chasing updates.",
   },
 ] as const;
 

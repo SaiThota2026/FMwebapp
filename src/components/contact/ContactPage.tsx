@@ -12,21 +12,21 @@ export function ContactPage() {
   return (
     <div className="bg-brand-offwhite">
       <section className="bg-brand-cream py-10 md:py-12">
-        <div className="mx-auto max-w-6xl px-4">
-          <p className="text-sm font-semibold uppercase tracking-wider text-brand-teal">
+        <div className="fm-container">
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-teal sm:text-sm">
             Locally owned and operated in Newcastle
           </p>
-          <h1 className="mt-2 font-display text-3xl font-bold text-brand-dark md:text-4xl">
+          <h1 className="mt-2 font-display text-2xl font-bold text-brand-dark sm:text-3xl md:text-4xl">
             Get a Free Quote — Newcastle Facilities Management &amp; Cleaning
           </h1>
-          <p className="mt-4 max-w-2xl text-brand-dark/90">
+          <p className="mt-4 max-w-2xl text-base text-brand-dark/90 sm:text-lg">
             You will speak with the owner. Not a call centre. Not a script.
             Direct accountability from your first enquiry.
           </p>
-          <div className="mt-6 flex flex-wrap gap-4">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <a
               href={`tel:${SITE.phone}`}
-              className="inline-flex items-center rounded-md border-2 border-brand-teal px-5 py-2 font-semibold text-brand-teal hover:bg-brand-teal hover:text-white"
+              className="fm-touch-target inline-flex w-full items-center justify-center rounded-md border-2 border-brand-teal px-5 py-2 font-semibold text-brand-teal hover:bg-brand-teal hover:text-white sm:w-auto"
             >
               Or Call {SITE.phoneDisplay}
             </a>
@@ -40,8 +40,8 @@ export function ContactPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        <div className="grid gap-12 lg:grid-cols-3">
+      <div className="fm-container py-10 sm:py-12">
+        <div className="grid gap-10 lg:grid-cols-3 lg:gap-12">
           <div className="space-y-10 lg:col-span-1">
             <section>
               <h2 className="font-display text-2xl font-bold text-brand-dark">
@@ -49,7 +49,7 @@ export function ContactPage() {
               </h2>
               <a
                 href={`tel:${SITE.phone}`}
-                className="mt-3 block font-display text-3xl font-bold text-brand-teal"
+                className="mt-3 block break-all font-display text-2xl font-bold text-brand-teal sm:text-3xl"
               >
                 {SITE.phoneDisplay}
               </a>
@@ -134,7 +134,7 @@ export function ContactPage() {
             <iframe
               title="FACILITIES MAN service area — Newcastle NSW"
               src={MAP_EMBED}
-              className="h-80 w-full border-0"
+              className="h-56 w-full border-0 sm:h-72 md:h-80"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

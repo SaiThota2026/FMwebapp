@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "@/components/layout/Logo";
 import { COMPANY_LINKS, LOCATIONS, SERVICES, SITE } from "@/lib/site";
 
@@ -18,7 +18,7 @@ function NavDropdown({
     <div className="group relative">
       <button
         type="button"
-        className="flex items-center gap-1 py-2 font-medium text-brand-offwhite hover:text-brand-gold"
+        className="fm-touch-target flex items-center gap-1 py-2 font-medium text-brand-offwhite hover:text-brand-gold"
         aria-haspopup="true"
       >
         {label}
@@ -60,9 +60,27 @@ export function Header() {
   const aboutLink = COMPANY_LINKS.find((l) => l.name === "About Us");
   const faqLink = COMPANY_LINKS.find((l) => l.name === "FAQ");
 
+  const closeMobile = () => setMobileOpen(false);
+
+  useEffect(() => {
+    document.body.classList.toggle("fm-nav-open", mobileOpen);
+    return () => document.body.classList.remove("fm-nav-open");
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMobile();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mobileOpen]);
+
   return (
-    <header className="sticky top-0 z-50 bg-brand-dark shadow-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <header className="sticky top-0 z-50 bg-brand-dark shadow-md pt-[env(safe-area-inset-top,0px)]">
+      <div className="fm-container flex items-center justify-between gap-4 py-3">
         <Logo variant="header" />
 
         <nav
@@ -102,7 +120,7 @@ export function Header() {
           </a>
           <Link
             href="/contact/"
-            className="rounded-md bg-brand-gold px-4 py-2 text-sm font-semibold text-brand-dark transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40"
+            className="fm-touch-target inline-flex items-center rounded-md bg-brand-gold px-4 py-2 text-sm font-semibold text-brand-dark transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40"
           >
             Get a Free Quote
           </Link>
@@ -110,116 +128,131 @@ export function Header() {
 
         <button
           type="button"
-          className="rounded p-2 text-brand-offwhite lg:hidden"
+          className="fm-touch-target -mr-1 inline-flex min-w-11 items-center justify-center rounded-md text-brand-offwhite lg:hidden"
           aria-expanded={mobileOpen}
+          aria-controls="mobile-nav-panel"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          <span className="text-2xl">{mobileOpen ? "✕" : "☰"}</span>
+          <span className="text-2xl leading-none" aria-hidden="true">
+            {mobileOpen ? "✕" : "☰"}
+          </span>
         </button>
       </div>
 
       {mobileOpen && (
-        <div
-          className="fixed inset-0 top-[80px] z-40 flex flex-col bg-brand-dark lg:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation"
-        >
-          <div className="flex-1 overflow-y-auto px-4 py-6">
-            <button
-              type="button"
-              className="flex w-full items-center justify-between py-3 font-semibold text-brand-offwhite"
-              onClick={() => setServicesOpen(!servicesOpen)}
-            >
-              Services
-              <span>{servicesOpen ? "−" : "+"}</span>
-            </button>
-            {servicesOpen && (
-              <ul className="mb-4 ml-4 space-y-2 border-l border-brand-teal/30 pl-4">
-                {SERVICES.map((s) => (
-                  <li key={s.href}>
+        <>
+          <button
+            type="button"
+            className="fixed inset-0 z-40 bg-brand-dark/60 lg:hidden"
+            aria-label="Close menu"
+            onClick={closeMobile}
+          />
+          <div
+            id="mobile-nav-panel"
+            className="fixed inset-x-0 bottom-0 z-50 flex max-h-[min(85dvh,32rem)] flex-col border-t border-brand-teal/30 bg-brand-dark shadow-2xl lg:hidden"
+            style={{ top: "max(4.5rem, calc(4.5rem + env(safe-area-inset-top, 0px)))" }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
+          >
+            <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-4">
+              <button
+                type="button"
+                className="fm-touch-target flex w-full items-center justify-between py-2 font-semibold text-brand-offwhite"
+                aria-expanded={servicesOpen}
+                onClick={() => setServicesOpen(!servicesOpen)}
+              >
+                Services
+                <span aria-hidden="true">{servicesOpen ? "−" : "+"}</span>
+              </button>
+              {servicesOpen && (
+                <ul className="mb-3 ml-4 space-y-2 border-l border-brand-teal/30 pl-4">
+                  {SERVICES.map((s) => (
+                    <li key={s.href}>
+                      <Link
+                        href={s.href}
+                        className="block py-1 text-brand-offwhite/90 hover:text-brand-gold"
+                        onClick={closeMobile}
+                      >
+                        {s.name}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
                     <Link
-                      href={s.href}
-                      className="text-brand-offwhite/90 hover:text-brand-gold"
-                      onClick={() => setMobileOpen(false)}
+                      href="/services/"
+                      className="block py-1 font-semibold text-brand-gold"
+                      onClick={closeMobile}
                     >
-                      {s.name}
+                      View All Services
                     </Link>
                   </li>
-                ))}
-                <li>
-                  <Link
-                    href="/services/"
-                    className="font-semibold text-brand-gold"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    View All Services
-                  </Link>
-                </li>
-              </ul>
-            )}
+                </ul>
+              )}
 
-            <button
-              type="button"
-              className="flex w-full items-center justify-between py-3 font-semibold text-brand-offwhite"
-              onClick={() => setLocationsOpen(!locationsOpen)}
-            >
-              Locations
-              <span>{locationsOpen ? "−" : "+"}</span>
-            </button>
-            {locationsOpen && (
-              <ul className="mb-4 ml-4 space-y-2 border-l border-brand-teal/30 pl-4">
-                {LOCATIONS.map((l) => (
-                  <li key={l.href}>
-                    <Link
-                      href={l.href}
-                      className="text-brand-offwhite/90 hover:text-brand-gold"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {l.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {aboutLink && (
-              <Link
-                href={aboutLink.href}
-                className="block py-3 font-semibold text-brand-offwhite"
-                onClick={() => setMobileOpen(false)}
+              <button
+                type="button"
+                className="fm-touch-target flex w-full items-center justify-between py-2 font-semibold text-brand-offwhite"
+                aria-expanded={locationsOpen}
+                onClick={() => setLocationsOpen(!locationsOpen)}
               >
-                About
-              </Link>
-            )}
-            {faqLink && (
-              <Link
-                href={faqLink.href}
-                className="block py-3 font-semibold text-brand-offwhite"
-                onClick={() => setMobileOpen(false)}
-              >
-                FAQ
-              </Link>
-            )}
-          </div>
+                Locations
+                <span aria-hidden="true">{locationsOpen ? "−" : "+"}</span>
+              </button>
+              {locationsOpen && (
+                <ul className="mb-3 ml-4 space-y-2 border-l border-brand-teal/30 pl-4">
+                  {LOCATIONS.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        className="block py-1 text-brand-offwhite/90 hover:text-brand-gold"
+                        onClick={closeMobile}
+                      >
+                        {l.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-          <div className="border-t border-brand-teal/30 p-4">
-            <a
-              href={`tel:${SITE.phone}`}
-              className="mb-3 block text-center text-lg font-semibold text-brand-gold"
-            >
-              {SITE.phoneDisplay}
-            </a>
-            <Link
-              href="/contact/"
-              className="block w-full rounded-md bg-brand-gold py-3 text-center font-semibold text-brand-dark"
-              onClick={() => setMobileOpen(false)}
-            >
-              Get a Free Quote
-            </Link>
+              {aboutLink && (
+                <Link
+                  href={aboutLink.href}
+                  className="fm-touch-target block py-2 font-semibold text-brand-offwhite"
+                  onClick={closeMobile}
+                >
+                  About
+                </Link>
+              )}
+              {faqLink && (
+                <Link
+                  href={faqLink.href}
+                  className="fm-touch-target block py-2 font-semibold text-brand-offwhite"
+                  onClick={closeMobile}
+                >
+                  FAQ
+                </Link>
+              )}
+            </div>
+
+            <div className="shrink-0 border-t border-brand-teal/30 p-4 pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
+              <a
+                href={`tel:${SITE.phone}`}
+                className="fm-touch-target mb-3 flex items-center justify-center text-lg font-semibold text-brand-gold"
+              >
+                {SITE.phoneDisplay}
+              </a>
+              <Link
+                href="/contact/"
+                className="fm-touch-target block w-full rounded-md bg-brand-gold py-3 text-center font-semibold text-brand-dark"
+                onClick={closeMobile}
+              >
+                Get a Free Quote
+              </Link>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );
