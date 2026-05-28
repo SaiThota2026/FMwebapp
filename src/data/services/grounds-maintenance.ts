@@ -55,7 +55,7 @@ export const groundsMaintenanceData: ServicePageData = {
         "Grounds performance changes throughout the year, so we plan frequencies by season rather than using one fixed pattern forever. Growing months usually need tighter cycles, while cooler periods can be managed with broader intervals.",
         "Seasonal planning helps reduce slip hazards, overgrowth complaints and presentation issues before they become urgent. It also makes budgeting more predictable for strata committees and property managers.",
         "We also coordinate around weather events and high-growth periods so sites remain safe and accessible for residents, staff and visitors.",
-        "Where sites include shared pedestrian paths, car parks and entry plazas, we prioritise visibility and safety outcomes alongside presentation goals.",
+        "Where sites include shared pedestrian paths, car parks and entry plazas, we prioritise visibility and safety outcomes alongside presentation goals. Grounds maintenance is a core component of our strata and body corporate and commercial property industry programmes.",
       ],
     },
   ],

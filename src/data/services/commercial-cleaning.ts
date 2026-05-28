@@ -25,7 +25,7 @@ export const commercialCleaningData: ServicePageData = {
       heading: "Who We Clean For",
       body: [
         "We clean offices, retail tenancies, strata common areas, medical administration spaces, childcare support areas, warehouses and government facilities. Each environment has different hygiene, presentation and access needs, so we tailor the scope accordingly.",
-        "For client-facing sites, we prioritise touch points, entry presentation and washroom standards. For operational sites, we focus on safe sequencing, traffic-aware cleaning and documented completion records.",
+        "For client-facing sites, we prioritise touch points, entry presentation and washroom standards. For operational sites, we focus on safe sequencing, traffic-aware cleaning and documented completion records. For healthcare and medical administration sites, see our dedicated healthcare cleaning programme at /services/medical-cleaning/. For childcare environments requiring child-safe products and NQF documentation, see childcare centre cleaning at /services/childcare-cleaning/.",
       ],
     },
     {

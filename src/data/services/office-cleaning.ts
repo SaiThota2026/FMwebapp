@@ -61,7 +61,7 @@ export const officeCleaningData: ServicePageData = {
       body: [
         "Hybrid attendance patterns can make office cleaning harder to plan if routines are not reviewed regularly. We adjust frequencies and task emphasis based on occupancy shifts, meeting days and visitor patterns.",
         "This helps offices stay presentable without overservicing low-use periods. It also keeps costs aligned to how your workplace is actually used.",
-        "Teams also benefit from predictable standards on peak attendance days when meeting rooms and shared kitchens are under pressure.",
+        "Teams also benefit from predictable standards on peak attendance days when meeting rooms and shared kitchens are under pressure. For CBD-focused coverage, see /locations/newcastle/office-cleaning/.",
       ],
     },
   ],

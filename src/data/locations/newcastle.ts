@@ -85,6 +85,7 @@ export const newcastleData: LocationPageData = {
     "Honeysuckle and the CBD continue to drive office and retail cleaning demand, while Mayfield and Tomago support industrial programmes.",
     "We are currently taking on a small number of foundation clients in Newcastle with founder-direct attention during onboarding.",
     "We also support multi-site operators that need one provider across Newcastle and adjacent LGAs. That model helps clients simplify reporting and governance.",
+    "We also work with healthcare facilities across the Newcastle medical precinct, strata and body corporate committees in inner-city apartment buildings, and government and council offices across the city.",
   ],
   mapTitle: "FACILITIES MAN service area — Newcastle NSW",
   mapEmbed: MAP,

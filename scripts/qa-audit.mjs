@@ -155,20 +155,73 @@ const validRoutes = new Set([
   "/contact/",
   "/faq/",
   "/privacy-policy/",
+  "/blog/",
   "/services/",
-  "/services/commercial-cleaning/",
-  "/services/strata-cleaning/",
-  "/services/facilities-management/",
-  "/services/office-cleaning/",
-  "/services/grounds-maintenance/",
-  "/services/industrial-cleaning/",
-  "/locations/newcastle/",
-  "/locations/maitland/",
-  "/locations/lake-macquarie/",
-  "/locations/hunter-valley/",
-  "/locations/central-coast/",
+  "/industries/",
+  "/locations/",
   "/sitemap.xml",
 ]);
+
+for (const s of [
+  "commercial-cleaning",
+  "strata-cleaning",
+  "facilities-management",
+  "office-cleaning",
+  "grounds-maintenance",
+  "industrial-cleaning",
+  "medical-cleaning",
+  "childcare-cleaning",
+  "window-cleaning",
+  "carpet-cleaning",
+  "pressure-washing",
+  "warehouse-cleaning",
+  "sanitary-washroom-services",
+  "maintenance-trades",
+]) {
+  validRoutes.add(`/services/${s}/`);
+}
+
+for (const l of [
+  "newcastle",
+  "maitland",
+  "lake-macquarie",
+  "hunter-valley",
+  "central-coast",
+  "cessnock",
+  "port-stephens",
+  "singleton",
+  "muswellbrook",
+]) {
+  validRoutes.add(`/locations/${l}/`);
+}
+
+for (const i of [
+  "strata-body-corporate",
+  "healthcare",
+  "education-childcare",
+  "commercial-property",
+  "government",
+]) {
+  validRoutes.add(`/industries/${i}/`);
+}
+
+const comboRoutes = [
+  "/locations/maitland/commercial-cleaning/",
+  "/locations/lake-macquarie/strata-cleaning/",
+  "/locations/newcastle/office-cleaning/",
+  "/locations/newcastle/industrial-cleaning/",
+  "/locations/hunter-valley/facilities-management/",
+];
+for (const r of comboRoutes) validRoutes.add(r);
+
+const blogSlugs = [
+  "how-often-office-cleaning",
+  "how-to-choose-commercial-cleaning-newcastle",
+  "industrial-cleaning-safety-nsw",
+  "strata-cleaning-checklist",
+  "what-is-facilities-management",
+];
+for (const b of blogSlugs) validRoutes.add(`/blog/${b}/`);
 
 for (const h of [...hrefs].sort()) {
   if (h.startsWith("http") || h.startsWith("mailto:") || h.startsWith("tel:")) continue;

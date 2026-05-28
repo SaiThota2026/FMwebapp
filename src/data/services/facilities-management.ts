@@ -61,7 +61,7 @@ export const facilitiesManagementData: ServicePageData = {
       body: [
         "Multi-site portfolios need a consistent operating rhythm, not ad hoc contractor updates. We align service calendars, escalation rules and reporting formats across sites so management can compare performance quickly.",
         "This structure supports property managers who need clear oversight across Newcastle, Maitland, Lake Macquarie and beyond. It also reduces time spent chasing multiple vendors for status updates.",
-        "Where clients have internal SLAs, we align service categories and report formats to those standards. That makes audits and executive reporting much easier.",
+        "Where clients have internal SLAs, we align service categories and report formats to those standards. That makes audits and executive reporting much easier. For Hunter Valley-specific integrated delivery, see /locations/hunter-valley/facilities-management/.",
       ],
     },
   ],

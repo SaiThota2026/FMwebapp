@@ -18,7 +18,7 @@ export function PageIntro({
     <div className="border-b border-brand-teal/10 bg-brand-cream">
       <div className="fm-container py-10 md:py-12">
         <Breadcrumbs items={breadcrumbs} />
-        <h1 className="font-display text-2xl font-bold tracking-tight text-brand-dark sm:text-3xl md:text-4xl">
+        <h1 className="text-balance font-display text-2xl font-bold tracking-tight text-brand-dark sm:text-3xl md:text-4xl">
           {h1}
         </h1>
         {lead && (

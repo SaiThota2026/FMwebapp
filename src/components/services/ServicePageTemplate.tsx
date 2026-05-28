@@ -90,7 +90,7 @@ export function ServicePageTemplate({ data }: { data: ServicePageData }) {
                   {data.areas.map((area) => (
                     <li
                       key={area}
-                      className="flex items-start gap-2 rounded-lg bg-white/80 px-3 py-2 text-sm fm-hover-lift"
+                      className="flex items-start gap-2 rounded-lg bg-white/80 px-3 py-2 text-sm fm-hover-lift fm-tap"
                     >
                       <span className="text-brand-gold" aria-hidden="true">
                         ✓

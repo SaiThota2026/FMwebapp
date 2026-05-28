@@ -55,7 +55,7 @@ export const industrialCleaningData: ServicePageData = {
         "Industrial environments often run multiple shifts, tight dispatch windows and strict access rules. We plan delivery around those constraints so cleaning supports throughput instead of creating bottlenecks.",
         "Pre-start communication is used to confirm work zones, isolation requirements and traffic controls. That planning approach improves safety and keeps operations moving.",
         "For complex sites, we stage tasks across windows so critical production zones stay operational while hygiene and presentation standards are maintained.",
-        "This operational approach is particularly valuable for facilities that cannot pause production and still need documented hygiene control.",
+        "This operational approach is particularly valuable for facilities that cannot pause production and still need documented hygiene control. For Mayfield and Beresfield corridor context, see /locations/newcastle/industrial-cleaning/.",
       ],
     },
   ],

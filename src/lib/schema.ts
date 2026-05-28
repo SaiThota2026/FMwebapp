@@ -173,3 +173,194 @@ export function breadcrumbSchema(
   };
 }
 
+export function servicePageSchema(data: {
+  name: string;
+  description: string;
+  path: string;
+  areas: string[];
+  faqs: FaqItem[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        name: data.name,
+        serviceType: data.name,
+        description: data.description,
+        provider: {
+          "@type": "LocalBusiness",
+          "@id": `${SITE.url}/#localbusiness`,
+        },
+        areaServed: data.areas.map((name) => ({
+          "@type": "AdministrativeArea",
+          name,
+        })),
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          priceCurrency: "AUD",
+          url: `${SITE.url}${data.path}`,
+        },
+      },
+      breadcrumbSchema([
+        { name: "Services", path: "/services/" },
+        { name: data.name, path: data.path },
+      ]),
+      faqPageSchema(data.faqs),
+    ],
+  };
+}
+
+export function industryPageSchema(data: {
+  name: string;
+  description: string;
+  path: string;
+  faqs: FaqItem[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Service", "WebPage"],
+        name: `${data.name} — FACILITIES MAN`,
+        description: data.description,
+        provider: {
+          "@type": "LocalBusiness",
+          "@id": `${SITE.url}/#localbusiness`,
+        },
+        url: `${SITE.url}${data.path}`,
+        areaServed: {
+          "@type": "AdministrativeArea",
+          name: "Hunter Region, NSW, Australia",
+        },
+      },
+      breadcrumbSchema([
+        { name: "Industries", path: "/industries/" },
+        { name: data.name, path: data.path },
+      ]),
+      faqPageSchema(data.faqs),
+    ],
+  };
+}
+
+export function locationPageSchema(data: {
+  name: string;
+  path: string;
+  areaServed: Array<{ type: string; name: string }>;
+  faqs: FaqItem[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      locationLocalBusinessSchema({
+        name: data.name,
+        path: data.path,
+        areaServed: data.areaServed,
+      }),
+      breadcrumbSchema([{ name: data.name, path: data.path }]),
+      faqPageSchema(data.faqs),
+    ],
+  };
+}
+
+export function comboPageSchema(data: {
+  serviceName: string;
+  locationName: string;
+  description: string;
+  path: string;
+  faqs: FaqItem[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        name: `${data.serviceName} — ${data.locationName}`,
+        serviceType: data.serviceName,
+        description: data.description,
+        provider: {
+          "@type": "LocalBusiness",
+          "@id": `${SITE.url}/#localbusiness`,
+        },
+        areaServed: { "@type": "City", name: data.locationName },
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          priceCurrency: "AUD",
+          url: `${SITE.url}${data.path}`,
+        },
+      },
+      breadcrumbSchema([
+        { name: "Locations", path: "/locations/" },
+        { name: data.locationName, path: `/locations/${data.path.split("/")[2]}/` },
+        { name: data.serviceName, path: data.path },
+      ]),
+      faqPageSchema(data.faqs),
+    ],
+  };
+}
+
+export function blogPostSchema(data: {
+  title: string;
+  description: string;
+  slug: string;
+  datePublished: string;
+  dateModified?: string;
+}) {
+  const url = `${SITE.url}/blog/${data.slug}/`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: data.title,
+        description: data.description,
+        url,
+        datePublished: data.datePublished,
+        dateModified: data.dateModified ?? data.datePublished,
+        author: {
+          "@type": "Organization",
+          name: SITE.name,
+          url: SITE.url,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: SITE.name,
+          logo: {
+            "@type": "ImageObject",
+            url: SITE.logoUrl,
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": url,
+        },
+      },
+      breadcrumbSchema([
+        { name: "Blog", path: "/blog/" },
+        { name: data.title, path: `/blog/${data.slug}/` },
+      ]),
+    ],
+  };
+}
+
+export function blogHubSchema(posts: { title: string; slug: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "FACILITIES MAN Blog — Facilities Management & Cleaning Insights",
+    url: `${SITE.url}/blog/`,
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: SITE.url,
+    },
+    hasPart: posts.map((p) => ({
+      "@type": "Article",
+      headline: p.title,
+      url: `${SITE.url}/blog/${p.slug}/`,
+    })),
+  };
+}
+

@@ -161,4 +161,23 @@ h3,
 h4 {
   font-family: var(--font-display);
   line-height: 1.2;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+}
+
+/* Long URLs and prose in blog / legal content */
+.prose-content a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Prevent flex/grid children from forcing horizontal scroll */
+.fm-container,
+main {
+  min-width: 0;
+}
+
+/* Embedded maps — responsive on narrow viewports */
+iframe {
+  max-width: 100%;
 }

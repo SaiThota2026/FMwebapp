@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/layout/Logo";
-import { COMPANY_LINKS, LOCATIONS, SERVICES, SITE } from "@/lib/site";
+import { COMPANY_LINKS, INDUSTRIES, LOCATIONS, SERVICES, SITE } from "@/lib/site";
 
 function NavDropdown({
   label,
@@ -26,7 +26,7 @@ function NavDropdown({
           ▾
         </span>
       </button>
-      <div className="invisible absolute left-0 top-full z-50 min-w-[240px] rounded-md border border-brand-teal/30 bg-brand-dark py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+      <div className="invisible absolute left-0 top-full z-50 max-h-[min(70vh,22rem)] min-w-[240px] overflow-y-auto overscroll-contain rounded-md border border-brand-teal/30 bg-brand-dark py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
         {items.map((item) => (
           <Link
             key={item.href}
@@ -55,6 +55,7 @@ function NavDropdown({
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [industriesOpen, setIndustriesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
 
   const aboutLink = COMPANY_LINKS.find((l) => l.name === "About Us");
@@ -92,7 +93,16 @@ export function Header() {
             items={SERVICES}
             footerLink={{ name: "View All Services", href: "/services/" }}
           />
-          <NavDropdown label="Locations" items={LOCATIONS} />
+          <NavDropdown
+            label="Industries"
+            items={INDUSTRIES}
+            footerLink={{ name: "View All Industries", href: "/industries/" }}
+          />
+          <NavDropdown
+            label="Locations"
+            items={LOCATIONS}
+            footerLink={{ name: "View All Locations", href: "/locations/" }}
+          />
           {aboutLink && (
             <Link
               href={aboutLink.href}
@@ -194,6 +204,40 @@ export function Header() {
               <button
                 type="button"
                 className="fm-touch-target flex w-full items-center justify-between py-2 font-semibold text-brand-offwhite"
+                aria-expanded={industriesOpen}
+                onClick={() => setIndustriesOpen(!industriesOpen)}
+              >
+                Industries
+                <span aria-hidden="true">{industriesOpen ? "−" : "+"}</span>
+              </button>
+              {industriesOpen && (
+                <ul className="mb-3 ml-4 space-y-2 border-l border-brand-teal/30 pl-4">
+                  {INDUSTRIES.map((i) => (
+                    <li key={i.href}>
+                      <Link
+                        href={i.href}
+                        className="block py-1 text-brand-offwhite/90 hover:text-brand-gold"
+                        onClick={closeMobile}
+                      >
+                        {i.name}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Link
+                      href="/industries/"
+                      className="block py-1 font-semibold text-brand-gold"
+                      onClick={closeMobile}
+                    >
+                      View All Industries
+                    </Link>
+                  </li>
+                </ul>
+              )}
+
+              <button
+                type="button"
+                className="fm-touch-target flex w-full items-center justify-between py-2 font-semibold text-brand-offwhite"
                 aria-expanded={locationsOpen}
                 onClick={() => setLocationsOpen(!locationsOpen)}
               >
@@ -213,6 +257,15 @@ export function Header() {
                       </Link>
                     </li>
                   ))}
+                  <li>
+                    <Link
+                      href="/locations/"
+                      className="block py-1 font-semibold text-brand-gold"
+                      onClick={closeMobile}
+                    >
+                      View All Locations
+                    </Link>
+                  </li>
                 </ul>
               )}
 

@@ -81,6 +81,7 @@ export const lakeMacquarieData: LocationPageData = {
     "Healthcare surrounds near Lake Macquarie Private Hospital add infection-control aware cleaning requirements.",
     "We also support multi-site portfolios that need consistent standards across Newcastle and Lake Macquarie under one reporting rhythm.",
     "This combination of sectors rewards providers who can adapt routines without losing consistency.",
+    "Strata cleaning across Lake Macquarie is a core part of our service; see our strata and body corporate industry page and strata cleaning in Lake Macquarie combo page for specific detail.",
   ],
   mapTitle: "FACILITIES MAN service area — Lake Macquarie NSW",
   mapEmbed: MAP,

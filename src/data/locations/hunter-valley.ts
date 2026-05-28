@@ -86,6 +86,7 @@ export const hunterValleyData: LocationPageData = {
     "This mix requires adaptable service planning across very different environments, from industrial plants to customer-facing hospitality venues.",
     "Clients value this flexibility when they manage assets with different compliance and presentation expectations.",
     "Our documented onboarding process keeps these mixed-site portfolios manageable from day one.",
+    "We serve commercial property owners across the Hunter Valley wine country, government and council facilities, and education and childcare centres. For integrated FM, see facilities management in the Hunter Valley.",
   ],
   mapTitle: "FACILITIES MAN service area — Hunter Valley NSW",
   mapEmbed: MAP,

@@ -88,6 +88,7 @@ export const centralCoastData: LocationPageData = {
     "For growing portfolios, that consistency helps simplify management across multiple suburbs and property types.",
     "We design schedules to balance travel efficiency with service quality so response standards remain dependable.",
     "Reliable documentation supports smoother procurement and governance decisions.",
+    "We are building our Central Coast client base. See our services hub for the full range of available services.",
   ],
   mapTitle: "FACILITIES MAN service area — Central Coast NSW",
   mapEmbed: MAP,

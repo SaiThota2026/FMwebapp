@@ -1,6 +1,6 @@
 import type { FaqItem } from "@/lib/schema";
-import { HOME_INDUSTRIES, HOME_SERVICES } from "@/data/home";
-import { LOCATIONS } from "@/lib/site";
+import { HOME_SERVICES } from "@/data/home";
+import { INDUSTRIES, LOCATIONS, SERVICES } from "@/lib/site";
 
 export const SERVICES_HUB_FAQS: FaqItem[] = [
   {
@@ -30,56 +30,69 @@ export const SERVICES_HUB_FAQS: FaqItem[] = [
   },
 ];
 
-export const CORE_SERVICES = HOME_SERVICES.map((s) => ({
-  ...s,
-  blurb:
-    s.name === "Commercial Cleaning"
-      ? "Consistent, documented cleaning programmes for offices, retail, strata common areas and industrial tenancies across Newcastle. Daily, multi-weekly or weekly schedules with consumables management and monthly photo reporting."
-      : s.name === "Strata Cleaning"
-        ? "Common-area cleaning, bin rooms, lifts, car parks and entrance presentation for owners corporations and strata managers. Monthly reports formatted for committee minutes and AGMs."
-        : s.name === "Facilities Management"
-          ? "Cleaning, grounds, trades coordination and reactive maintenance under one contract and one Newcastle point of contact. One scope, one invoice, founder oversight."
-          : s.name === "Office Cleaning"
-            ? "Professional office cleaning for CBD and suburban workplaces — workstations, kitchens, bathrooms and touch points. Eco-friendly product options and flexible frequencies."
-            : s.name === "Grounds & Garden Maintenance"
-              ? "Mowing, edging, hedging, pruning and seasonal clean-ups for strata and commercial properties. Presentation-focused grounds care aligned with your building standards."
-              : "Warehouse, factory and distribution centre cleaning across Newcastle and the Hunter Valley. Floor scrubbing, high-level dust control and site-induction ready crews.",
+const PHASE1_SLUGS = new Set([
+  "commercial-cleaning",
+  "strata-cleaning",
+  "facilities-management",
+  "office-cleaning",
+  "grounds-maintenance",
+  "industrial-cleaning",
+]);
+
+const specialistBlurbs: Record<string, string> = {
+  "medical-cleaning":
+    "Infection-control aware cleaning for clinics and medical tenancies.",
+  "childcare-cleaning": "WWVP-checked teams for early learning and education sites.",
+  "window-cleaning": "Internal and external glass for commercial and strata buildings.",
+  "carpet-cleaning": "Scheduled extraction and spot treatment for offices and retail.",
+  "pressure-washing": "Exterior surfaces, car parks, bin bays and building facades.",
+  "warehouse-cleaning": "Large-floor programmes for logistics and distribution sites.",
+  "sanitary-washroom-services":
+    "Consumables, hygiene systems and washroom presentation.",
+  "maintenance-trades":
+    "Reactive and planned maintenance coordination under FM contracts.",
+};
+
+export const CORE_SERVICES = SERVICES.filter((s) => PHASE1_SLUGS.has(s.slug)).map(
+  (s) => ({
+    ...s,
+    outcome: HOME_SERVICES.find((h) => h.href === s.href)?.outcome,
+    blurb:
+      s.slug === "commercial-cleaning"
+        ? "Consistent, documented cleaning programmes for offices, retail, strata common areas and industrial tenancies."
+        : s.slug === "strata-cleaning"
+          ? "Common-area cleaning with committee-ready monthly reporting."
+          : s.slug === "facilities-management"
+            ? "Integrated cleaning, grounds and maintenance under one operational scope."
+            : s.slug === "office-cleaning"
+              ? "Flexible office cleaning schedules for CBD and suburban workplaces."
+              : s.slug === "grounds-maintenance"
+                ? "Presentation-focused grounds and garden care for commercial and strata properties."
+                : "Operational cleaning for warehouses, factories and industrial sites.",
+  }),
+);
+
+export const SPECIALIST_SERVICES = SERVICES.filter(
+  (s) => !PHASE1_SLUGS.has(s.slug),
+).map((s) => ({
+  name: s.name,
+  href: s.href,
+  slug: s.slug,
+  blurb: specialistBlurbs[s.slug] ?? "Owner-led specialist delivery across Newcastle and the Hunter.",
 }));
 
-export const SPECIALIST_SERVICES = [
-  {
-    name: "Healthcare & Medical Cleaning",
-    blurb:
-      "Infection-control aware cleaning for clinics and medical tenancies.",
-  },
-  {
-    name: "Childcare Centre Cleaning",
-    blurb: "WWVP-checked teams for early learning and education sites.",
-  },
-  {
-    name: "Window Cleaning",
-    blurb: "Internal and external glass for commercial and strata buildings.",
-  },
-  {
-    name: "Carpet Cleaning",
-    blurb: "Scheduled extraction and spot treatment for offices and retail.",
-  },
-  {
-    name: "Pressure Washing",
-    blurb: "Exterior surfaces, car parks, bin bays and building facades.",
-  },
-  {
-    name: "Warehouse Cleaning",
-    blurb: "Large-floor programmes for logistics and distribution sites.",
-  },
-  {
-    name: "Sanitary & Washroom Services",
-    blurb: "Consumables, hygiene systems and washroom presentation.",
-  },
-  {
-    name: "Maintenance & Trades",
-    blurb: "Reactive and planned maintenance coordination under FM contracts.",
-  },
-] as const;
+export const HUB_INDUSTRIES = INDUSTRIES.map((industry) => ({
+  ...industry,
+  blurb:
+    industry.slug === "strata-body-corporate"
+      ? "Committee-ready reporting and common-area care for strata governance."
+      : industry.slug === "healthcare"
+        ? "Infection-aware cleaning and practical compliance support for healthcare sites."
+        : industry.slug === "education-childcare"
+          ? "Child-safe and schedule-aware delivery for schools and childcare sites."
+          : industry.slug === "commercial-property"
+            ? "Integrated support for commercial building presentation and operations."
+            : "Documented services aligned to council and government facility needs.",
+}));
 
-export { HOME_INDUSTRIES as HUB_INDUSTRIES, LOCATIONS as HUB_LOCATIONS };
+export const HUB_LOCATIONS = LOCATIONS;

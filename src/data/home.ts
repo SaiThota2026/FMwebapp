@@ -151,30 +151,58 @@ export const HOME_INDUSTRIES = [
     name: "Strata & Body Corporate",
     blurb:
       "Specialist common-area and grounds services for owners corporations and strata managers across NSW.",
-    href: "/services/",
+    href: "/industries/strata-body-corporate/",
   },
   {
     name: "Healthcare & Medical",
     blurb:
-      "Infection-control aware cleaning for clinics and medical tenancies — enquire for Phase 2 medical cleaning page.",
-    href: "/contact/",
+      "Infection-control aware cleaning for clinics and medical tenancies.",
+    href: "/industries/healthcare/",
   },
   {
     name: "Education & Childcare",
     blurb:
-      "WWVP-checked teams for schools and childcare centres — enquire for Phase 2 childcare cleaning page.",
-    href: "/contact/",
+      "Child-safe cleaning and facilities support for schools and childcare centres.",
+    href: "/industries/education-childcare/",
   },
   {
     name: "Commercial Property",
     blurb:
       "Presentation-focused cleaning for offices, retail and mixed-use buildings across the Hunter region.",
-    href: "/services/commercial-cleaning/",
+    href: "/industries/commercial-property/",
   },
   {
     name: "Government & Council",
     blurb:
       "Documented scopes and compliance-ready reporting for public buildings and council facilities.",
-    href: "/contact/",
+    href: "/industries/government/",
+  },
+] as const;
+
+export const HOME_INDUSTRIES_TEASER = [
+  {
+    name: "Strata & Body Corporate",
+    href: "/industries/strata-body-corporate/",
+    blurb: "Committee-ready reporting for owners corporations and body corporates.",
+  },
+  {
+    name: "Healthcare Facilities",
+    href: "/industries/healthcare/",
+    blurb: "Infection-control cleaning for clinics, allied health and medical centres.",
+  },
+  {
+    name: "Education & Childcare",
+    href: "/industries/education-childcare/",
+    blurb: "NQF-aware, child-safe cleaning and facilities for schools and childcare centres.",
+  },
+  {
+    name: "Commercial Property",
+    href: "/industries/commercial-property/",
+    blurb: "Cleaning, grounds and maintenance for commercial buildings under one contract.",
+  },
+  {
+    name: "Government & Council",
+    href: "/industries/government/",
+    blurb: "Documented, compliant facilities services for government offices and council facilities.",
   },
 ] as const;

@@ -48,6 +48,21 @@ export const FAQ_HUB_FEATURED: FaqItem[] = [
     answer:
       "Yes. FACILITIES MAN offers bundled facilities management contracts covering cleaning, grounds and garden maintenance, trades and reactive maintenance under a single scope of works, one invoice and one point of contact. Bundled contracts typically attract a discount versus individual service pricing.",
   },
+  {
+    question: "Do you clean healthcare and medical facilities in Newcastle?",
+    answer:
+      "Yes. We provide infection-control aware cleaning for GP clinics, allied health practices and medical administration environments across Newcastle. See our healthcare cleaning service and healthcare industry page for details.",
+  },
+  {
+    question: "Do you provide strata cleaning with committee reporting?",
+    answer:
+      "Yes. Monthly completion reporting for committee and manager oversight is part of our strata delivery model. We support body corporates and owners corporations with practical governance-ready records.",
+  },
+  {
+    question: "Do you have a blog or resources for facility managers?",
+    answer:
+      "Yes. Our blog covers practical topics including facilities management basics, cleaning frequency, strata checklists and industrial safety considerations. Visit the blog hub for all articles.",
+  },
 ];
 
 export const FAQ_HUB_SECTIONS: FaqSection[] = [

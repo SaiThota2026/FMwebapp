@@ -11,6 +11,17 @@ export function Footer() {
   const year = new Date().getFullYear();
   const privacy = COMPANY_LINKS.find((l) => l.name === "Privacy Policy");
   const sitemap = COMPANY_LINKS.find((l) => l.name === "Sitemap");
+  const isIndustryLink = (
+    link: (typeof COMPANY_LINKS)[number],
+  ): link is (typeof COMPANY_LINKS)[number] & { group: "Industries" } =>
+    "group" in link && link.group === "Industries";
+  const companyLinks = COMPANY_LINKS.filter(
+    (l) =>
+      l.name !== "Sitemap" &&
+      l.name !== "Privacy Policy" &&
+      !isIndustryLink(l),
+  );
+  const industryLinks = COMPANY_LINKS.filter(isIndustryLink);
 
   return (
     <footer className="bg-brand-dark text-brand-offwhite">
@@ -61,6 +72,14 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/locations/"
+                className="font-semibold text-brand-gold transition-colors hover:text-brand-offwhite"
+              >
+                View All Locations
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -69,9 +88,7 @@ export function Footer() {
             Company
           </h2>
           <ul className="mt-4 space-y-2 text-sm">
-            {COMPANY_LINKS.filter(
-              (l) => l.name !== "Sitemap" && l.name !== "Privacy Policy",
-            ).map((l) => (
+            {companyLinks.map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="hover:text-brand-gold">
                   {l.name}
@@ -79,6 +96,30 @@ export function Footer() {
               </li>
             ))}
           </ul>
+          {industryLinks.length > 0 && (
+            <>
+              <h3 className="mt-6 font-display text-xs font-semibold uppercase tracking-wider text-brand-gold/90">
+                Industries
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm">
+                {industryLinks.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="hover:text-brand-gold">
+                      {l.name}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    href="/industries/"
+                    className="font-semibold text-brand-gold transition-colors hover:text-brand-offwhite"
+                  >
+                    View All Industries
+                  </Link>
+                </li>
+              </ul>
+            </>
+          )}
           <p className="mt-6 text-sm">
             <a
               href={`tel:${SITE.phone}`}
@@ -116,7 +157,18 @@ export function Footer() {
               </Link>
             )}
           </div>
-          <p className="text-xs">Designed and built with Australian pride.</p>
+          <p className="text-xs">
+            Designed and built by{" "}
+            <a
+              href="https://www.newytechs.com.au/"
+              className="font-medium text-brand-gold hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NewyTechs
+            </a>
+            .
+          </p>
         </div>
       </div>
     </footer>

@@ -88,7 +88,7 @@ export function LocationPageTemplate({ data }: { data: LocationPageData }) {
                 return (
                   <article
                     key={service.href}
-                    className="overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm fm-hover-lift"
+                    className="overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm fm-hover-lift fm-tap"
                   >
                     <ImagePlaceholder
                       label={getHomeServiceImageLabel(slug)}
@@ -130,7 +130,7 @@ export function LocationPageTemplate({ data }: { data: LocationPageData }) {
               {data.suburbClusters.map((cluster, index) => (
                 <article
                   key={cluster.heading}
-                  className="overflow-hidden rounded-xl border border-brand-teal/15 bg-brand-cream fm-hover-lift"
+                  className="overflow-hidden rounded-xl border border-brand-teal/15 bg-brand-cream fm-hover-lift fm-tap"
                 >
                   <ImagePlaceholder
                     label={`${cluster.heading} coverage — locations-${data.slug}-cluster-${index + 1}.webp`}

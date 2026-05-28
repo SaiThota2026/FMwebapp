@@ -2,15 +2,20 @@ import Link from "next/link";
 import { CtaSection } from "@/components/ui/CtaSection";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { LinkCard } from "@/components/ui/LinkCard";
+import { ProcessSteps } from "@/components/ui/ProcessSteps";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { TrustStrip } from "@/components/ui/TrustStrip";
+import { ENGAGEMENT_STEPS } from "@/data/engagement-steps";
 import {
   HOME_FAQS,
-  HOME_INDUSTRIES,
+  HOME_INDUSTRIES_TEASER,
   HOME_LOCATIONS,
   HOME_MAP_IMAGE_LABEL,
   HOME_SERVICES,
   HOME_WHY_CHOOSE,
 } from "@/data/home";
+import { getIndustryVisual, getLocationVisual } from "@/lib/page-visuals";
 import { SITE } from "@/lib/site";
 
 export function HomePage() {
@@ -100,41 +105,30 @@ export function HomePage() {
       {/* Services */}
       <section className="bg-brand-offwhite py-16 md:py-20">
         <div className="fm-container">
-          <h2 className="font-display text-3xl font-bold text-brand-dark md:text-4xl">
-            Facilities &amp; Cleaning Services
-          </h2>
-          <p className="mt-4 max-w-3xl text-brand-dark/90">
-            FACILITIES MAN delivers owner-operated facilities and cleaning
-            services across Newcastle, the Hunter Valley and the Central Coast.
-            We are newly launched, fully insured, and answering the phone
-            ourselves — you get direct accountability from enquiry to monthly
-            reporting. We are taking on founding clients now with founder-direct
-            pricing and our full attention on every contract.
-          </p>
+          <RevealOnScroll>
+            <h2 className="font-display text-3xl font-bold text-brand-dark md:text-4xl">
+              Facilities &amp; Cleaning Services
+            </h2>
+            <p className="mt-4 max-w-3xl text-brand-dark/90">
+              FACILITIES MAN delivers owner-operated facilities and cleaning
+              services across Newcastle, the Hunter Valley and the Central Coast.
+              We are newly launched, fully insured, and answering the phone
+              ourselves — you get direct accountability from enquiry to monthly
+              reporting. We are taking on founding clients now with founder-direct
+              pricing and our full attention on every contract.
+            </p>
+          </RevealOnScroll>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {HOME_SERVICES.map((service) => (
-              <article
-                key={service.href}
-                className="flex flex-col rounded-lg bg-brand-cream p-6 shadow-sm"
-              >
-                <ImagePlaceholder
-                  label={service.imageLabel}
-                  aspect="video"
-                  className="mb-4"
-                />
-                <h3 className="font-display text-xl font-semibold text-brand-dark">
-                  {service.name}
-                </h3>
-                <p className="mt-2 flex-1 text-brand-dark/85">
-                  {service.outcome}
-                </p>
-                <Link
+            {HOME_SERVICES.map((service, i) => (
+              <RevealOnScroll key={service.href} delayMs={i * 50}>
+                <LinkCard
                   href={service.href}
-                  className="mt-4 font-semibold text-brand-teal hover:text-brand-dark"
-                >
-                  Learn more about {service.name.toLowerCase()}
-                </Link>
-              </article>
+                  title={service.name}
+                  description={service.outcome}
+                  linkLabel={`Learn more about ${service.name.toLowerCase()}`}
+                  imageLabel={service.imageLabel}
+                />
+              </RevealOnScroll>
             ))}
           </div>
           <p className="mt-8">
@@ -157,28 +151,34 @@ export function HomePage() {
           <p className="mt-4 max-w-3xl text-brand-dark/90">
             We tailor scopes to how each industry uses its buildings — from
             strata common areas to medical tenancies and council facilities.
-            Dedicated industry pages are coming in Phase 2; contact us now for
-            sector-specific programmes.
+            Explore dedicated industry pages for sector-specific programmes.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {HOME_INDUSTRIES.map((industry) => (
-              <article
-                key={industry.name}
-                className="rounded-lg border border-brand-teal/20 bg-white p-6"
-              >
-                <h3 className="font-display text-lg font-semibold text-brand-teal">
-                  {industry.name}
-                </h3>
-                <p className="mt-2 text-brand-dark/85">{industry.blurb}</p>
-                <Link
-                  href={industry.href}
-                  className="mt-4 inline-block font-semibold text-brand-dark hover:text-brand-teal"
-                >
-                  Enquire about {industry.name.toLowerCase()} services
-                </Link>
-              </article>
-            ))}
+            {HOME_INDUSTRIES_TEASER.map((industry, i) => {
+              const slug = industry.href
+                .replace(/^\/industries\//, "")
+                .replace(/\/$/, "");
+              return (
+                <RevealOnScroll key={industry.name} delayMs={i * 50}>
+                  <LinkCard
+                    href={industry.href}
+                    title={industry.name}
+                    description={industry.blurb}
+                    linkLabel="View industry page"
+                    imageLabel={getIndustryVisual(slug).heroLabel}
+                  />
+                </RevealOnScroll>
+              );
+            })}
           </div>
+          <p className="mt-8">
+            <Link
+              href="/industries/"
+              className="font-semibold text-brand-teal hover:underline"
+            >
+              Browse all industries we serve
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -195,36 +195,27 @@ export function HomePage() {
           </p>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {HOME_LOCATIONS.map((location) => (
-              <article
-                key={location.href}
-                className="flex h-full flex-col overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm fm-hover-lift"
-              >
-                <div className="border-b border-brand-teal/10 bg-brand-cream/80 px-5 py-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-brand-gold">
-                    {location.badge}
-                  </p>
-                  <h3 className="mt-1 font-display text-xl font-semibold text-brand-teal">
-                    {location.name}
-                  </h3>
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="flex-1 text-sm leading-relaxed text-brand-dark/90">
-                    {location.blurb}
-                  </p>
-                  <Link
+            {HOME_LOCATIONS.map((location, i) => {
+              const slug = location.href
+                .replace(/^\/locations\//, "")
+                .replace(/\/$/, "");
+              return (
+                <RevealOnScroll key={location.href} delayMs={i * 50}>
+                  <LinkCard
                     href={location.href}
-                    className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-dark hover:text-brand-teal"
-                  >
-                    {location.linkLabel}
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </article>
-            ))}
+                    title={location.name}
+                    description={location.blurb}
+                    linkLabel={location.linkLabel}
+                    badge={location.badge}
+                    imageLabel={getLocationVisual(slug).heroLabel}
+                  />
+                </RevealOnScroll>
+              );
+            })}
           </div>
 
-          <div className="mt-8 overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm">
+          <RevealOnScroll delayMs={80}>
+          <div className="mt-8 overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm fm-hover-lift">
             <div className="border-b border-brand-teal/10 bg-brand-cream px-5 py-4">
               <h3 className="font-display text-lg font-semibold text-brand-dark">
                 Service area overview
@@ -236,6 +227,15 @@ export function HomePage() {
             </div>
             <ImagePlaceholder label={HOME_MAP_IMAGE_LABEL} aspect="wide" className="rounded-none border-0" />
           </div>
+          </RevealOnScroll>
+          <p className="mt-8">
+            <Link
+              href="/locations/"
+              className="font-semibold text-brand-teal hover:underline"
+            >
+              Browse all service areas we cover
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -252,9 +252,9 @@ export function HomePage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {HOME_WHY_CHOOSE.map((item, index) => (
+              <RevealOnScroll key={item.title} delayMs={index * 60}>
               <article
-                key={item.title}
-                className="flex h-full flex-col rounded-xl border border-brand-teal/15 bg-white p-6 shadow-sm fm-hover-lift"
+                className="flex h-full flex-col rounded-xl border border-brand-teal/15 bg-white p-6 shadow-sm fm-hover-lift fm-tap"
               >
                 <span className="font-display text-3xl font-bold leading-none text-brand-gold">
                   {String(index + 1).padStart(2, "0")}
@@ -266,10 +266,12 @@ export function HomePage() {
                   {item.description}
                 </p>
               </article>
+              </RevealOnScroll>
             ))}
           </div>
 
-          <article className="mt-8 rounded-xl border-2 border-dashed border-brand-teal/35 bg-white/80 p-6 text-center shadow-sm">
+          <RevealOnScroll delayMs={120}>
+          <article className="mt-8 rounded-xl border-2 border-dashed border-brand-teal/35 bg-white/80 p-6 text-center shadow-sm fm-hover-lift">
             <p className="font-display text-lg font-semibold text-brand-dark">
               Meet the owner
             </p>
@@ -277,48 +279,31 @@ export function HomePage() {
               [PLACEHOLDER — insert founder name and headshot photo]
             </p>
           </article>
+          </RevealOnScroll>
         </div>
       </section>
 
       {/* How We Work */}
       <section className="bg-brand-offwhite py-16 md:py-20">
         <div className="fm-container">
-          <h2 className="font-display text-3xl font-bold text-brand-dark">
-            How We Work — Our Process
-          </h2>
-          <ol className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                step: "Enquire",
-                text: "Contact us by phone, email or the quote form. We respond within 24 hours — the owner reads every enquiry personally.",
-              },
-              {
-                step: "Site Walk-Through",
-                text: "We visit your site at a time that suits you. The walk-through is at no cost and takes us through every area you need serviced.",
-              },
-              {
-                step: "Scope & Quote",
-                text: "We deliver a written scope of works and clear pricing — no hidden fees, no vague line items. You know exactly what you are getting.",
-              },
-              {
-                step: "Service & Report",
-                text: "We begin on the agreed date. You receive a monthly report with photos and completed task records for full accountability.",
-              },
-            ].map((item, i) => (
-              <li
-                key={item.step}
-                className="rounded-lg border border-brand-teal/20 bg-white p-6"
-              >
-                <span className="font-display text-3xl font-bold text-brand-gold">
-                  {i + 1}
-                </span>
-                <h3 className="mt-2 font-display text-lg font-semibold">
-                  {item.step}
-                </h3>
-                <p className="mt-2 text-sm text-brand-dark/85">{item.text}</p>
-              </li>
-            ))}
-          </ol>
+          <RevealOnScroll>
+            <ProcessSteps
+              heading="How We Work — Our Process"
+              steps={[...ENGAGEMENT_STEPS]}
+              footer={
+                <>
+                  Ready to start?{" "}
+                  <Link
+                    href="/contact/"
+                    className="font-semibold text-brand-teal hover:text-brand-gold"
+                  >
+                    Request a free quote
+                  </Link>{" "}
+                  or call {SITE.phoneDisplay}.
+                </>
+              }
+            />
+          </RevealOnScroll>
         </div>
       </section>
 
@@ -350,23 +335,25 @@ export function HomePage() {
       {/* FAQ */}
       <section className="bg-brand-offwhite py-16 md:py-20">
         <div className="fm-container">
-          <h2 className="font-display text-3xl font-bold text-brand-dark">
-            Frequently Asked Questions
-          </h2>
-          <p className="mt-4 text-brand-dark/90">
-            More answers on our{" "}
-            <Link href="/faq/" className="font-semibold text-brand-teal">
-              frequently asked questions page
-            </Link>
-            . Learn more{" "}
-            <Link href="/about/" className="font-semibold text-brand-teal">
-              about FACILITIES MAN
-            </Link>
-            .
-          </p>
-          <div className="mt-8">
-            <FaqAccordion faqs={HOME_FAQS} />
-          </div>
+          <RevealOnScroll>
+            <h2 className="font-display text-3xl font-bold text-brand-dark">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-4 text-brand-dark/90">
+              More answers on our{" "}
+              <Link href="/faq/" className="font-semibold text-brand-teal">
+                frequently asked questions page
+              </Link>
+              . Learn more{" "}
+              <Link href="/about/" className="font-semibold text-brand-teal">
+                about FACILITIES MAN
+              </Link>
+              .
+            </p>
+            <div className="mt-8">
+              <FaqAccordion faqs={HOME_FAQS} />
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 

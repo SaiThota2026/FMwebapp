@@ -83,6 +83,7 @@ export const maitlandData: LocationPageData = {
     "As Maitland expands, we help property managers maintain standards across older stock and new developments with one documented service framework.",
     "Our delivery model suits businesses that need dependable service records for governance, procurement and day-to-day operational confidence.",
     "That focus is especially valuable for operators balancing customer-facing areas with industrial back-of-house requirements.",
+    "We serve strata and body corporate buildings across Thornton and Rutherford, and commercial property managers with multi-tenancy buildings in the East Maitland professional corridor.",
   ],
   mapTitle: "FACILITIES MAN service area — Maitland NSW",
   mapEmbed: MAP,

@@ -27,11 +27,15 @@ export function ProcessSteps({
       <h2 className="font-display text-xl font-semibold text-brand-dark md:text-2xl">
         {heading}
       </h2>
-      <ol className="mt-6 grid gap-4 md:grid-cols-3">
+      <ol
+        className={`mt-6 grid gap-4 sm:grid-cols-2 ${
+          steps.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+        }`}
+      >
         {steps.map((step, index) => (
           <li
             key={step.title}
-            className={`rounded-lg bg-white p-5 shadow-sm fm-hover-lift fm-fade-up ${stepDelayClass[Math.min(index, 2)] ?? ""}`}
+            className={`rounded-lg bg-white p-5 shadow-sm fm-hover-lift fm-tap fm-fade-up ${stepDelayClass[Math.min(index, 2)] ?? ""}`}
           >
             <span className="font-display text-2xl font-bold text-brand-gold">
               {index + 1}

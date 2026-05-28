@@ -60,7 +60,7 @@ export const strataCleaningData: ServicePageData = {
       heading: "Resident Experience & Building Presentation",
       body: [
         "Strata presentation affects resident satisfaction, tenant retention and committee confidence. We focus on high-visibility touch points like entries, lift cars, handrails and bin areas where complaints usually start.",
-        "Our team follows repeatable routines so the building feels consistently managed, not just cleaned after complaints. This is especially important for mixed-use complexes with daily visitor traffic.",
+        "Our team follows repeatable routines so the building feels consistently managed, not just cleaned after complaints. This is especially important for mixed-use complexes with daily visitor traffic. For broader governance support, see /industries/strata-body-corporate/.",
       ],
     },
   ],

@@ -2,6 +2,10 @@ import Link from "next/link";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { CtaSection } from "@/components/ui/CtaSection";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
+import { LinkCard } from "@/components/ui/LinkCard";
+import { ProcessSteps } from "@/components/ui/ProcessSteps";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import { ENGAGEMENT_STEPS } from "@/data/engagement-steps";
 import {
   CORE_SERVICES,
   HUB_INDUSTRIES,
@@ -9,6 +13,7 @@ import {
   SERVICES_HUB_FAQS,
   SPECIALIST_SERVICES,
 } from "@/data/services-hub";
+import { getHomeServiceImageLabel, getIndustryVisual, getLocationVisual } from "@/lib/page-visuals";
 
 export function ServicesHubPage() {
   return (
@@ -20,177 +25,159 @@ export function ServicesHubPage() {
       />
 
       <div className="fm-container py-10 sm:py-12 md:py-16">
-        <p className="max-w-3xl text-brand-dark/90">
-          Whether you need a single daily office clean or a fully integrated
-          facilities programme covering cleaning, grounds maintenance, trades and
-          reactive maintenance, we scope, price and deliver under a single
-          contract with a single point of contact.
-        </p>
-
-        <section className="mt-16">
-          <h2 className="font-display text-3xl font-bold text-brand-dark">
-            Core Services
-          </h2>
-          <p className="mt-3 font-semibold text-brand-teal">
-            Every service runs from one Newcastle team under one ABN. No
-            subcontracted unknowns.
+        <RevealOnScroll>
+          <p className="max-w-3xl text-brand-dark/90">
+            Whether you need a single daily office clean or a fully integrated
+            facilities programme covering cleaning, grounds maintenance, trades and
+            reactive maintenance, we scope, price and deliver under a single
+            contract with a single point of contact.
           </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {CORE_SERVICES.map((service) => (
-              <article
-                key={service.href}
-                className="rounded-xl border border-brand-teal/15 bg-white p-6 shadow-sm fm-hover-lift fm-tap"
+        </RevealOnScroll>
+
+        <RevealOnScroll delayMs={40}>
+          <ProcessSteps
+            className="mt-12"
+            heading="How we engage new clients"
+            steps={[...ENGAGEMENT_STEPS]}
+            footer={
+              <>
+                Ready to start? Use the{" "}
+                <Link href="/contact/" className="font-semibold text-brand-teal hover:text-brand-gold">
+                  quote form
+                </Link>{" "}
+                or call us directly.
+              </>
+            }
+          />
+        </RevealOnScroll>
+
+        <RevealOnScroll delayMs={60}>
+          <section className="mt-16">
+            <h2 className="font-display text-3xl font-bold text-brand-dark md:text-4xl">
+              Core Services
+            </h2>
+            <p className="mt-3 font-semibold text-brand-teal">
+              Every service runs from one Newcastle team under one ABN. No
+              subcontracted unknowns.
+            </p>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {CORE_SERVICES.map((service, i) => (
+                <RevealOnScroll key={service.href} delayMs={i * 40}>
+                  <LinkCard
+                    href={service.href}
+                    title={service.name}
+                    description={service.blurb}
+                    linkLabel={`Learn more about ${service.name.toLowerCase()}`}
+                    imageLabel={getHomeServiceImageLabel(service.slug)}
+                  />
+                </RevealOnScroll>
+              ))}
+            </div>
+          </section>
+        </RevealOnScroll>
+
+        <RevealOnScroll delayMs={80}>
+          <section className="mt-16 rounded-xl border border-brand-teal/15 bg-brand-cream p-8 md:p-10">
+            <h2 className="font-display text-3xl font-bold text-brand-dark">
+              Specialist Services
+            </h2>
+            <p className="mt-3 max-w-3xl text-brand-dark/90">
+              Additional capabilities for healthcare, childcare, exterior works,
+              warehouses and maintenance coordination — all under the same
+              owner-led quality framework.
+            </p>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {SPECIALIST_SERVICES.map((service, i) => (
+                <RevealOnScroll key={service.href} delayMs={i * 35}>
+                  <LinkCard
+                    href={service.href}
+                    title={service.name}
+                    description={service.blurb}
+                    linkLabel={`View ${service.name.toLowerCase()}`}
+                    imageLabel={getHomeServiceImageLabel(service.slug)}
+                  />
+                </RevealOnScroll>
+              ))}
+            </div>
+          </section>
+        </RevealOnScroll>
+
+        <RevealOnScroll delayMs={100}>
+          <section className="mt-16">
+            <h2 className="font-display text-3xl font-bold text-brand-dark">
+              Industries We Serve
+            </h2>
+            <p className="mt-4 max-w-3xl text-brand-dark/90">
+              Sector-specific programmes for strata, healthcare, education,
+              commercial property and government facilities.
+            </p>
+            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {HUB_INDUSTRIES.map((industry, i) => (
+                <RevealOnScroll key={industry.href} delayMs={i * 40}>
+                  <LinkCard
+                    href={industry.href}
+                    title={industry.name}
+                    description={industry.blurb}
+                    linkLabel="View industry page"
+                    imageLabel={getIndustryVisual(industry.slug).heroLabel}
+                  />
+                </RevealOnScroll>
+              ))}
+            </div>
+            <p className="mt-6">
+              <Link href="/industries/" className="font-semibold text-brand-teal hover:text-brand-gold">
+                Browse all industries →
+              </Link>
+            </p>
+          </section>
+        </RevealOnScroll>
+
+        <RevealOnScroll delayMs={120}>
+          <section className="mt-16 rounded-xl bg-brand-offwhite p-8 md:p-10">
+            <h2 className="font-display text-3xl font-bold text-brand-dark">
+              Where We Deliver
+            </h2>
+            <p className="mt-4 max-w-3xl text-brand-dark/90">
+              Locally owned in Newcastle — we mobilise across the Hunter, Lake
+              Macquarie and the Central Coast with documented standards on every
+              contract.
+            </p>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {HUB_LOCATIONS.map((loc, i) => (
+                <RevealOnScroll key={loc.href} delayMs={i * 35}>
+                  <LinkCard
+                    href={loc.href}
+                    title={loc.name}
+                    description={`FACILITIES MAN mobilises from Newcastle to service ${loc.name} commercial, strata and industrial sites with owner oversight and practical reporting.`}
+                    linkLabel={`Facilities services in ${loc.name}`}
+                    imageLabel={getLocationVisual(
+                      loc.href.replace(/^\/locations\//, "").replace(/\/$/, ""),
+                    ).heroLabel}
+                  />
+                </RevealOnScroll>
+              ))}
+            </div>
+            <p className="mt-6">
+              <Link
+                href="/locations/"
+                className="font-semibold text-brand-teal hover:text-brand-gold"
               >
-                <h3 className="font-display text-xl font-semibold text-brand-dark">
-                  {service.name}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-brand-dark/85">
-                  {service.blurb}
-                </p>
-                <Link
-                  href={service.href}
-                  className="mt-4 inline-block font-medium text-brand-teal hover:text-brand-gold"
-                >
-                  Learn more about {service.name.toLowerCase()}
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
+                Browse all service areas →
+              </Link>
+            </p>
+          </section>
+        </RevealOnScroll>
 
-        <section className="mt-16 rounded-xl bg-brand-cream p-8 md:p-10">
-          <h2 className="font-display text-3xl font-bold text-brand-dark">
-            Specialist Services
-          </h2>
-          <p className="mt-3 text-brand-dark/90">
-            Additional services available by enquiry — contact us to discuss
-            scope and mobilisation.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {SPECIALIST_SERVICES.map((s) => (
-              <article
-                key={s.name}
-                className="rounded-lg border border-brand-teal/20 bg-white p-5 fm-hover-lift fm-tap"
-              >
-                <h3 className="font-display font-semibold text-brand-dark">
-                  {s.name}
-                </h3>
-                <p className="mt-2 text-sm text-brand-dark/85">{s.blurb}</p>
-                <Link
-                  href="/contact/"
-                  className="mt-3 inline-block text-sm font-semibold text-brand-teal"
-                >
-                  Enquire via contact form
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-16">
-          <h2 className="font-display text-3xl font-bold text-brand-dark">
-            Industries We Serve
-          </h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {HUB_INDUSTRIES.map((industry) => (
-              <article
-                key={industry.name}
-                className="rounded-lg border border-brand-teal/15 bg-brand-offwhite p-5 fm-hover-lift fm-tap"
-              >
-                <h3 className="font-display font-semibold text-brand-teal">
-                  {industry.name}
-                </h3>
-                <p className="mt-2 text-sm text-brand-dark/85">
-                  {industry.blurb}
-                </p>
-                <Link
-                  href={industry.href}
-                  className="mt-3 inline-block text-sm font-semibold text-brand-dark hover:text-brand-teal"
-                >
-                  Enquire about {industry.name.toLowerCase()}
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-16">
-          <h2 className="font-display text-3xl font-bold text-brand-dark">
-            Where We Deliver
-          </h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {HUB_LOCATIONS.map((loc) => (
-              <article key={loc.href}>
-                <h3 className="font-display text-lg font-semibold text-brand-teal">
-                  <Link href={loc.href} className="hover:underline">
-                    {loc.name}
-                  </Link>
-                </h3>
-                <p className="mt-2 text-brand-dark/90">
-                  FACILITIES MAN mobilises from Newcastle to service {loc.name}{" "}
-                  commercial, strata and industrial sites with the same
-                  documented standards and owner oversight.
-                </p>
-              </article>
-            ))}
-          </div>
-          <p className="mt-6 text-brand-dark/90">
-            Enquire about sites in Sydney, Brisbane or further afield — we assess
-            on request.
-          </p>
-        </section>
-
-        <section className="mt-16">
-          <h2 className="font-display text-3xl font-bold text-brand-dark">
-            How We Engage
-          </h2>
-          <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {[
-              {
-                title: "Enquiry",
-                text: "Contact us by phone, email or the quote form. We respond within 24 hours.",
-              },
-              {
-                title: "Site Walk-Through",
-                text: "Free on-site assessment at a time that suits you — no obligation.",
-              },
-              {
-                title: "Written Scope & Quote",
-                text: "Clear pricing and task list delivered within 48 hours of the walk-through.",
-              },
-              {
-                title: "Onboarding",
-                text: "We can typically start within the same week once the scope is agreed.",
-              },
-              {
-                title: "Ongoing Reporting",
-                text: "Monthly photo reports and completed task records for accountability.",
-              },
-            ].map((step, i) => (
-              <li
-                key={step.title}
-                className="rounded-lg bg-brand-cream p-5"
-              >
-                <span className="font-display text-2xl font-bold text-brand-gold">
-                  {i + 1}
-                </span>
-                <h3 className="mt-2 font-semibold text-brand-dark">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm text-brand-dark/85">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className="mt-16">
-          <h2 className="font-display text-3xl font-bold text-brand-dark">
-            Frequently Asked Questions
-          </h2>
-          <div className="mt-6">
-            <FaqAccordion faqs={SERVICES_HUB_FAQS} />
-          </div>
-        </section>
+        <RevealOnScroll delayMs={140}>
+          <section className="mt-16">
+            <h2 className="font-display text-3xl font-bold text-brand-dark">
+              Frequently Asked Questions
+            </h2>
+            <div className="mt-6">
+              <FaqAccordion faqs={SERVICES_HUB_FAQS} />
+            </div>
+          </section>
+        </RevealOnScroll>
       </div>
 
       <CtaSection />
