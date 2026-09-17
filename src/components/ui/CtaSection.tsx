@@ -31,7 +31,16 @@ export function CtaSection({
             aria-label="Quote form preview — submit on Contact page"
           >
             <p className="mb-4 text-sm text-brand-offwhite/80">
-              [PLACEHOLDER — full quote form submits on Contact page]
+              The full quote form lives on our{" "}
+              <Link
+                href="/contact/"
+                className="font-semibold text-brand-gold underline-offset-2 hover:underline"
+              >
+                Contact page
+              </Link>{" "}
+              — tell us your site address, the services you need, and your
+              preferred frequency. We respond within 24 hours with next steps
+              and a free site walk-through.
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="h-10 rounded border border-brand-offwhite/20 bg-brand-offwhite/5" />
@@ -41,6 +50,12 @@ export function CtaSection({
               <div className="h-10 rounded border border-brand-offwhite/20 bg-brand-offwhite/5 sm:col-span-2" />
               <div className="h-24 rounded border border-brand-offwhite/20 bg-brand-offwhite/5 sm:col-span-2" />
             </div>
+            <Link
+              href="/contact/"
+              className="fm-touch-target mt-4 inline-flex w-full items-center justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-brand-dark fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 sm:w-auto"
+            >
+              Go to the full quote form
+            </Link>
           </div>
         )}
 

@@ -91,4 +91,30 @@ export const melbourneData: LocationPageData = {
         "Melbourne pricing depends on site size, frequency, access requirements and scope complexity. We provide written quotes after a free walk-through with a documented scope so costs and responsibilities are transparent.",
     },
   ],
+  localCaseReference: {
+    heading: "Local Case Reference",
+    body: "No completed local case study is being claimed here — this reference outlines the type of scope FACILITIES MAN is ready to document as founding projects complete. Melbourne's residential and commercial strata market operates under the Owners Corporations Act 2006 (Victoria), which sets out owners corporation responsibilities for common property maintenance. Melbourne's unique urban layout — laneway access constraints, loading dock scheduling windows, and dense mixed-use corridors in the CBD and Docklands — requires cleaning programmes scoped around practical access and after-hours security protocols. As a national FM provider with VIC-vetted local resources, we deliver Newcastle-based owner oversight with local crews on the ground. The profiles below outline the type of scopes we are ready to deliver across Melbourne's key commercial precincts.",
+    scopeItems: [
+      {
+        label: "CBD & Docklands office towers",
+        detail:
+          "After-hours commercial cleaning for multi-floor tenancies in the CBD and Docklands — with digital reporting, consumables management, and laneway/loading dock access scheduling aligned to building security protocols.",
+      },
+      {
+        label: "Southbank owners corporation schemes",
+        detail:
+          "Common-area cleaning for residential owners corporations in Southbank and Docklands — with reporting aligned to Owners Corporations Act 2006 common property maintenance obligations and committee-ready AGM documentation.",
+      },
+      {
+        label: "Inner-east strata & professional offices",
+        detail:
+          "Common-area cleaning and office cleaning for strata schemes and professional suites in Richmond, South Yarra, Cremorne and Prahran — with flexible scheduling around retail trading hours and inner-city access constraints.",
+      },
+      {
+        label: "Multi-state portfolio coordination",
+        detail:
+          "Integrated facilities management for portfolio managers with Hunter-region and Melbourne assets — unified reporting, one escalation contact, and consistent standards across NSW and Victoria.",
+      },
+    ],
+  },
 };

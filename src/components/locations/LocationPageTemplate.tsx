@@ -184,6 +184,42 @@ export function LocationPageTemplate({ data }: { data: LocationPageData }) {
             />
           </RevealOnScroll>
 
+          {data.localCaseReference && (
+            <RevealOnScroll>
+              <SectionPanel tone="cream">
+                <SectionHeading>
+                  {data.localCaseReference.heading}
+                </SectionHeading>
+                <p className="mt-5 leading-relaxed text-brand-dark/90">
+                  {data.localCaseReference.body}
+                </p>
+                <div className="mt-8 grid gap-4 md:grid-cols-2">
+                  {data.localCaseReference.scopeItems.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-xl border border-brand-teal/15 bg-white p-5"
+                    >
+                      <h3 className="font-display text-base font-semibold text-brand-teal">
+                        {item.label}
+                      </h3>
+                      <p className="mt-2 text-sm text-brand-dark/85">
+                        {item.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-6">
+                  <Link
+                    href="/case-studies/"
+                    className="font-semibold text-brand-teal"
+                  >
+                    View all example scope profiles →
+                  </Link>
+                </p>
+              </SectionPanel>
+            </RevealOnScroll>
+          )}
+
           <RevealOnScroll>
             <SectionPanel padding="none" className="shadow-md">
               <div className="border-b border-brand-teal/10 bg-brand-cream px-5 py-4 sm:px-6">
