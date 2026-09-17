@@ -91,4 +91,30 @@ export const sydneyData: LocationPageData = {
         "Sydney pricing depends on site size, frequency, access requirements and scope complexity. We provide written quotes after a free walk-through with a documented scope so costs and responsibilities are transparent before you commit.",
     },
   ],
+  localCaseReference: {
+    heading: "Local Scope Reference — Sydney",
+    body: "Sydney's commercial and strata market demands documented scopes, after-hours scheduling flexibility, and compliance-ready reporting. Under the Strata Schemes Management Act 2015 (NSW), owners corporations are responsible for maintaining common property — including cleaning — so programmes must be documented to AGM-record standards. The profiles below outline the type of scopes we are ready to deliver across Sydney's key commercial precincts. When founding contracts complete and clients approve, published case studies will replace these example scopes.",
+    scopeItems: [
+      {
+        label: "CBD & Barangaroo office towers",
+        detail:
+          "After-hours commercial cleaning for multi-floor tenancies in Martin Place, Barangaroo and Darling Harbour — with digital reporting, consumables management, and building security protocol compliance.",
+      },
+      {
+        label: "Parramatta business precinct",
+        detail:
+          "Commercial cleaning and facilities management for multi-tenancy buildings in Parramatta CBD — bundling cleaning, maintenance coordination, and single-point reporting for portfolio managers.",
+      },
+      {
+        label: "North Shore strata towers",
+        detail:
+          "Common-area cleaning for residential strata schemes in North Sydney, Chatswood and St Leonards — with committee-ready reporting aligned to NSW strata management obligations and AGM record standards.",
+      },
+      {
+        label: "Mixed-use & retail corridors",
+        detail:
+          "Presentation-focused cleaning for Surry Hills, Newtown and inner-city mixed-use buildings — with flexible scheduling around retail trading hours and high-traffic public areas.",
+      },
+    ],
+  },
 };

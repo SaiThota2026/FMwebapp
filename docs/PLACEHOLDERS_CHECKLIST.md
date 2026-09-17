@@ -50,19 +50,20 @@ Tick each item when the real value is confirmed and the placeholder string is re
 
 | Done | Placeholder | Where | Notes |
 |------|-------------|-------|-------|
-| [ ] | CTA note: “full quote form submits on Contact page” | `src/components/ui/CtaSection.tsx` | Replace with clearer copy once OK |
+| [x] | CTA note: “full quote form submits on Contact page” | `src/components/ui/CtaSection.tsx` | **Done 2026-09-17** — real Contact-page copy + “Go to the full quote form” CTA |
 
 ---
 
 ## Priority E — Case studies / earned content shells
 
-These pages are intentionally empty until real work exists. Replace shell copy when ready (not always `[PLACEHOLDER]` syntax).
+**Merged 2026-09-17** from Downloads Priority D & E package (patch + `case-study-readiness.ts`).  
+Example Scope Profiles + filters + metro Local Case Reference blocks are live in code. **No new URL routes** were added (still **57** pages).
 
 | Done | Item | Where | Notes |
 |------|------|-------|-------|
-| [ ] | First published case study | `src/components/case-studies/CaseStudiesPage.tsx` | Empty-state / founding-customer offer |
-| [ ] | Case study filters with real items | same | Service / industry / location |
-| [ ] | Local case reference blocks on metro location pages | Sydney / Brisbane / Melbourne location data | Master doc H2 “Local Case Reference” — currently omitted or generic; add when earned |
+| [ ] | First **earned / published** case study | `src/components/case-studies/CaseStudiesPage.tsx` | Still pending real client-approved outcomes. **13 Example Scope Profiles** shipped as transparent non-case-study content (`src/data/case-study-readiness.ts`) |
+| [x] | Case study filters with items | same + `case-study-readiness.ts` | **Done** — service / industry / location filters over 13 example scopes |
+| [x] | Local case reference blocks on metro location pages | Sydney / Brisbane / Melbourne + `LocationPageTemplate` | **Done** — master-doc H2 “Local Case Reference” with transparency wording |
 
 ---
 

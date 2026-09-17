@@ -91,4 +91,30 @@ export const brisbaneData: LocationPageData = {
         "Brisbane pricing depends on site size, frequency, access requirements and scope complexity. We provide written quotes after a free walk-through with a documented scope so costs and responsibilities are transparent.",
     },
   ],
+  localCaseReference: {
+    heading: "Local Scope Reference — Brisbane",
+    body: "Brisbane's body corporate sector operates under the Body Corporate and Community Management (BCCM) Act 1997, which sets out responsibilities for maintaining common property in good and serviceable repair — including cleanliness and hygiene. The 2023 amendment (commenced May 2024) introduced stronger resident protections and updated committee obligations. Brisbane's subtropical climate also creates specific cleaning challenges: mould, mildew and algae on exterior walkways, render, and bin enclosures require specialist products and targeted scheduling. The profiles below outline the type of scopes we are ready to deliver across Brisbane's key precincts. When founding contracts complete and clients approve, published case studies will replace these example scopes.",
+    scopeItems: [
+      {
+        label: "CBD & Fortitude Valley offices",
+        detail:
+          "Commercial cleaning for corporate offices in the CBD and Fortitude Valley — with after-hours scheduling, high-touch surface sanitisation, and digital reporting aligned to QLD WHS requirements.",
+      },
+      {
+        label: "South Brisbane body corporate schemes",
+        detail:
+          "Common-area cleaning for residential body corporates in South Brisbane, West End and Woolloongabba — with BCCM Act compliance documentation, committee-ready reporting, and subtropical mould/mildew treatment for exterior surfaces.",
+      },
+      {
+        label: "Riverside strata complexes",
+        detail:
+          "Common-area and amenity cleaning for riverside apartment schemes — including pool, gym, and BBQ area hygiene, bin room odour management, and humidity-driven exterior walkway treatment.",
+      },
+      {
+        label: "Mixed-use & Newstead commercial",
+        detail:
+          "Integrated facilities management for mixed-use buildings in Newstead and Spring Hill — bundling cleaning, maintenance coordination, and single-point reporting under one contract.",
+      },
+    ],
+  },
 };

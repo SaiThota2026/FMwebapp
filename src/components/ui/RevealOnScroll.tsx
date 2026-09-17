@@ -28,6 +28,8 @@ export function RevealOnScroll({
       return () => cancelAnimationFrame(frame);
     }
 
+    // threshold 0: tall wrappers (e.g. multi-card grids) can never reach
+    // a high % visible, which previously left content stuck at opacity 0.
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
@@ -35,7 +37,7 @@ export function RevealOnScroll({
           observer.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -48px 0px" },
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
     );
 
     observer.observe(el);

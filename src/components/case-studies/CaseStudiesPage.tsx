@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { PageHero } from "@/components/layout/PageHero";
 import { CtaSection } from "@/components/ui/CtaSection";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
@@ -8,144 +11,414 @@ import {
   SectionHeading,
   SectionPanel,
 } from "@/components/ui/SectionPanel";
-import type { FaqItem } from "@/lib/schema";
 import { contentImg } from "@/lib/content-images";
 import { SERVICES, SITE } from "@/lib/site";
-
-const CASE_STUDIES_FAQS: FaqItem[] = [
-  {
-    question: "Why are there no case studies yet?",
-    answer:
-      "FACILITIES MAN is a newly established business. We do not publish fabricated case studies or borrowed testimonials. Our first case studies will appear here as founding contracts complete and clients approve publication.",
-  },
-  {
-    question: "How do you build a case study?",
-    answer:
-      "We document scope, mobilisation, outcomes and measurable results with client approval at each stage. Photography and quotes are only published with written consent. The process typically takes 4–8 weeks after contract stabilisation.",
-  },
-  {
-    question: "Will my business be named in a case study?",
-    answer:
-      "Only with your explicit written approval. We can publish anonymised case studies (industry and region only) if you prefer confidentiality. You control what appears publicly.",
-  },
-  {
-    question: "Can I see references instead?",
-    answer:
-      "As we grow, we can provide reference contacts for prospects with mutual consent from existing clients. Contact us to discuss what is available for your enquiry type.",
-  },
-  {
-    question: "How can I become a founding-customer case study?",
-    answer:
-      "Our founding-customer offer includes discounted contract pricing in exchange for case study rights and a reference contact. The first five clients in each region qualify — enquire via the contact page and mention the founding-customer programme.",
-  },
-];
+import {
+  EXAMPLE_SCOPES,
+  SCOPE_FILTERS,
+  READINESS_FAQS,
+} from "@/data/case-study-readiness";
 
 const CASE_STUDIES_VISUAL = {
   heroLabel:
-    "Founding-customer case studies coming soon — case-studies-hero.webp",
+    "Example scope profiles for Newcastle, Sydney, Brisbane and Melbourne — case-studies-hero.webp",
   sectionLabels: [
-    "Empty state — case studies in production — case-studies-section-1.webp",
+    "Service filter overview — case-studies-section-1.webp",
     "Founding-customer programme overview — case-studies-section-2.webp",
   ],
   regionLabel: "",
 };
 
 export function CaseStudiesPage() {
+  const [activeService, setActiveService] = useState<string | null>(null);
+  const [activeLocation, setActiveLocation] = useState<string | null>(null);
+  const [activeIndustry, setActiveIndustry] = useState<string | null>(null);
+
+  const filteredScopes = EXAMPLE_SCOPES.filter((scope) => {
+    if (activeService && scope.serviceSlug !== activeService) return false;
+    if (activeLocation && scope.locationSlug !== activeLocation) return false;
+    if (activeIndustry && scope.industry !== activeIndustry) return false;
+    return true;
+  });
+
+  const hasFilters = activeService || activeLocation || activeIndustry;
+
   return (
     <>
       <PageHero
         breadcrumbs={[{ name: "Case Studies", path: "/case-studies/" }]}
-        h1="Case Studies"
-        lead="Real outcomes from Newcastle and NSW facilities, cleaning and grounds contracts. New case studies added as founding projects complete — no fabricated content."
+        h1="Case Studies & Example Scope Profiles"
+        lead="Explore the type of facilities, cleaning and grounds programmes FACILITIES MAN delivers across Newcastle, Sydney, Brisbane and Melbourne. Each profile outlines scope, approach, and what a future published case study will include — real projects, honest outcomes, no fabricated content."
         visual={CASE_STUDIES_VISUAL}
         imageSrc={contentImg("case-studies-hero")}
       />
 
       <div className="fm-container py-12 md:py-16">
         <div className="fm-section-stack">
+          {/* Readiness explainer */}
           <RevealOnScroll>
             <SectionPanel tone="cream">
-              <SectionHeading>Featured Case Studies</SectionHeading>
+              <SectionHeading>Example Scope Profiles</SectionHeading>
               <p className="mt-5 text-brand-dark/90">
-                Our first case studies will appear here as our founding contracts
-                complete — see the founding-customer offer below. We build each
-                case study with client approval, documented scope and honest
-                outcomes. Real projects · Honest outcomes · No fabricated reviews.
+                FACILITIES MAN is a newly established, owner-operated business
+                based in Newcastle, NSW. The profiles below describe the type of
+                projects we are equipped to deliver in each market we service.
+                They are not completed case studies — they are transparent
+                examples of scope, approach, and documentation standards. Our
+                first published case studies will appear here as founding
+                contracts complete and clients approve publication.
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-lg border border-brand-teal/15 bg-white p-4">
+                  <p className="font-display text-sm font-semibold text-brand-teal">
+                    Real projects
+                  </p>
+                  <p className="mt-1 text-sm text-brand-dark/75">
+                    Documented scope, not invented outcomes
+                  </p>
+                </div>
+                <div className="rounded-lg border border-brand-teal/15 bg-white p-4">
+                  <p className="font-display text-sm font-semibold text-brand-teal">
+                    Honest outcomes
+                  </p>
+                  <p className="mt-1 text-sm text-brand-dark/75">
+                    Measurable results published with client consent
+                  </p>
+                </div>
+                <div className="rounded-lg border border-brand-teal/15 bg-white p-4">
+                  <p className="font-display text-sm font-semibold text-brand-teal">
+                    No fabricated reviews
+                  </p>
+                  <p className="mt-1 text-sm text-brand-dark/75">
+                    Client references only, with written approval
+                  </p>
+                </div>
+              </div>
+            </SectionPanel>
+          </RevealOnScroll>
+
+          {/* Filterable scope profiles */}
+          <RevealOnScroll>
+            <SectionPanel>
+              <SectionHeading>Filter by Service, Industry &amp; Location</SectionHeading>
+              <p className="mt-4 text-sm text-brand-dark/75">
+                Narrow profiles by service, industry, or location to find
+                relevant examples for your property and market.
+              </p>
+
+              {/* Service filters */}
+              <div className="mt-6">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-brand-dark/60">
+                  Service
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setActiveService(null)}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                      !activeService
+                        ? "bg-brand-teal text-white"
+                        : "bg-brand-cream text-brand-teal hover:text-brand-gold"
+                    }`}
+                  >
+                    All services
+                  </button>
+                  {SCOPE_FILTERS.services.map((s) => (
+                    <button
+                      key={s.slug}
+                      onClick={() =>
+                        setActiveService(
+                          activeService === s.slug ? null : s.slug,
+                        )
+                      }
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                        activeService === s.slug
+                          ? "bg-brand-teal text-white"
+                          : "bg-brand-cream text-brand-teal hover:text-brand-gold"
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Location filters */}
+              <div className="mt-4">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-brand-dark/60">
+                  Location
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setActiveLocation(null)}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                      !activeLocation
+                        ? "bg-brand-teal text-white"
+                        : "bg-brand-cream text-brand-teal hover:text-brand-gold"
+                    }`}
+                  >
+                    All locations
+                  </button>
+                  {SCOPE_FILTERS.locations.map((l) => (
+                    <button
+                      key={l.slug}
+                      onClick={() =>
+                        setActiveLocation(
+                          activeLocation === l.slug ? null : l.slug,
+                        )
+                      }
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                        activeLocation === l.slug
+                          ? "bg-brand-teal text-white"
+                          : "bg-brand-cream text-brand-teal hover:text-brand-gold"
+                      }`}
+                    >
+                      {l.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Industry filters */}
+              <div className="mt-4">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-brand-dark/60">
+                  Industry
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setActiveIndustry(null)}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                      !activeIndustry
+                        ? "bg-brand-teal text-white"
+                        : "bg-brand-cream text-brand-teal hover:text-brand-gold"
+                    }`}
+                  >
+                    All industries
+                  </button>
+                  {SCOPE_FILTERS.industries.map((ind) => (
+                    <button
+                      key={ind.slug}
+                      onClick={() =>
+                        setActiveIndustry(
+                          activeIndustry === ind.label ? null : ind.label,
+                        )
+                      }
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                        activeIndustry === ind.label
+                          ? "bg-brand-teal text-white"
+                          : "bg-brand-cream text-brand-teal hover:text-brand-gold"
+                      }`}
+                    >
+                      {ind.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {hasFilters && (
+                <button
+                  onClick={() => {
+                    setActiveService(null);
+                    setActiveLocation(null);
+                    setActiveIndustry(null);
+                  }}
+                  className="mt-4 text-sm font-semibold text-brand-gold hover:underline"
+                >
+                  Clear all filters
+                </button>
+              )}
+
+              <p className="mt-4 text-sm text-brand-dark/60">
+                Showing {filteredScopes.length}{" "}
+                {filteredScopes.length === 1 ? "profile" : "profiles"}
               </p>
             </SectionPanel>
           </RevealOnScroll>
 
-          <RevealOnScroll>
-            <FeaturePanel
-              heading="By Service"
-              body={[
-                "Case studies will be organised by service type — commercial cleaning, strata cleaning, facilities management and specialist programmes — so you can find relevant examples for your property type.",
-                "Until our first cases publish, browse our service pages for scope detail and inclusions.",
-              ]}
-              imageLabel={CASE_STUDIES_VISUAL.sectionLabels[0]}
-              imageSrc={contentImg("case-studies-section-1")}
-              footer={
-                <Link href="/services/" className="font-semibold text-brand-teal">
-                  Browse all services →
-                </Link>
-              }
-            />
-          </RevealOnScroll>
+          {/* Scope profile cards — not wrapped in a single RevealOnScroll:
+              a tall multi-card grid could never meet the old intersection
+              threshold and stayed opacity:0. */}
+          <div className="grid gap-6 md:grid-cols-2">
+              {filteredScopes.map((scope) => (
+                <article
+                  key={scope.id}
+                  className="flex flex-col overflow-hidden rounded-xl border border-brand-teal/15 bg-brand-cream/60 shadow-sm fm-hover-lift"
+                >
+                  <div className="border-b border-brand-teal/10 bg-white px-5 py-4">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-block rounded-full bg-brand-dark/10 px-3 py-1 text-xs font-semibold text-brand-dark">
+                        Example scope
+                      </span>
+                      <span className="inline-block rounded-full bg-brand-teal/10 px-3 py-1 text-xs font-semibold text-brand-teal">
+                        {scope.service}
+                      </span>
+                      <span className="inline-block rounded-full bg-brand-gold/10 px-3 py-1 text-xs font-semibold text-brand-gold">
+                        {scope.location}
+                      </span>
+                      <span className="inline-block rounded-full bg-brand-dark/5 px-3 py-1 text-xs font-medium text-brand-dark/70">
+                        {scope.industry}
+                      </span>
+                    </div>
+                    <h3 className="mt-3 font-display text-lg font-semibold text-brand-dark">
+                      {scope.title}
+                    </h3>
+                  </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <p className="text-sm text-brand-dark/85">
+                      {scope.summary}
+                    </p>
 
+                    <div className="mt-4">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-brand-teal">
+                        Scope detail
+                      </p>
+                      <ul className="mt-2 space-y-1.5">
+                        {scope.scopeDetail.map((item, i) => (
+                          <li
+                            key={i}
+                            className="flex gap-2 text-sm text-brand-dark/80"
+                          >
+                            <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-gold" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mt-4">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-brand-teal">
+                        Our approach
+                      </p>
+                      <ul className="mt-2 space-y-1.5">
+                        {scope.approach.map((item, i) => (
+                          <li
+                            key={i}
+                            className="flex gap-2 text-sm text-brand-dark/80"
+                          >
+                            <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-teal" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mt-4 rounded-lg bg-white/60 p-3">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-brand-dark/60">
+                        What a future case study will include
+                      </p>
+                      <ul className="mt-2 space-y-1">
+                        {scope.whatCaseStudyWillInclude.map((item, i) => (
+                          <li
+                            key={i}
+                            className="flex gap-2 text-xs text-brand-dark/70"
+                          >
+                            <span className="mt-0.5 text-brand-gold">→</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mt-auto flex gap-3 pt-4">
+                      <Link
+                        href={`/services/${scope.serviceSlug}/`}
+                        className="text-sm font-semibold text-brand-teal hover:text-brand-gold"
+                      >
+                        View {scope.service} services →
+                      </Link>
+                      <Link
+                        href={`/locations/${scope.locationSlug}/`}
+                        className="text-sm font-semibold text-brand-teal hover:text-brand-gold"
+                      >
+                        {scope.location} location →
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+          {filteredScopes.length === 0 && (
+            <SectionPanel>
+              <p className="text-center text-brand-dark/70">
+                No profiles match the current filters. Try clearing filters or
+                browsing all services and locations.
+              </p>
+            </SectionPanel>
+          )}
+
+          {/* By industry & location overview */}
           <RevealOnScroll>
             <FeaturePanel
               heading="By Industry & Location"
               body={[
-                "Future case studies will be filterable by industry (strata, healthcare, commercial property and more) and by location across Newcastle, Hunter and national metro delivery.",
-                "Multi-site portfolio clients can request anonymised scope summaries while formal case studies are in production.",
+                "Our example scope profiles span commercial property, strata and body corporate, and industrial sectors — across Newcastle, Lake Macquarie, Hunter Valley, Sydney, Brisbane and Melbourne.",
+                "Use the filters above to find profiles relevant to your property type and market. Each profile links to the relevant service and location pages for detailed scope information.",
               ]}
-              imageLabel={CASE_STUDIES_VISUAL.sectionLabels[1]}
-              imageSrc={contentImg("case-studies-section-2")}
+              imageLabel={CASE_STUDIES_VISUAL.sectionLabels[0]}
+              imageSrc={contentImg("case-studies-section-1")}
               tone="cream"
               mediaPosition="left"
               footer={
-                <Link href="/locations/" className="font-semibold text-brand-teal">
-                  View all locations →
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/services/"
+                    className="font-semibold text-brand-teal"
+                  >
+                    Browse all services →
+                  </Link>
+                  <Link
+                    href="/locations/"
+                    className="font-semibold text-brand-teal"
+                  >
+                    View all locations →
+                  </Link>
+                </div>
               }
             />
           </RevealOnScroll>
 
+          {/* Founding-customer offer */}
           <RevealOnScroll>
-            <SectionPanel tone="gold">
-              <SectionHeading>Want to Be Our Next Case Study?</SectionHeading>
-              <div className="mt-5 space-y-4 text-brand-dark/90">
-                <p>
-                  Founding-customer offer: discounted contract pricing in
-                  exchange for case study rights and a reference contact. We
-                  produce the case study at no extra cost — photography,
-                  write-up and client approval managed by our team.
-                </p>
-                <p>
-                  ABN {SITE.abn}. Fully insured.{" "}
-                  <Link href="/about/certifications/" className="font-semibold text-brand-teal">
-                    View certifications & compliance
+            <FeaturePanel
+              heading="Become a Founding-Customer Case Study"
+              body={[
+                "Our founding-customer programme offers discounted contract pricing in exchange for case study rights and a reference contact. We produce the case study at no extra cost — photography, write-up, and client approval managed by our team. The first five clients in each region qualify.",
+                `ABN ${SITE.abn}. Fully insured.`,
+              ]}
+              imageLabel={CASE_STUDIES_VISUAL.sectionLabels[1]}
+              imageSrc={contentImg("case-studies-section-2")}
+              tone="gold"
+              mediaPosition="right"
+              footer={
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/about/certifications/"
+                    className="font-semibold text-brand-teal"
+                  >
+                    View certifications &amp; compliance →
                   </Link>
-                  .
-                </p>
-                <p>
-                  <Link href="/contact/" className="font-semibold text-brand-teal">
-                    Become a founding-customer case study →
+                  <Link
+                    href="/contact/"
+                    className="font-semibold text-brand-teal"
+                  >
+                    Enquire about the founding-customer programme →
                   </Link>
-                </p>
-              </div>
-            </SectionPanel>
+                </div>
+              }
+            />
           </RevealOnScroll>
 
+          {/* FAQs */}
           <RevealOnScroll>
             <SectionPanel>
               <SectionHeading>Frequently Asked Questions</SectionHeading>
-              <div className="mt-6">
-                <FaqAccordion faqs={CASE_STUDIES_FAQS} />
+              <div className="mt-6 w-full">
+                <FaqAccordion faqs={READINESS_FAQS} />
               </div>
             </SectionPanel>
           </RevealOnScroll>
 
+          {/* Related services */}
           <RevealOnScroll>
             <SectionPanel>
               <p className="font-semibold text-brand-dark">Related services:</p>
@@ -167,8 +440,8 @@ export function CaseStudiesPage() {
       </div>
 
       <CtaSection
-        heading="Become a Founding-Customer Case Study"
-        subCopy="Discounted founding pricing · Professional case study production · No fabricated content"
+        heading="Ready to Discuss Your Project Scope?"
+        subCopy="Tell us about your site, services needed, and preferred frequency. We respond within 24 hours and can usually schedule a free site walk-through within 2-3 business days."
       />
     </>
   );
