@@ -110,6 +110,27 @@ export const COMBO_PAGES: ComboPageData[] = [
     serviceName: "Industrial Cleaning",
     localRefs: "Mayfield and Beresfield industrial corridors with traffic-aware operational routines",
   }),
+  makeCombo({
+    locationSlug: "sydney",
+    locationName: "Sydney",
+    serviceSlug: "commercial-cleaning",
+    serviceName: "Commercial Cleaning",
+    localRefs: "Sydney CBD towers, Parramatta second-CBD offices and North Sydney professional precincts",
+  }),
+  makeCombo({
+    locationSlug: "sydney",
+    locationName: "Sydney",
+    serviceSlug: "strata-cleaning",
+    serviceName: "Strata Cleaning",
+    localRefs: "Inner-city apartment towers, Chatswood and North Shore strata schemes with committee governance needs",
+  }),
+  makeCombo({
+    locationSlug: "sydney",
+    locationName: "Sydney",
+    serviceSlug: "facilities-management",
+    serviceName: "Facilities Management",
+    localRefs: "Mixed-use CBD portfolios, Parramatta commercial hubs and multi-tenancy FM programmes",
+  }),
 ];
 
 export function getComboBySlugs(locationSlug: string, serviceSlug: string) {

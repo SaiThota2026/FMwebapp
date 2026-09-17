@@ -8,6 +8,7 @@ type PageHeroProps = {
   h1: string;
   lead?: string;
   visual: PageVisualConfig;
+  imageSrc?: string;
   showTrustStrip?: boolean;
 };
 
@@ -16,6 +17,7 @@ export function PageHero({
   h1,
   lead,
   visual,
+  imageSrc,
   showTrustStrip = true,
 }: PageHeroProps) {
   return (
@@ -50,6 +52,7 @@ export function PageHero({
           <div className="fm-fade-up fm-delay-2 min-w-0">
             <ImagePlaceholder
               label={visual.heroLabel}
+              src={imageSrc}
               aspect="video"
               className="shadow-lg"
             />

@@ -7,6 +7,7 @@ import { LinkCard } from "@/components/ui/LinkCard";
 import { ProcessSteps } from "@/components/ui/ProcessSteps";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ABOUT_FAQS, ABOUT_PROCESS_STEPS } from "@/data/about";
+import { contentImg } from "@/lib/content-images";
 import { getLocationVisual } from "@/lib/page-visuals";
 import { LOCATIONS, SITE } from "@/lib/site";
 
@@ -29,6 +30,7 @@ export function AboutPage() {
         h1="About FACILITIES MAN — Newcastle's Owner-Operated Facilities Team"
         lead="Locally owned, owner-operated facilities management and commercial cleaning — built in Newcastle for businesses that want accountability, not a call centre."
         visual={ABOUT_VISUAL}
+        imageSrc={contentImg("about-founder")}
       />
 
       <div className="fm-container py-12 md:py-16">
@@ -60,6 +62,7 @@ export function AboutPage() {
               </div>
               <ImagePlaceholder
                 label={ABOUT_VISUAL.sectionLabels[0]}
+                src={contentImg("about-walkthrough")}
                 aspect="video"
                 className="rounded-xl"
               />
@@ -179,6 +182,7 @@ export function AboutPage() {
                 </div>
                 <ImagePlaceholder
                   label={ABOUT_VISUAL.sectionLabels[1]}
+                  src={contentImg("about-compliance")}
                   aspect="video"
                   className="rounded-xl"
                 />
@@ -208,6 +212,7 @@ export function AboutPage() {
                       description={`Facilities and cleaning services in ${loc.name}.`}
                       linkLabel={`View ${loc.name} services`}
                       imageLabel={getLocationVisual(slug).heroLabel}
+                      imageSrc={contentImg(`about-location-${slug}`)}
                     />
                   </RevealOnScroll>
                 );

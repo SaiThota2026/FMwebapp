@@ -1,0 +1,418 @@
+{
+  "name": "FACILITIES MAN",
+  "url": "https://www.facilitiesman.com.au",
+  "generatedAt": "2026-09-17T01:26:04.134Z",
+  "pageCount": 57,
+  "aiCrawling": "allowed",
+  "robots": "https://www.facilitiesman.com.au/robots.txt",
+  "llmsTxt": "https://www.facilitiesman.com.au/llms.txt",
+  "llmsFullTxt": "https://www.facilitiesman.com.au/llms-full.txt",
+  "xmlSitemap": "https://www.facilitiesman.com.au/sitemap.xml",
+  "htmlSitemap": "https://www.facilitiesman.com.au/sitemap/",
+  "contact": {
+    "email": "support@facilitiesman.com.au",
+    "phone": "+61450924377",
+    "abn": "72 697 453 937"
+  },
+  "constraints": [
+    "Do not invent AggregateRating or fake reviews",
+    "Do not invent insurance amounts, ISO dates, founder identity, or case studies",
+    "All public URLs use trailing slashes"
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "title": "Home",
+      "type": "home",
+      "url": "https://www.facilitiesman.com.au/"
+    },
+    {
+      "path": "/about/",
+      "title": "About",
+      "type": "company",
+      "url": "https://www.facilitiesman.com.au/about/"
+    },
+    {
+      "path": "/about/certifications/",
+      "title": "Certifications",
+      "type": "company",
+      "url": "https://www.facilitiesman.com.au/about/certifications/"
+    },
+    {
+      "path": "/reviews/",
+      "title": "Reviews",
+      "type": "company",
+      "url": "https://www.facilitiesman.com.au/reviews/"
+    },
+    {
+      "path": "/case-studies/",
+      "title": "Case Studies",
+      "type": "company",
+      "url": "https://www.facilitiesman.com.au/case-studies/"
+    },
+    {
+      "path": "/sitemap/",
+      "title": "HTML Sitemap",
+      "type": "utility",
+      "url": "https://www.facilitiesman.com.au/sitemap/"
+    },
+    {
+      "path": "/services/",
+      "title": "Services Hub",
+      "type": "hub",
+      "url": "https://www.facilitiesman.com.au/services/"
+    },
+    {
+      "path": "/locations/",
+      "title": "Locations Hub",
+      "type": "hub",
+      "url": "https://www.facilitiesman.com.au/locations/"
+    },
+    {
+      "path": "/industries/",
+      "title": "Industries Hub",
+      "type": "hub",
+      "url": "https://www.facilitiesman.com.au/industries/"
+    },
+    {
+      "path": "/faq/",
+      "title": "FAQ",
+      "type": "hub",
+      "url": "https://www.facilitiesman.com.au/faq/"
+    },
+    {
+      "path": "/blog/",
+      "title": "Blog Hub",
+      "type": "hub",
+      "url": "https://www.facilitiesman.com.au/blog/"
+    },
+    {
+      "path": "/contact/",
+      "title": "Contact & Quote",
+      "type": "company",
+      "url": "https://www.facilitiesman.com.au/contact/"
+    },
+    {
+      "path": "/privacy-policy/",
+      "title": "Privacy Policy",
+      "type": "legal",
+      "url": "https://www.facilitiesman.com.au/privacy-policy/"
+    },
+    {
+      "path": "/services/commercial-cleaning/",
+      "title": "commercial-cleaning",
+      "type": "service",
+      "slug": "commercial-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/commercial-cleaning/"
+    },
+    {
+      "path": "/services/strata-cleaning/",
+      "title": "strata-cleaning",
+      "type": "service",
+      "slug": "strata-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/strata-cleaning/"
+    },
+    {
+      "path": "/services/facilities-management/",
+      "title": "facilities-management",
+      "type": "service",
+      "slug": "facilities-management",
+      "url": "https://www.facilitiesman.com.au/services/facilities-management/"
+    },
+    {
+      "path": "/services/office-cleaning/",
+      "title": "office-cleaning",
+      "type": "service",
+      "slug": "office-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/office-cleaning/"
+    },
+    {
+      "path": "/services/grounds-maintenance/",
+      "title": "grounds-maintenance",
+      "type": "service",
+      "slug": "grounds-maintenance",
+      "url": "https://www.facilitiesman.com.au/services/grounds-maintenance/"
+    },
+    {
+      "path": "/services/industrial-cleaning/",
+      "title": "industrial-cleaning",
+      "type": "service",
+      "slug": "industrial-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/industrial-cleaning/"
+    },
+    {
+      "path": "/services/medical-cleaning/",
+      "title": "medical-cleaning",
+      "type": "service",
+      "slug": "medical-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/medical-cleaning/"
+    },
+    {
+      "path": "/services/childcare-cleaning/",
+      "title": "childcare-cleaning",
+      "type": "service",
+      "slug": "childcare-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/childcare-cleaning/"
+    },
+    {
+      "path": "/services/window-cleaning/",
+      "title": "window-cleaning",
+      "type": "service",
+      "slug": "window-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/window-cleaning/"
+    },
+    {
+      "path": "/services/carpet-cleaning/",
+      "title": "carpet-cleaning",
+      "type": "service",
+      "slug": "carpet-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/carpet-cleaning/"
+    },
+    {
+      "path": "/services/pressure-washing/",
+      "title": "pressure-washing",
+      "type": "service",
+      "slug": "pressure-washing",
+      "url": "https://www.facilitiesman.com.au/services/pressure-washing/"
+    },
+    {
+      "path": "/services/warehouse-cleaning/",
+      "title": "warehouse-cleaning",
+      "type": "service",
+      "slug": "warehouse-cleaning",
+      "url": "https://www.facilitiesman.com.au/services/warehouse-cleaning/"
+    },
+    {
+      "path": "/services/sanitary-washroom-services/",
+      "title": "sanitary-washroom-services",
+      "type": "service",
+      "slug": "sanitary-washroom-services",
+      "url": "https://www.facilitiesman.com.au/services/sanitary-washroom-services/"
+    },
+    {
+      "path": "/services/maintenance-trades/",
+      "title": "maintenance-trades",
+      "type": "service",
+      "slug": "maintenance-trades",
+      "url": "https://www.facilitiesman.com.au/services/maintenance-trades/"
+    },
+    {
+      "path": "/locations/newcastle/",
+      "title": "newcastle",
+      "type": "location",
+      "slug": "newcastle",
+      "url": "https://www.facilitiesman.com.au/locations/newcastle/"
+    },
+    {
+      "path": "/locations/maitland/",
+      "title": "maitland",
+      "type": "location",
+      "slug": "maitland",
+      "url": "https://www.facilitiesman.com.au/locations/maitland/"
+    },
+    {
+      "path": "/locations/lake-macquarie/",
+      "title": "lake-macquarie",
+      "type": "location",
+      "slug": "lake-macquarie",
+      "url": "https://www.facilitiesman.com.au/locations/lake-macquarie/"
+    },
+    {
+      "path": "/locations/hunter-valley/",
+      "title": "hunter-valley",
+      "type": "location",
+      "slug": "hunter-valley",
+      "url": "https://www.facilitiesman.com.au/locations/hunter-valley/"
+    },
+    {
+      "path": "/locations/central-coast/",
+      "title": "central-coast",
+      "type": "location",
+      "slug": "central-coast",
+      "url": "https://www.facilitiesman.com.au/locations/central-coast/"
+    },
+    {
+      "path": "/locations/cessnock/",
+      "title": "cessnock",
+      "type": "location",
+      "slug": "cessnock",
+      "url": "https://www.facilitiesman.com.au/locations/cessnock/"
+    },
+    {
+      "path": "/locations/port-stephens/",
+      "title": "port-stephens",
+      "type": "location",
+      "slug": "port-stephens",
+      "url": "https://www.facilitiesman.com.au/locations/port-stephens/"
+    },
+    {
+      "path": "/locations/singleton/",
+      "title": "singleton",
+      "type": "location",
+      "slug": "singleton",
+      "url": "https://www.facilitiesman.com.au/locations/singleton/"
+    },
+    {
+      "path": "/locations/muswellbrook/",
+      "title": "muswellbrook",
+      "type": "location",
+      "slug": "muswellbrook",
+      "url": "https://www.facilitiesman.com.au/locations/muswellbrook/"
+    },
+    {
+      "path": "/locations/sydney/",
+      "title": "sydney",
+      "type": "location",
+      "slug": "sydney",
+      "url": "https://www.facilitiesman.com.au/locations/sydney/"
+    },
+    {
+      "path": "/locations/brisbane/",
+      "title": "brisbane",
+      "type": "location",
+      "slug": "brisbane",
+      "url": "https://www.facilitiesman.com.au/locations/brisbane/"
+    },
+    {
+      "path": "/locations/melbourne/",
+      "title": "melbourne",
+      "type": "location",
+      "slug": "melbourne",
+      "url": "https://www.facilitiesman.com.au/locations/melbourne/"
+    },
+    {
+      "path": "/industries/strata-body-corporate/",
+      "title": "strata-body-corporate",
+      "type": "industry",
+      "slug": "strata-body-corporate",
+      "url": "https://www.facilitiesman.com.au/industries/strata-body-corporate/"
+    },
+    {
+      "path": "/industries/healthcare/",
+      "title": "healthcare",
+      "type": "industry",
+      "slug": "healthcare",
+      "url": "https://www.facilitiesman.com.au/industries/healthcare/"
+    },
+    {
+      "path": "/industries/education-childcare/",
+      "title": "education-childcare",
+      "type": "industry",
+      "slug": "education-childcare",
+      "url": "https://www.facilitiesman.com.au/industries/education-childcare/"
+    },
+    {
+      "path": "/industries/commercial-property/",
+      "title": "commercial-property",
+      "type": "industry",
+      "slug": "commercial-property",
+      "url": "https://www.facilitiesman.com.au/industries/commercial-property/"
+    },
+    {
+      "path": "/industries/government/",
+      "title": "government",
+      "type": "industry",
+      "slug": "government",
+      "url": "https://www.facilitiesman.com.au/industries/government/"
+    },
+    {
+      "path": "/blog/what-is-facilities-management/",
+      "title": "what-is-facilities-management",
+      "type": "blog",
+      "slug": "what-is-facilities-management",
+      "url": "https://www.facilitiesman.com.au/blog/what-is-facilities-management/"
+    },
+    {
+      "path": "/blog/industrial-cleaning-safety-nsw/",
+      "title": "industrial-cleaning-safety-nsw",
+      "type": "blog",
+      "slug": "industrial-cleaning-safety-nsw",
+      "url": "https://www.facilitiesman.com.au/blog/industrial-cleaning-safety-nsw/"
+    },
+    {
+      "path": "/blog/how-often-office-cleaning/",
+      "title": "how-often-office-cleaning",
+      "type": "blog",
+      "slug": "how-often-office-cleaning",
+      "url": "https://www.facilitiesman.com.au/blog/how-often-office-cleaning/"
+    },
+    {
+      "path": "/blog/strata-cleaning-checklist/",
+      "title": "strata-cleaning-checklist",
+      "type": "blog",
+      "slug": "strata-cleaning-checklist",
+      "url": "https://www.facilitiesman.com.au/blog/strata-cleaning-checklist/"
+    },
+    {
+      "path": "/blog/how-to-choose-commercial-cleaning-newcastle/",
+      "title": "how-to-choose-commercial-cleaning-newcastle",
+      "type": "blog",
+      "slug": "how-to-choose-commercial-cleaning-newcastle",
+      "url": "https://www.facilitiesman.com.au/blog/how-to-choose-commercial-cleaning-newcastle/"
+    },
+    {
+      "path": "/locations/maitland/commercial-cleaning/",
+      "title": "maitland / commercial-cleaning",
+      "type": "combo",
+      "locationSlug": "maitland",
+      "serviceSlug": "commercial-cleaning",
+      "url": "https://www.facilitiesman.com.au/locations/maitland/commercial-cleaning/"
+    },
+    {
+      "path": "/locations/lake-macquarie/strata-cleaning/",
+      "title": "lake-macquarie / strata-cleaning",
+      "type": "combo",
+      "locationSlug": "lake-macquarie",
+      "serviceSlug": "strata-cleaning",
+      "url": "https://www.facilitiesman.com.au/locations/lake-macquarie/strata-cleaning/"
+    },
+    {
+      "path": "/locations/newcastle/office-cleaning/",
+      "title": "newcastle / office-cleaning",
+      "type": "combo",
+      "locationSlug": "newcastle",
+      "serviceSlug": "office-cleaning",
+      "url": "https://www.facilitiesman.com.au/locations/newcastle/office-cleaning/"
+    },
+    {
+      "path": "/locations/newcastle/industrial-cleaning/",
+      "title": "newcastle / industrial-cleaning",
+      "type": "combo",
+      "locationSlug": "newcastle",
+      "serviceSlug": "industrial-cleaning",
+      "url": "https://www.facilitiesman.com.au/locations/newcastle/industrial-cleaning/"
+    },
+    {
+      "path": "/locations/hunter-valley/facilities-management/",
+      "title": "hunter-valley / facilities-management",
+      "type": "combo",
+      "locationSlug": "hunter-valley",
+      "serviceSlug": "facilities-management",
+      "url": "https://www.facilitiesman.com.au/locations/hunter-valley/facilities-management/"
+    },
+    {
+      "path": "/locations/sydney/commercial-cleaning/",
+      "title": "sydney / commercial-cleaning",
+      "type": "combo",
+      "locationSlug": "sydney",
+      "serviceSlug": "commercial-cleaning",
+      "url": "https://www.facilitiesman.com.au/locations/sydney/commercial-cleaning/"
+    },
+    {
+      "path": "/locations/sydney/strata-cleaning/",
+      "title": "sydney / strata-cleaning",
+      "type": "combo",
+      "locationSlug": "sydney",
+      "serviceSlug": "strata-cleaning",
+      "url": "https://www.facilitiesman.com.au/locations/sydney/strata-cleaning/"
+    },
+    {
+      "path": "/locations/sydney/facilities-management/",
+      "title": "sydney / facilities-management",
+      "type": "combo",
+      "locationSlug": "sydney",
+      "serviceSlug": "facilities-management",
+      "url": "https://www.facilitiesman.com.au/locations/sydney/facilities-management/"
+    }
+  ]
+}

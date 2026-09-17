@@ -1,8 +1,14 @@
 import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { CtaSection } from "@/components/ui/CtaSection";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import {
+  SectionHeading,
+  SectionPanel,
+} from "@/components/ui/SectionPanel";
 import type { BlogPost } from "@/lib/blog";
+import { contentImg } from "@/lib/content-images";
 
 export function BlogHubTemplate({ posts }: { posts: BlogPost[] }) {
   return (
@@ -17,6 +23,7 @@ export function BlogHubTemplate({ posts }: { posts: BlogPost[] }) {
           regionLabel: "",
           sectionLabels: [],
         }}
+        imageSrc={contentImg("blog-hub-hero")}
       />
 
       <div className="fm-container py-12 md:py-16">
@@ -28,10 +35,37 @@ export function BlogHubTemplate({ posts }: { posts: BlogPost[] }) {
           </p>
         </RevealOnScroll>
 
+        <RevealOnScroll delayMs={40}>
+          <SectionPanel tone="cream" className="mt-12">
+            <div className="grid min-w-0 grid-cols-1 items-center gap-6 lg:grid-cols-2 lg:gap-10">
+              <div className="min-w-0">
+                <SectionHeading>Practical guidance for Newcastle &amp; NSW</SectionHeading>
+                <p className="mt-4 leading-relaxed text-brand-dark/90 sm:mt-5">
+                  Each article covers a specific facilities or cleaning topic with
+                  actionable advice for Hunter-region businesses — scope planning,
+                  compliance, strata governance and service selection.
+                </p>
+              </div>
+              <ImagePlaceholder
+                label="Blog hub mid-section — facilities management insights — blog-hub-mid.webp"
+                src={contentImg("blog-hub-mid")}
+                aspect="photo"
+                className="rounded-xl shadow-sm"
+              />
+            </div>
+          </SectionPanel>
+        </RevealOnScroll>
+
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, i) => (
             <RevealOnScroll key={post.slug} delayMs={i * 50}>
               <article className="fm-hover-lift fm-tap flex h-full flex-col overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm">
+                <ImagePlaceholder
+                  label={`Blog hub card — ${post.title} — blog-hub-card-${post.slug}.webp`}
+                  src={contentImg(`blog-hub-card-${post.slug}`)}
+                  aspect="video"
+                  className="rounded-b-none border-0"
+                />
                 <div className="border-b border-brand-teal/10 bg-gradient-to-r from-brand-cream to-brand-offwhite px-5 py-4">
                   <time
                     dateTime={post.date}

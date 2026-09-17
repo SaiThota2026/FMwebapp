@@ -319,6 +319,36 @@ export const LOCATION_VISUALS: Record<string, PageVisualConfig> = {
       "Upper Hunter industrial facility — locations-muswellbrook-section-4.webp",
     ],
   },
+  sydney: {
+    heroLabel: "Sydney skyline commercial cleaning — locations-sydney-hero.webp",
+    regionLabel: "Greater Sydney service area — locations-sydney-region.webp",
+    sectionLabels: [
+      "Newcastle-managed Sydney mobilisation — locations-sydney-section-1.webp",
+      "Sydney CBD and Parramatta coverage — locations-sydney-section-2.webp",
+      "Owner oversight for Sydney contracts — locations-sydney-section-3.webp",
+      "Sydney industry sectors serviced — locations-sydney-section-4.webp",
+    ],
+  },
+  brisbane: {
+    heroLabel: "Brisbane CBD commercial cleaning — locations-brisbane-hero.webp",
+    regionLabel: "Greater Brisbane service area — locations-brisbane-region.webp",
+    sectionLabels: [
+      "Newcastle-headquartered Brisbane delivery — locations-brisbane-section-1.webp",
+      "Brisbane CBD and Fortitude Valley coverage — locations-brisbane-section-2.webp",
+      "Owner oversight for Brisbane contracts — locations-brisbane-section-3.webp",
+      "Brisbane industry sectors serviced — locations-brisbane-section-4.webp",
+    ],
+  },
+  melbourne: {
+    heroLabel: "Melbourne CBD commercial cleaning — locations-melbourne-hero.webp",
+    regionLabel: "Greater Melbourne service area — locations-melbourne-region.webp",
+    sectionLabels: [
+      "Newcastle-headquartered Melbourne delivery — locations-melbourne-section-1.webp",
+      "Melbourne CBD and Docklands coverage — locations-melbourne-section-2.webp",
+      "Owner oversight for Melbourne contracts — locations-melbourne-section-3.webp",
+      "Melbourne industry sectors serviced — locations-melbourne-section-4.webp",
+    ],
+  },
 };
 
 export const INDUSTRY_VISUALS: Record<string, PageVisualConfig> = {
@@ -403,6 +433,27 @@ export const COMBO_VISUALS: Record<string, PageVisualConfig> = {
     regionLabel: "Newcastle industrial corridor cleaning area — combos-newcastle-industrial-cleaning-region.webp",
     sectionLabels: [
       "Industrial cleaning equipment in Newcastle warehouse — combos-newcastle-industrial-cleaning-section-1.webp",
+    ],
+  },
+  "sydney-commercial-cleaning": {
+    heroLabel: "Commercial cleaning in Sydney CBD office — combos-sydney-commercial-cleaning-hero.webp",
+    regionLabel: "Sydney commercial cleaning service area — combos-sydney-commercial-cleaning-region.webp",
+    sectionLabels: [
+      "Owner reviewing commercial cleaning scope at Sydney office — combos-sydney-commercial-cleaning-section-1.webp",
+    ],
+  },
+  "sydney-strata-cleaning": {
+    heroLabel: "Strata apartment building in Sydney being cleaned — combos-sydney-strata-cleaning-hero.webp",
+    regionLabel: "Sydney strata cleaning service area — combos-sydney-strata-cleaning-region.webp",
+    sectionLabels: [
+      "Strata committee meeting with cleaning report in Sydney — combos-sydney-strata-cleaning-section-1.webp",
+    ],
+  },
+  "sydney-facilities-management": {
+    heroLabel: "Facilities management at Sydney commercial property — combos-sydney-facilities-management-hero.webp",
+    regionLabel: "Sydney facilities management coverage area — combos-sydney-facilities-management-region.webp",
+    sectionLabels: [
+      "Integrated FM walk-through at Sydney multi-tenancy building — combos-sydney-facilities-management-section-1.webp",
     ],
   },
 };

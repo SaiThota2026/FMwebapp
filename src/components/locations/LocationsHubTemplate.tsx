@@ -12,6 +12,7 @@ import {
   HOME_MAP_IMAGE_LABEL,
   LOCATIONS_HUB_FAQS,
 } from "@/data/locations-hub";
+import { contentImg } from "@/lib/content-images";
 import { getLocationVisual } from "@/lib/page-visuals";
 
 export function LocationsHubTemplate() {
@@ -27,6 +28,7 @@ export function LocationsHubTemplate() {
         h1="Facilities & Cleaning Service Areas — Newcastle, Hunter & Central Coast"
         lead="Locally owned in Newcastle — we mobilise across the Hunter, Lake Macquarie and the Central Coast with documented scopes and owner-led accountability on every contract."
         visual={hubVisual}
+        imageSrc={contentImg("locations-hub-hero")}
         showTrustStrip={false}
       />
 
@@ -74,6 +76,7 @@ export function LocationsHubTemplate() {
                     linkLabel={location.linkLabel}
                     badge={location.badge}
                     imageLabel={getLocationVisual(location.slug).heroLabel}
+                    imageSrc={contentImg(`locations-hub-card-${location.slug}`)}
                   />
                 </RevealOnScroll>
               ))}
@@ -93,6 +96,7 @@ export function LocationsHubTemplate() {
             </div>
             <ImagePlaceholder
               label={HOME_MAP_IMAGE_LABEL}
+              src={contentImg("locations-hub-map")}
               aspect="wide"
               className="rounded-none border-0"
             />

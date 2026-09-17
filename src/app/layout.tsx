@@ -26,11 +26,26 @@ export const metadata: Metadata = {
   title: SITE.name,
   description:
     "Owner-operated facilities management and commercial cleaning in Newcastle, NSW.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/images/brand/facilities-man-favicon.png", type: "image/png" },
     ],
     apple: "/images/brand/facilities-man-favicon.png",
+  },
+  other: {
+    "llms-txt": `${SITE.url}/llms.txt`,
+    "ai-content-declaration": "ai-assisted-production; human-reviewed marketing content",
   },
 };
 
@@ -54,6 +69,13 @@ export default function RootLayout({
           as="image"
           type="image/png"
         />
+        <link
+          rel="alternate"
+          type="text/plain"
+          href="/llms.txt"
+          title="LLM content guide"
+        />
+        <link rel="describedby" href="/site-index.json" />
         <JsonLd data={globalSchemaGraph()} />
       </head>
       <body className="flex min-h-screen flex-col antialiased">

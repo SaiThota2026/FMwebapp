@@ -1,14 +1,75 @@
 # *
 User-agent: *
 Allow: /
-
-# *
-User-agent: *
 Disallow: /api/
 Disallow: /admin/
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Google / Bing / Apple / others
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
 
 # Host
 Host: https://www.facilitiesman.com.au
 
 # Sitemaps
 Sitemap: https://www.facilitiesman.com.au/sitemap.xml
+
+# AI agent discovery maps
+# llms.txt — https://www.facilitiesman.com.au/llms.txt
+# llms-full.txt — https://www.facilitiesman.com.au/llms-full.txt
+# site-index.json — https://www.facilitiesman.com.au/site-index.json
+# HTML sitemap — https://www.facilitiesman.com.au/sitemap/

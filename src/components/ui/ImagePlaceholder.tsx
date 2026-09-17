@@ -1,12 +1,14 @@
 type ImagePlaceholderProps = {
   label: string;
-  aspect?: "video" | "square" | "wide";
+  src?: string;
+  aspect?: "video" | "square" | "wide" | "photo";
   className?: string;
 };
 
-/** Dashed placeholder block — matches homepage pattern until real assets are added. */
+/** Renders a real image when `src` is set; otherwise a dashed label placeholder. */
 export function ImagePlaceholder({
   label,
+  src,
   aspect = "video",
   className = "",
 }: ImagePlaceholderProps) {
@@ -15,7 +17,26 @@ export function ImagePlaceholder({
       ? "aspect-square"
       : aspect === "wide"
         ? "aspect-[21/9]"
-        : "aspect-video";
+        : aspect === "photo"
+          ? "aspect-[4/3]"
+          : "aspect-video";
+
+  if (src) {
+    return (
+      <div
+        className={`relative w-full min-w-0 overflow-hidden rounded-lg bg-brand-cream ${aspectClass} ${className}`}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element -- static public assets during phased image rollout */}
+        <img
+          src={src}
+          alt={label.replace(/\s*—\s*[a-z0-9\-]+\.(webp|png)$/i, "").trim() || label}
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    );
+  }
 
   return (
     <div

@@ -2,7 +2,9 @@ import Link from "next/link";
 import { QuoteForm } from "@/components/contact/QuoteForm";
 import { CtaSection } from "@/components/ui/CtaSection";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { CONTACT_FAQS, TRADING_HOURS } from "@/data/contact";
+import { contentImg } from "@/lib/content-images";
 import { SITE } from "@/lib/site";
 
 const MAP_EMBED =
@@ -13,29 +15,39 @@ export function ContactPage() {
     <div className="bg-brand-offwhite">
       <section className="bg-brand-cream py-10 md:py-12">
         <div className="fm-container">
-          <p className="text-xs font-semibold uppercase tracking-wider text-brand-teal sm:text-sm">
-            Locally owned and operated in Newcastle
-          </p>
-          <h1 className="mt-2 font-display text-2xl font-bold text-brand-dark sm:text-3xl md:text-4xl">
-            Get a Free Quote — Newcastle Facilities Management &amp; Cleaning
-          </h1>
-          <p className="mt-4 max-w-2xl text-base text-brand-dark/90 sm:text-lg">
-            You will speak with the owner. Not a call centre. Not a script.
-            Direct accountability from your first enquiry.
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-            <a
-              href={`tel:${SITE.phone}`}
-              className="fm-touch-target inline-flex w-full items-center justify-center rounded-md border-2 border-brand-teal px-5 py-2 font-semibold text-brand-teal hover:bg-brand-teal hover:text-white sm:w-auto"
-            >
-              Or Call {SITE.phoneDisplay}
-            </a>
-            <Link
-              href="/services/"
-              className="inline-flex items-center text-brand-teal font-semibold hover:underline"
-            >
-              Browse our services
-            </Link>
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-teal sm:text-sm">
+                Locally owned and operated in Newcastle
+              </p>
+              <h1 className="mt-2 font-display text-2xl font-bold text-brand-dark sm:text-3xl md:text-4xl">
+                Get a Free Quote — Newcastle Facilities Management &amp; Cleaning
+              </h1>
+              <p className="mt-4 max-w-2xl text-base text-brand-dark/90 sm:text-lg">
+                You will speak with the owner. Not a call centre. Not a script.
+                Direct accountability from your first enquiry.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+                <a
+                  href={`tel:${SITE.phone}`}
+                  className="fm-touch-target inline-flex w-full items-center justify-center rounded-md border-2 border-brand-teal px-5 py-2 font-semibold text-brand-teal hover:bg-brand-teal hover:text-white sm:w-auto"
+                >
+                  Or Call {SITE.phoneDisplay}
+                </a>
+                <Link
+                  href="/services/"
+                  className="inline-flex items-center text-brand-teal font-semibold hover:underline"
+                >
+                  Browse our services
+                </Link>
+              </div>
+            </div>
+            <ImagePlaceholder
+              label="Contact page hero — get a free quote Newcastle facilities — contact-hero.webp"
+              src={contentImg("contact-hero")}
+              aspect="video"
+              className="rounded-xl shadow-sm"
+            />
           </div>
         </div>
       </section>
@@ -131,6 +143,12 @@ export function ContactPage() {
             Valley and the Central Coast.
           </p>
           <div className="mt-6 overflow-hidden rounded-lg border border-brand-teal/20">
+            <ImagePlaceholder
+              label="Contact page Newcastle service area map — contact-map.webp"
+              src={contentImg("contact-map")}
+              aspect="wide"
+              className="rounded-none border-0"
+            />
             <iframe
               title="FACILITIES MAN service area — Newcastle NSW"
               src={MAP_EMBED}
@@ -164,24 +182,34 @@ export function ContactPage() {
         </section>
 
         <section className="mt-16">
-          <h2 className="font-display text-2xl font-bold text-brand-dark">
-            What Happens After You Contact Us
-          </h2>
-          <ol className="mt-6 space-y-4">
-            {[
-              "We acknowledge your enquiry within 24 hours — usually the same business day.",
-              "We schedule a free site walk-through at a time that suits you.",
-              "We deliver a written scope of works and clear pricing within 48 hours of the walk-through.",
-              "Once agreed, we can typically onboard your site within the same week.",
-            ].map((text, i) => (
-              <li key={text} className="flex gap-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-teal font-bold text-white">
-                  {i + 1}
-                </span>
-                <p className="pt-1 text-brand-dark/90">{text}</p>
-              </li>
-            ))}
-          </ol>
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-brand-dark">
+                What Happens After You Contact Us
+              </h2>
+              <ol className="mt-6 space-y-4">
+                {[
+                  "We acknowledge your enquiry within 24 hours — usually the same business day.",
+                  "We schedule a free site walk-through at a time that suits you.",
+                  "We deliver a written scope of works and clear pricing within 48 hours of the walk-through.",
+                  "Once agreed, we can typically onboard your site within the same week.",
+                ].map((text, i) => (
+                  <li key={text} className="flex gap-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-teal font-bold text-white">
+                      {i + 1}
+                    </span>
+                    <p className="pt-1 text-brand-dark/90">{text}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <ImagePlaceholder
+              label="Free site walk-through booking — Newcastle facilities assessment — contact-walkthrough.webp"
+              src={contentImg("contact-walkthrough")}
+              aspect="video"
+              className="rounded-xl shadow-sm"
+            />
+          </div>
         </section>
 
         <section className="mt-16">

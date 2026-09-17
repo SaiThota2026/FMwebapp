@@ -6,6 +6,7 @@ import { CtaSection } from "@/components/ui/CtaSection";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import type { BlogPost } from "@/lib/blog";
+import { contentImg } from "@/lib/content-images";
 import { SERVICES } from "@/lib/site";
 
 const mdxComponents = {
@@ -53,6 +54,7 @@ export function BlogPostTemplate({ post }: { post: BlogPost }) {
           regionLabel: "",
           sectionLabels: [],
         }}
+        imageSrc={contentImg(`blog-${post.slug}-hero`)}
       />
 
       <div className="fm-container py-12 md:py-16">
@@ -75,6 +77,14 @@ export function BlogPostTemplate({ post }: { post: BlogPost }) {
               <div className="prose-content">
                 <MDXRemote source={post.content} components={mdxComponents} />
               </div>
+              <div className="mt-10 overflow-hidden rounded-xl">
+                <ImagePlaceholder
+                  label={`Blog mid-article image — ${post.title} — blog-${post.slug}-mid.webp`}
+                  src={contentImg(`blog-${post.slug}-mid`)}
+                  aspect="video"
+                  className="rounded-xl"
+                />
+              </div>
             </article>
           </RevealOnScroll>
 
@@ -83,6 +93,7 @@ export function BlogPostTemplate({ post }: { post: BlogPost }) {
               <div className="overflow-hidden rounded-xl border border-brand-teal/15 bg-brand-cream shadow-sm fm-hover-lift">
                 <ImagePlaceholder
                   label={`Quote CTA — blog-${post.slug}-sidebar.webp`}
+                  src={contentImg(`blog-${post.slug}-sidebar`)}
                   aspect="video"
                   className="rounded-b-none border-0"
                 />

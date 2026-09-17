@@ -364,3 +364,105 @@ export function blogHubSchema(posts: { title: string; slug: string }[]) {
   };
 }
 
+export function webPageSchema(data: {
+  name: string;
+  path: string;
+  description?: string;
+  breadcrumbs?: { name: string; path: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        name: data.name,
+        url: `${SITE.url}${data.path}`,
+        ...(data.description ? { description: data.description } : {}),
+        publisher: { "@type": "Organization", "@id": `${SITE.url}/#org` },
+      },
+      ...(data.breadcrumbs
+        ? [breadcrumbSchema(data.breadcrumbs)]
+        : []),
+    ],
+  };
+}
+
+export function webPageWithFaqSchema(data: {
+  name: string;
+  path: string;
+  description?: string;
+  breadcrumbs: { name: string; path: string }[];
+  faqs: FaqItem[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        name: data.name,
+        url: `${SITE.url}${data.path}`,
+        ...(data.description ? { description: data.description } : {}),
+        publisher: { "@type": "Organization", "@id": `${SITE.url}/#org` },
+      },
+      breadcrumbSchema(data.breadcrumbs),
+      faqPageSchema(data.faqs),
+    ],
+  };
+}
+
+export function collectionPageSchema(data: {
+  name: string;
+  path: string;
+  description?: string;
+  breadcrumbs: { name: string; path: string }[];
+  faqs?: FaqItem[];
+  items?: { name: string; url: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        name: data.name,
+        url: `${SITE.url}${data.path}`,
+        ...(data.description ? { description: data.description } : {}),
+        ...(data.items?.length
+          ? {
+              mainEntity: {
+                "@type": "ItemList",
+                itemListElement: data.items.map((item, index) => ({
+                  "@type": "ListItem",
+                  position: index + 1,
+                  name: item.name,
+                  url: item.url,
+                })),
+              },
+            }
+          : {}),
+      },
+      breadcrumbSchema(data.breadcrumbs),
+      ...(data.faqs ? [faqPageSchema(data.faqs)] : []),
+    ],
+  };
+}
+
+export function siteNavigationSchema(sections: {
+  name: string;
+  links: { name: string; url: string }[];
+}[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    name: "FACILITIES MAN Site Navigation",
+    hasPart: sections.map((section) => ({
+      "@type": "SiteNavigationElement",
+      name: section.name,
+      hasPart: section.links.map((link) => ({
+        "@type": "WebPage",
+        name: link.name,
+        url: link.url.startsWith("http") ? link.url : `${SITE.url}${link.url}`,
+      })),
+    })),
+  };
+}
+

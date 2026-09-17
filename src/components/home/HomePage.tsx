@@ -15,6 +15,7 @@ import {
   HOME_SERVICES,
   HOME_WHY_CHOOSE,
 } from "@/data/home";
+import { HOME_IMAGE_SRC } from "@/lib/home-images";
 import { getIndustryVisual, getLocationVisual } from "@/lib/page-visuals";
 import { SITE } from "@/lib/site";
 
@@ -119,17 +120,23 @@ export function HomePage() {
             </p>
           </RevealOnScroll>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {HOME_SERVICES.map((service, i) => (
-              <RevealOnScroll key={service.href} delayMs={i * 50}>
-                <LinkCard
-                  href={service.href}
-                  title={service.name}
-                  description={service.outcome}
-                  linkLabel={`Learn more about ${service.name.toLowerCase()}`}
-                  imageLabel={service.imageLabel}
-                />
-              </RevealOnScroll>
-            ))}
+            {HOME_SERVICES.map((service, i) => {
+              const slug = service.href
+                .replace(/^\/services\//, "")
+                .replace(/\/$/, "") as keyof typeof HOME_IMAGE_SRC.services;
+              return (
+                <RevealOnScroll key={service.href} delayMs={i * 50}>
+                  <LinkCard
+                    href={service.href}
+                    title={service.name}
+                    description={service.outcome}
+                    linkLabel={`Learn more about ${service.name.toLowerCase()}`}
+                    imageLabel={service.imageLabel}
+                    imageSrc={HOME_IMAGE_SRC.services[slug]}
+                  />
+                </RevealOnScroll>
+              );
+            })}
           </div>
           <p className="mt-8">
             <Link
@@ -157,7 +164,7 @@ export function HomePage() {
             {HOME_INDUSTRIES_TEASER.map((industry, i) => {
               const slug = industry.href
                 .replace(/^\/industries\//, "")
-                .replace(/\/$/, "");
+                .replace(/\/$/, "") as keyof typeof HOME_IMAGE_SRC.industries;
               return (
                 <RevealOnScroll key={industry.name} delayMs={i * 50}>
                   <LinkCard
@@ -166,6 +173,7 @@ export function HomePage() {
                     description={industry.blurb}
                     linkLabel="View industry page"
                     imageLabel={getIndustryVisual(slug).heroLabel}
+                    imageSrc={HOME_IMAGE_SRC.industries[slug]}
                   />
                 </RevealOnScroll>
               );
@@ -198,7 +206,7 @@ export function HomePage() {
             {HOME_LOCATIONS.map((location, i) => {
               const slug = location.href
                 .replace(/^\/locations\//, "")
-                .replace(/\/$/, "");
+                .replace(/\/$/, "") as keyof typeof HOME_IMAGE_SRC.locations;
               return (
                 <RevealOnScroll key={location.href} delayMs={i * 50}>
                   <LinkCard
@@ -208,6 +216,7 @@ export function HomePage() {
                     linkLabel={location.linkLabel}
                     badge={location.badge}
                     imageLabel={getLocationVisual(slug).heroLabel}
+                    imageSrc={HOME_IMAGE_SRC.locations[slug]}
                   />
                 </RevealOnScroll>
               );
@@ -225,7 +234,12 @@ export function HomePage() {
                 Coast regions.
               </p>
             </div>
-            <ImagePlaceholder label={HOME_MAP_IMAGE_LABEL} aspect="wide" className="rounded-none border-0" />
+            <ImagePlaceholder
+              label={HOME_MAP_IMAGE_LABEL}
+              src={HOME_IMAGE_SRC.map}
+              aspect="wide"
+              className="rounded-none border-0"
+            />
           </div>
           </RevealOnScroll>
           <p className="mt-8">

@@ -43,6 +43,9 @@ export const LOCATIONS = [
   { name: "Nelson Bay & Port Stephens", href: "/locations/port-stephens/" },
   { name: "Singleton", href: "/locations/singleton/" },
   { name: "Muswellbrook", href: "/locations/muswellbrook/" },
+  { name: "Sydney", href: "/locations/sydney/" },
+  { name: "Brisbane", href: "/locations/brisbane/" },
+  { name: "Melbourne", href: "/locations/melbourne/" },
 ] as const;
 
 export const INDUSTRIES = [
@@ -55,6 +58,9 @@ export const INDUSTRIES = [
 
 export const COMPANY_LINKS = [
   { name: "About Us", href: "/about/" },
+  { name: "Certifications", href: "/about/certifications/" },
+  { name: "Case Studies", href: "/case-studies/" },
+  { name: "Reviews", href: "/reviews/" },
   { name: "Contact & Quote", href: "/contact/" },
   { name: "FAQ", href: "/faq/" },
   { name: "Blog", href: "/blog/" },
@@ -64,5 +70,5 @@ export const COMPANY_LINKS = [
   { name: "Commercial Property", href: "/industries/commercial-property/", group: "Industries" },
   { name: "Government & Council", href: "/industries/government/", group: "Industries" },
   { name: "Privacy Policy", href: "/privacy-policy/" },
-  { name: "Sitemap", href: "/sitemap.xml" },
+  { name: "Sitemap", href: "/sitemap/" },
 ] as const;

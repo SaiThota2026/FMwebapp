@@ -13,6 +13,7 @@ import {
   SERVICES_HUB_FAQS,
   SPECIALIST_SERVICES,
 } from "@/data/services-hub";
+import { contentImg } from "@/lib/content-images";
 import { getHomeServiceImageLabel, getIndustryVisual, getLocationVisual } from "@/lib/page-visuals";
 
 export function ServicesHubPage() {
@@ -69,6 +70,7 @@ export function ServicesHubPage() {
                     description={service.blurb}
                     linkLabel={`Learn more about ${service.name.toLowerCase()}`}
                     imageLabel={getHomeServiceImageLabel(service.slug)}
+                    imageSrc={contentImg(`services-hub-${service.slug}`)}
                   />
                 </RevealOnScroll>
               ))}
@@ -95,6 +97,7 @@ export function ServicesHubPage() {
                     description={service.blurb}
                     linkLabel={`View ${service.name.toLowerCase()}`}
                     imageLabel={getHomeServiceImageLabel(service.slug)}
+                    imageSrc={contentImg(`services-hub-${service.slug}`)}
                   />
                 </RevealOnScroll>
               ))}
@@ -120,6 +123,7 @@ export function ServicesHubPage() {
                     description={industry.blurb}
                     linkLabel="View industry page"
                     imageLabel={getIndustryVisual(industry.slug).heroLabel}
+                    imageSrc={contentImg(`hub-industry-${industry.slug}`)}
                   />
                 </RevealOnScroll>
               ))}
@@ -143,19 +147,23 @@ export function ServicesHubPage() {
               contract.
             </p>
             <div className="mt-8 grid gap-6 md:grid-cols-2">
-              {HUB_LOCATIONS.map((loc, i) => (
+              {HUB_LOCATIONS.map((loc, i) => {
+                const slug = loc.href
+                  .replace(/^\/locations\//, "")
+                  .replace(/\/$/, "");
+                return (
                 <RevealOnScroll key={loc.href} delayMs={i * 35}>
                   <LinkCard
                     href={loc.href}
                     title={loc.name}
                     description={`FACILITIES MAN mobilises from Newcastle to service ${loc.name} commercial, strata and industrial sites with owner oversight and practical reporting.`}
                     linkLabel={`Facilities services in ${loc.name}`}
-                    imageLabel={getLocationVisual(
-                      loc.href.replace(/^\/locations\//, "").replace(/\/$/, ""),
-                    ).heroLabel}
+                    imageLabel={getLocationVisual(slug).heroLabel}
+                    imageSrc={contentImg(`hub-location-${slug}`)}
                   />
                 </RevealOnScroll>
-              ))}
+                );
+              })}
             </div>
             <p className="mt-6">
               <Link

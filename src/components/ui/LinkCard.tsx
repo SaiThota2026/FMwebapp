@@ -7,6 +7,7 @@ type LinkCardProps = {
   description: string;
   linkLabel: string;
   imageLabel?: string;
+  imageSrc?: string;
   badge?: string;
   className?: string;
 };
@@ -18,6 +19,7 @@ export function LinkCard({
   description,
   linkLabel,
   imageLabel,
+  imageSrc,
   badge,
   className = "",
 }: LinkCardProps) {
@@ -25,9 +27,10 @@ export function LinkCard({
     <article
       className={`flex h-full flex-col overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm fm-hover-lift fm-tap ${className}`}
     >
-      {imageLabel && (
+      {(imageSrc || imageLabel) && (
         <ImagePlaceholder
-          label={imageLabel}
+          label={imageLabel ?? title}
+          src={imageSrc}
           aspect="video"
           className="rounded-b-none border-0"
         />

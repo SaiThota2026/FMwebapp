@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { CtaSection } from "@/components/ui/CtaSection";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { ProcessSteps } from "@/components/ui/ProcessSteps";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ENGAGEMENT_STEPS } from "@/data/engagement-steps";
@@ -10,6 +11,7 @@ import {
   FAQ_HUB_FEATURED,
   FAQ_HUB_SECTIONS,
 } from "@/data/faq-hub";
+import { contentImg } from "@/lib/content-images";
 import { SERVICES, SITE } from "@/lib/site";
 
 const FAQ_VISUAL = {
@@ -27,6 +29,7 @@ export function FaqHubPage() {
         h1="Frequently Asked Questions — Commercial Cleaning & Facilities Management Newcastle"
         lead={FAQ_HUB_INTRO}
         visual={FAQ_VISUAL}
+        imageSrc={contentImg("faq-hub-hero")}
         showTrustStrip={false}
       />
 
@@ -51,6 +54,17 @@ export function FaqHubPage() {
             <ProcessSteps
               heading="How we work with new clients"
               steps={[...ENGAGEMENT_STEPS]}
+            />
+          </div>
+        </RevealOnScroll>
+
+        <RevealOnScroll delayMs={70}>
+          <div className="mt-12 overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm">
+            <ImagePlaceholder
+              label={FAQ_VISUAL.regionLabel}
+              src={contentImg("faq-hub-map")}
+              aspect="wide"
+              className="rounded-none border-0"
             />
           </div>
         </RevealOnScroll>
@@ -83,6 +97,29 @@ export function FaqHubPage() {
         ))}
 
         <RevealOnScroll delayMs={120}>
+          <section className="mt-16 overflow-hidden rounded-xl border border-brand-teal/15 bg-brand-cream">
+            <div className="grid gap-0 lg:grid-cols-2 lg:items-center">
+              <div className="p-6 md:p-8">
+                <h2 className="font-display text-2xl font-bold text-brand-dark">
+                  Fully insured · Police-checked · Locally owned
+                </h2>
+                <p className="mt-3 text-brand-dark/90">
+                  FACILITIES MAN operates under ABN {SITE.abn} with public liability
+                  cover and police-checked staff. Ask for compliance documents with
+                  your quote enquiry.
+                </p>
+              </div>
+              <ImagePlaceholder
+                label="FAQ trust strip — insured owner-operated Newcastle team — faq-hub-trust.webp"
+                src={contentImg("faq-hub-trust")}
+                aspect="video"
+                className="rounded-none border-0"
+              />
+            </div>
+          </section>
+        </RevealOnScroll>
+
+        <RevealOnScroll delayMs={130}>
           <section className="mt-16 rounded-xl border border-brand-gold/30 bg-brand-cream p-6 md:p-8">
             <p className="font-semibold text-brand-dark">Related services:</p>
             <ul className="mt-4 flex flex-wrap gap-2 text-sm">

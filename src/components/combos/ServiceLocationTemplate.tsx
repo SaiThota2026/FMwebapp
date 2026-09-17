@@ -1,13 +1,18 @@
 import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
-import { ContentSection } from "@/components/ui/ContentSection";
 import { CtaSection } from "@/components/ui/CtaSection";
+import { FeaturePanel } from "@/components/ui/FeaturePanel";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { ProcessSteps } from "@/components/ui/ProcessSteps";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import {
+  SectionHeading,
+  SectionPanel,
+} from "@/components/ui/SectionPanel";
 import { ENGAGEMENT_STEPS } from "@/data/engagement-steps";
 import type { ComboPageData } from "@/data/combos/types";
+import { contentImg } from "@/lib/content-images";
 import { getComboVisual } from "@/lib/page-visuals";
 
 export function ServiceLocationTemplate({ data }: { data: ComboPageData }) {
@@ -25,139 +30,133 @@ export function ServiceLocationTemplate({ data }: { data: ComboPageData }) {
         h1={data.h1}
         lead={data.lead}
         visual={visual}
+        imageSrc={contentImg(`combos-${comboKey}-hero`)}
       />
 
       <div className="fm-container py-12 md:py-16">
-        <RevealOnScroll>
-          <ProcessSteps
-            heading="What happens after you enquire?"
-            steps={[...ENGAGEMENT_STEPS]}
-            footer={
-              <>
-                Request a local quote for {data.locationName} on the{" "}
-                <Link href="/contact/" className="font-semibold text-brand-teal hover:text-brand-gold">
-                  contact page
-                </Link>
-                .
-              </>
-            }
-          />
-        </RevealOnScroll>
-
-        <RevealOnScroll delayMs={60}>
-          <section className="mt-16 grid gap-10 lg:grid-cols-2 lg:items-start">
-            <div>
-              <h2 className="font-display text-3xl font-bold text-brand-dark">
-                {data.serviceName} in {data.locationName}
-              </h2>
-              <div className="mt-6 space-y-4">
-                {data.localServiceBody.map((para) => (
-                  <p key={para} className="text-brand-dark/90">
-                    {para}
-                  </p>
-                ))}
-              </div>
-            </div>
-            <ImagePlaceholder
-              label={visual.heroLabel}
-              aspect="video"
-              className="rounded-xl shadow-sm"
+        <div className="fm-section-stack">
+          <RevealOnScroll>
+            <ProcessSteps
+              heading="What happens after you enquire?"
+              steps={[...ENGAGEMENT_STEPS]}
+              footer={
+                <>
+                  Request a local quote for {data.locationName} on the{" "}
+                  <Link
+                    href="/contact/"
+                    className="font-semibold text-brand-teal hover:text-brand-gold"
+                  >
+                    contact page
+                  </Link>
+                  .
+                </>
+              }
             />
-          </section>
-        </RevealOnScroll>
+          </RevealOnScroll>
 
-        <RevealOnScroll delayMs={80}>
-          <section className="mt-16 overflow-hidden rounded-xl border border-brand-teal/15 bg-brand-cream p-8 md:p-10">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <h2 className="font-display text-3xl font-bold text-brand-dark">
-                What&apos;s Included
-              </h2>
-              <ImagePlaceholder
-                label={visual.regionLabel}
-                aspect="wide"
-                className="max-w-md shrink-0 md:w-64"
-              />
+          <RevealOnScroll>
+            <FeaturePanel
+              heading={`${data.serviceName} in ${data.locationName}`}
+              body={data.localServiceBody}
+              imageLabel={visual.heroLabel}
+              imageSrc={contentImg(`combos-${comboKey}-body`)}
+            />
+          </RevealOnScroll>
+
+          <RevealOnScroll>
+            <SectionPanel tone="cream">
+              <div className="grid min-w-0 grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-10">
+                <div className="min-w-0">
+                  <SectionHeading>What&apos;s Included</SectionHeading>
+                  <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    {data.inclusions.map((item) => (
+                      <li
+                        key={item}
+                        className="fm-hover-lift flex items-start gap-2 rounded-lg bg-white px-3 py-2 text-sm text-brand-dark/90 shadow-sm"
+                      >
+                        <span className="text-brand-gold" aria-hidden="true">
+                          ✓
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="min-w-0">
+                  <ImagePlaceholder
+                    label={visual.regionLabel}
+                    src={contentImg(`combos-${comboKey}-region`)}
+                    aspect="photo"
+                    className="rounded-xl shadow-sm"
+                  />
+                </div>
+              </div>
+            </SectionPanel>
+          </RevealOnScroll>
+
+          <RevealOnScroll>
+            <FeaturePanel
+              heading={`Why Local Matters for ${data.serviceName}`}
+              body={data.whyLocalBody}
+              imageLabel={visual.sectionLabels[0]}
+              imageSrc={contentImg(`combos-${comboKey}-section-1`)}
+            />
+          </RevealOnScroll>
+
+          <RevealOnScroll>
+            <div className="grid gap-6 md:grid-cols-2">
+              <article className="fm-panel overflow-hidden border-brand-teal/15 bg-white shadow-sm fm-hover-lift fm-tap">
+                <div className="border-b border-brand-teal/10 bg-brand-cream/80 px-5 py-3">
+                  <h3 className="font-display text-lg font-semibold text-brand-dark">
+                    About Our {data.serviceName} Service
+                  </h3>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-brand-dark/85">
+                    Learn about our full {data.serviceName.toLowerCase()}{" "}
+                    programme — scope, inclusions, frequencies and pricing.
+                  </p>
+                  <Link
+                    href={data.parentServiceHref}
+                    className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-teal hover:text-brand-gold"
+                  >
+                    View {data.serviceName} service
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </article>
+              <article className="fm-panel overflow-hidden border-brand-teal/15 bg-white shadow-sm fm-hover-lift fm-tap">
+                <div className="border-b border-brand-teal/10 bg-brand-cream/80 px-5 py-3">
+                  <h3 className="font-display text-lg font-semibold text-brand-dark">
+                    All Services in {data.locationName}
+                  </h3>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-brand-dark/85">
+                    See the full range of cleaning and facilities services we
+                    deliver in {data.locationName} and surrounding areas.
+                  </p>
+                  <Link
+                    href={data.parentLocationHref}
+                    className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-teal hover:text-brand-gold"
+                  >
+                    View {data.locationName} services
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </article>
             </div>
-            <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {data.inclusions.map((item) => (
-                <li
-                  key={item}
-                  className="fm-hover-lift flex items-start gap-2 rounded-lg bg-white px-3 py-2 text-sm text-brand-dark/90 shadow-sm"
-                >
-                  <span className="text-brand-gold" aria-hidden="true">
-                    ✓
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-        </RevealOnScroll>
+          </RevealOnScroll>
 
-        <RevealOnScroll delayMs={100}>
-          <ContentSection
-            heading={`Why Local Matters for ${data.serviceName}`}
-            body={data.whyLocalBody}
-            imageLabel={visual.sectionLabels[0]}
-            imagePosition="left"
-          />
-        </RevealOnScroll>
-
-        <RevealOnScroll delayMs={120}>
-          <section className="mt-16 grid gap-6 md:grid-cols-2">
-            <article className="overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm fm-hover-lift fm-tap">
-              <div className="border-b border-brand-teal/10 bg-brand-cream/80 px-5 py-3">
-                <h3 className="font-display text-lg font-semibold text-brand-dark">
-                  About Our {data.serviceName} Service
-                </h3>
+          <RevealOnScroll>
+            <SectionPanel>
+              <SectionHeading>Frequently Asked Questions</SectionHeading>
+              <div className="mt-6 w-full">
+                <FaqAccordion faqs={data.faqs} />
               </div>
-              <div className="p-6">
-                <p className="text-sm text-brand-dark/85">
-                  Learn about our full {data.serviceName.toLowerCase()} programme — scope,
-                  inclusions, frequencies and pricing.
-                </p>
-                <Link
-                  href={data.parentServiceHref}
-                  className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-teal hover:text-brand-gold"
-                >
-                  View {data.serviceName} service
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </article>
-            <article className="overflow-hidden rounded-xl border border-brand-teal/15 bg-white shadow-sm fm-hover-lift fm-tap">
-              <div className="border-b border-brand-teal/10 bg-brand-cream/80 px-5 py-3">
-                <h3 className="font-display text-lg font-semibold text-brand-dark">
-                  All Services in {data.locationName}
-                </h3>
-              </div>
-              <div className="p-6">
-                <p className="text-sm text-brand-dark/85">
-                  See the full range of cleaning and facilities services we deliver in{" "}
-                  {data.locationName} and surrounding areas.
-                </p>
-                <Link
-                  href={data.parentLocationHref}
-                  className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-teal hover:text-brand-gold"
-                >
-                  View {data.locationName} services
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </article>
-          </section>
-        </RevealOnScroll>
-
-        <RevealOnScroll delayMs={140}>
-          <section className="mt-16">
-            <h2 className="font-display text-3xl font-bold text-brand-dark">
-              Frequently Asked Questions
-            </h2>
-            <div className="mt-6">
-              <FaqAccordion faqs={data.faqs} />
-            </div>
-          </section>
-        </RevealOnScroll>
+            </SectionPanel>
+          </RevealOnScroll>
+        </div>
       </div>
 
       <CtaSection heading={data.ctaHeading} subCopy={data.ctaSubCopy} />

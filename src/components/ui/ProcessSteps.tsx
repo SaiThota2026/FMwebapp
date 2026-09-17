@@ -22,9 +22,9 @@ export function ProcessSteps({
 }: ProcessStepsProps) {
   return (
     <section
-      className={`rounded-xl border border-brand-teal/20 bg-brand-cream p-6 md:p-8 ${className}`}
+      className={`fm-panel border-brand-teal/15 bg-brand-cream fm-panel-pad ${className}`}
     >
-      <h2 className="font-display text-xl font-semibold text-brand-dark md:text-2xl">
+      <h2 className="fm-section-heading text-[1.35rem] sm:text-2xl lg:text-[1.65rem]">
         {heading}
       </h2>
       <ol
@@ -35,7 +35,7 @@ export function ProcessSteps({
         {steps.map((step, index) => (
           <li
             key={step.title}
-            className={`rounded-lg bg-white p-5 shadow-sm fm-hover-lift fm-tap fm-fade-up ${stepDelayClass[Math.min(index, 2)] ?? ""}`}
+            className={`rounded-lg border border-brand-teal/10 bg-white p-5 shadow-sm fm-hover-lift fm-tap fm-fade-up ${stepDelayClass[Math.min(index, 2)] ?? ""}`}
           >
             <span className="font-display text-2xl font-bold text-brand-gold">
               {index + 1}

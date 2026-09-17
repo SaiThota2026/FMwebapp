@@ -6,6 +6,7 @@ import { ProcessSteps } from "@/components/ui/ProcessSteps";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ENGAGEMENT_STEPS } from "@/data/engagement-steps";
 import { INDUSTRY_PAGES } from "@/data/industries";
+import { contentImg } from "@/lib/content-images";
 import { getIndustryVisual } from "@/lib/page-visuals";
 
 export function IndustriesHubTemplate() {
@@ -57,6 +58,7 @@ export function IndustriesHubTemplate() {
                     description={industry.description}
                     linkLabel="View industry page"
                     imageLabel={getIndustryVisual(industry.slug).heroLabel}
+                    imageSrc={contentImg(`industries-hub-card-${industry.slug}`)}
                   />
                 </RevealOnScroll>
               ))}

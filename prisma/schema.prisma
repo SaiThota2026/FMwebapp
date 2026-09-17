@@ -5,7 +5,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 // ────────────────────────────────────────────────────────────
 // CORE MODELS
@@ -86,24 +87,27 @@ model Service {
 // ────────────────────────────────────────────────────────────
 
 model Lead {
-  id          String      @id @default(cuid())
-  firstName   String?
-  lastName    String?
-  email       String      @db.VarChar(254)
-  phone       String?
-  company     String? // if they’re a business
-  service     Service     @relation(fields: [serviceId], references: [id], name: "ServiceLeads")
-  serviceId   String
-  location    Location    @relation(fields: [locationId], references: [id], name: "LeadsAtLocation")
-  locationId  String
-  message     String? // e.g., special instructions
-  source      LeadSource? @default(WEBSITE_CONTACT)
-  convertedAt DateTime? // when turned into a confirmed job
-  status      LeadStatus  @default(INBOX)
-  createdAt   DateTime    @default(now())
-  createdBy   User?       @relation("CreatedByUser", fields: [createdById], references: [id])
-  createdById String?
-  job         Job?        @relation("LeadJob")
+  id                String      @id @default(cuid())
+  firstName         String?
+  lastName          String?
+  email             String      @db.VarChar(254)
+  phone             String?
+  company           String?
+  service           Service?    @relation(fields: [serviceId], references: [id], name: "ServiceLeads")
+  serviceId         String?
+  location          Location?   @relation(fields: [locationId], references: [id], name: "LeadsAtLocation")
+  locationId        String?
+  siteAddress       String?
+  frequency         String?
+  requestedServices String[]    @default([])
+  message           String?
+  source            LeadSource? @default(WEBSITE_CONTACT)
+  convertedAt       DateTime?
+  status            LeadStatus  @default(INBOX)
+  createdAt         DateTime    @default(now())
+  createdBy         User?       @relation("CreatedByUser", fields: [createdById], references: [id])
+  createdById       String?
+  job               Job?        @relation("LeadJob")
 
   @@index([email])
   @@index([status])

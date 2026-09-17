@@ -1,7 +1,10 @@
 import Link from "next/link";
-import { PageIntro } from "@/components/layout/PageIntro";
+import { PageHero } from "@/components/layout/PageHero";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
+import { FeaturePanel } from "@/components/ui/FeaturePanel";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import type { FaqItem } from "@/lib/schema";
+import { contentImg } from "@/lib/content-images";
 import { SITE } from "@/lib/site";
 
 const PRIVACY_FAQS: FaqItem[] = [
@@ -32,90 +35,84 @@ const PRIVACY_FAQS: FaqItem[] = [
   },
 ];
 
+const PRIVACY_VISUAL = {
+  heroLabel: "Privacy policy and data protection — privacy-hero.webp",
+  sectionLabels: [
+    "Secure data handling overview — privacy-section-1.webp",
+    "Australian Privacy Principles compliance — privacy-section-2.webp",
+  ],
+  regionLabel: "",
+};
+
 export function PrivacyPage() {
+  const lastUpdated = new Date().toLocaleDateString("en-AU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <>
-      <PageIntro
+      <PageHero
         breadcrumbs={[{ name: "Privacy Policy", path: "/privacy-policy/" }]}
         h1="Privacy Policy"
-        lead={`Last updated: ${new Date().toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}`}
+        lead={`How FACILITIES MAN collects, uses, stores and protects your personal information in line with the Australian Privacy Principles. Last updated: ${lastUpdated}.`}
+        visual={PRIVACY_VISUAL}
+        imageSrc={contentImg("privacy-hero")}
+        showTrustStrip={false}
       />
 
-      <div className="mx-auto max-w-3xl px-4 -mt-2">
-        <section className="not-prose rounded-xl border border-brand-teal/20 bg-brand-cream p-6">
-          <h3 className="font-display text-xl font-semibold text-brand-dark">
-            Privacy at a glance
-          </h3>
-          <ul className="mt-3 grid gap-2 sm:grid-cols-2 text-sm text-brand-dark/90">
-            <li>ABN and contact details are shown for enquiries</li>
-            <li>We use Google Analytics (GA4) in anonymised form</li>
-            <li>We do not sell personal information</li>
-            <li>Retention follows contractual and tax requirements</li>
-            <li>We respond to privacy requests within 5 business days</li>
-            <li>You can opt out of GA4 tracking via Google&apos;s tool</li>
-          </ul>
-          <p className="mt-4 text-sm text-brand-dark/90">
-            Want help understanding this policy? Contact us with your request and we will respond within 5 business days.
-          </p>
-        </section>
+      <div className="fm-container py-12 md:py-16">
+        <RevealOnScroll>
+          <section className="not-prose rounded-xl border border-brand-teal/20 bg-brand-cream p-6">
+            <h3 className="font-display text-xl font-semibold text-brand-dark">
+              Privacy at a glance
+            </h3>
+            <ul className="mt-3 grid gap-2 sm:grid-cols-2 text-sm text-brand-dark/90">
+              <li>ABN and contact details are shown for enquiries</li>
+              <li>We use Google Analytics (GA4) in anonymised form</li>
+              <li>We do not sell personal information</li>
+              <li>Retention follows contractual and tax requirements</li>
+              <li>We respond to privacy requests within 5 business days</li>
+              <li>You can opt out of GA4 tracking via Google&apos;s tool</li>
+            </ul>
+            <p className="mt-4 text-sm text-brand-dark/90">
+              Want help understanding this policy? Contact us with your request
+              and we will respond within 5 business days.
+            </p>
+          </section>
+        </RevealOnScroll>
+
+        <div className="fm-section-stack mt-12">
+          <RevealOnScroll>
+            <FeaturePanel
+              heading="About This Policy"
+              body={[
+                `FACILITIES MAN (ABN ${SITE.abn}) protects the privacy of individuals who interact with our website and engage our services. This Privacy Policy explains what personal information we collect, how we use it, and your rights under the Australian Privacy Principles (APPs) contained in the Privacy Act 1988 (Cth).`,
+              ]}
+              imageLabel={PRIVACY_VISUAL.sectionLabels[0]}
+              imageSrc={contentImg("privacy-section-1")}
+            />
+          </RevealOnScroll>
+
+          <RevealOnScroll>
+            <FeaturePanel
+              heading="Information We Collect & How We Use It"
+              body={[
+                "Information you provide: contact details (name, email, phone, business name), service enquiry details (site address, service type, frequency preference, uploaded photos) and communication records.",
+                "Information collected automatically: website usage data via Google Analytics GA4 (pages visited, time on site, device type). We do not collect sensitive information unless explicitly provided for service purposes.",
+                "We use your information to respond to enquiries, provide quotes, deliver contracted services and improve our website using anonymised analytics. We do not sell personal information or share it with third parties for marketing purposes.",
+              ]}
+              imageLabel={PRIVACY_VISUAL.sectionLabels[1]}
+              imageSrc={contentImg("privacy-section-2")}
+              tone="cream"
+              mediaPosition="left"
+            />
+          </RevealOnScroll>
+        </div>
       </div>
 
-      <div className="prose prose-neutral fm-container max-w-3xl py-10 sm:py-12 prose-headings:font-display prose-headings:text-brand-dark prose-a:text-brand-teal prose-p:break-words">
-        <section>
-          <h2>About This Policy</h2>
-          <p>
-            FACILITIES MAN (ABN {SITE.abn}) protects the privacy of individuals
-            who interact with our website and engage our services. This Privacy
-            Policy explains what personal information we collect, how we use it,
-            and your rights under the Australian Privacy Principles (APPs)
-            contained in the Privacy Act 1988 (Cth).
-          </p>
-        </section>
-
-        <section>
-          <h2>Information We Collect</h2>
-          <h3>Information you provide to us</h3>
-          <ul>
-            <li>Contact details: name, email, phone number, business name</li>
-            <li>
-              Service enquiry details: site address, service type, frequency
-              preference, uploaded photos
-            </li>
-            <li>Communication records: email threads, call logs</li>
-          </ul>
-          <h3>Information we collect automatically</h3>
-          <ul>
-            <li>
-              Website usage data: pages visited, time on site, device type (via
-              Google Analytics GA4)
-            </li>
-          </ul>
-          <p>
-            We do not collect sensitive information (health, financial) unless
-            explicitly provided by you for service purposes.
-          </p>
-        </section>
-
-        <section>
-          <h2>How We Use Your Information</h2>
-          <ul>
-            <li>To respond to enquiries and provide quotes</li>
-            <li>To deliver contracted services</li>
-            <li>
-              To send service-related communications (not marketing, unless opted
-              in)
-            </li>
-            <li>
-              To improve our website and service offering using anonymised
-              analytics data
-            </li>
-          </ul>
-          <p>
-            We do not sell personal information. We do not share it with third
-            parties for marketing purposes.
-          </p>
-        </section>
-
+      <div className="prose prose-neutral fm-container max-w-3xl pb-10 sm:pb-12 prose-headings:font-display prose-headings:text-brand-dark prose-a:text-brand-teal prose-p:break-words">
         <section>
           <h2>How We Store and Protect Your Information</h2>
           <ul>
@@ -184,7 +181,8 @@ export function PrivacyPage() {
             Email{" "}
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Response within 5
             business days. You can also{" "}
-            <Link href="/about/">learn about FACILITIES MAN</Link> or{" "}
+            <Link href="/about/">learn about FACILITIES MAN</Link>, view our{" "}
+            <Link href="/sitemap/">sitemap</Link> or{" "}
             <Link href="/contact/">contact us about privacy</Link>.
           </p>
         </section>

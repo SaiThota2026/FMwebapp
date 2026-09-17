@@ -1,20 +1,16 @@
 "use server";
 
+import { createWebsiteLead } from "@/lib/leads";
+import { SERVICES } from "@/lib/site";
+
 export type ContactFormState = {
   ok: boolean;
   message: string;
   fieldErrors?: Record<string, string>;
 };
 
-const SERVICE_OPTIONS = [
-  "Commercial Cleaning",
-  "Strata Cleaning",
-  "Facilities Management",
-  "Office Cleaning",
-  "Grounds & Garden Maintenance",
-  "Industrial Cleaning",
-  "Other",
-] as const;
+const SEND_ERROR =
+  "We could not send your enquiry right now. Please call 0450 924 377.";
 
 export async function submitContactForm(
   _prev: ContactFormState,
@@ -29,9 +25,12 @@ export async function submitContactForm(
   const additionalInfo = String(formData.get("additionalInfo") ?? "").trim();
   const privacyAccepted = formData.get("privacyAccepted") === "on";
 
-  const services = SERVICE_OPTIONS.filter(
-    (s) => formData.get(`service-${s}`) === "on",
-  );
+  const services = [
+    ...SERVICES.filter((s) => formData.get(`service-${s.name}`) === "on").map(
+      (s) => s.name,
+    ),
+    ...(formData.get("service-Other") === "on" ? (["Other"] as const) : []),
+  ];
 
   const fieldErrors: Record<string, string> = {};
 
@@ -69,6 +68,25 @@ export async function submitContactForm(
     submittedAt: new Date().toISOString(),
   };
 
+  try {
+    await createWebsiteLead({
+      fullName,
+      businessName,
+      phone,
+      email,
+      services,
+      siteAddress,
+      frequency,
+      additionalInfo,
+    });
+  } catch (error) {
+    console.error("[FACILITIES MAN] Failed to store contact enquiry", error);
+    return {
+      ok: false,
+      message: SEND_ERROR,
+    };
+  }
+
   const endpoint = process.env.CONTACT_FORM_ENDPOINT;
 
   if (endpoint) {
@@ -79,21 +97,14 @@ export async function submitContactForm(
         body: JSON.stringify(payload),
       });
       if (!res.ok) {
-        return {
-          ok: false,
-          message:
-            "We could not send your enquiry right now. Please call 0450 924 377.",
-        };
+        console.error(
+          "[FACILITIES MAN] Contact webhook failed with status",
+          res.status,
+        );
       }
-    } catch {
-      return {
-        ok: false,
-        message:
-          "We could not send your enquiry right now. Please call 0450 924 377.",
-      };
+    } catch (error) {
+      console.error("[FACILITIES MAN] Contact webhook failed", error);
     }
-  } else {
-    console.info("[FACILITIES MAN] Contact enquiry:", payload);
   }
 
   return {

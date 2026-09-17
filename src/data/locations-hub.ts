@@ -7,7 +7,7 @@ export const LOCATIONS_HUB_FAQS: FaqItem[] = [
   {
     question: "Which areas does FACILITIES MAN service?",
     answer:
-      "We are based in Newcastle and service Newcastle, Maitland, Lake Macquarie, the Hunter Valley, Central Coast, Cessnock, Port Stephens, Singleton and Muswellbrook. Sydney and broader NSW are available on request for multi-site portfolios.",
+      "We are based in Newcastle and service Newcastle, Maitland, Lake Macquarie, the Hunter Valley, Central Coast, Cessnock, Port Stephens, Singleton and Muswellbrook. We also deliver nationally across Sydney, Brisbane and Melbourne for multi-site portfolios.",
   },
   {
     question: "Do you charge travel fees for Hunter Valley or Central Coast sites?",
@@ -31,6 +31,9 @@ const BADGE_BY_SLUG: Record<string, string> = {
   "port-stephens": "Coastal NSW",
   singleton: "Upper Hunter",
   muswellbrook: "Upper Hunter",
+  sydney: "National metro",
+  brisbane: "National metro",
+  melbourne: "National metro",
 };
 
 function hubBlurb(slug: string, intro: string): string {

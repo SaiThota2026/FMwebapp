@@ -1,0 +1,68 @@
+# FACILITIES MAN
+
+> Owner-operated facilities management and commercial cleaning across Newcastle, Hunter Valley, Lake Macquarie, Central Coast NSW, with metro support in Sydney, Brisbane and Melbourne.
+
+Site: https://www.facilitiesman.com.au
+Contact: support@facilitiesman.com.au | 0450 924 377
+ABN: 72 697 453 937
+Hours: Monday–Saturday, 7am–7pm
+
+This file helps AI agents (including Perplexity Computer / PerplexityBot) discover canonical pages. Crawling of public marketing pages is allowed — see /robots.txt.
+
+## Primary
+
+- [Home](https://www.facilitiesman.com.au/): Overview of services, industries and service areas
+- [Services hub](https://www.facilitiesman.com.au/services/): All commercial cleaning and facilities services
+- [Locations hub](https://www.facilitiesman.com.au/locations/): Regional and metro coverage
+- [Industries hub](https://www.facilitiesman.com.au/industries/): Sector-specific programmes
+- [About](https://www.facilitiesman.com.au/about/): Owner-led company story and compliance posture
+- [Contact & quote](https://www.facilitiesman.com.au/contact/): Request a walk-through and written scope
+- [FAQ](https://www.facilitiesman.com.au/faq/): Common procurement and service questions
+- [Blog](https://www.facilitiesman.com.au/blog/): Practical facilities and cleaning guides
+- [HTML sitemap](https://www.facilitiesman.com.au/sitemap/): Full human-readable page list
+- [Machine site index (JSON)](https://www.facilitiesman.com.au/site-index.json): Complete route inventory for agents
+- [Full LLM map](https://www.facilitiesman.com.au/llms-full.txt): Expanded page list
+- [XML sitemap](https://www.facilitiesman.com.au/sitemap.xml)
+
+## Trust & company
+
+- [Certifications & compliance](https://www.facilitiesman.com.au/about/certifications/)
+- [Reviews](https://www.facilitiesman.com.au/reviews/): Google reviews shell (live embed pending owner GBP URL)
+- [Case studies](https://www.facilitiesman.com.au/case-studies/): Case study shell (content pending first clients)
+- [Privacy policy](https://www.facilitiesman.com.au/privacy-policy/)
+
+## Core services
+
+- [Commercial Cleaning](https://www.facilitiesman.com.au/services/commercial-cleaning/)
+- [Strata Cleaning](https://www.facilitiesman.com.au/services/strata-cleaning/)
+- [Facilities Management](https://www.facilitiesman.com.au/services/facilities-management/)
+- [Office Cleaning](https://www.facilitiesman.com.au/services/office-cleaning/)
+- [Grounds & Garden Maintenance](https://www.facilitiesman.com.au/services/grounds-maintenance/)
+- [Industrial Cleaning](https://www.facilitiesman.com.au/services/industrial-cleaning/)
+
+## Optional / Phase 2 services
+
+- [Healthcare & Medical Cleaning](https://www.facilitiesman.com.au/services/medical-cleaning/)
+- [Childcare Centre Cleaning](https://www.facilitiesman.com.au/services/childcare-cleaning/)
+- [Window Cleaning](https://www.facilitiesman.com.au/services/window-cleaning/)
+- [Carpet Cleaning](https://www.facilitiesman.com.au/services/carpet-cleaning/)
+- [Pressure Washing](https://www.facilitiesman.com.au/services/pressure-washing/)
+- [Warehouse Cleaning](https://www.facilitiesman.com.au/services/warehouse-cleaning/)
+- [Sanitary & Washroom Services](https://www.facilitiesman.com.au/services/sanitary-washroom-services/)
+- [Maintenance & Trades](https://www.facilitiesman.com.au/services/maintenance-trades/)
+
+## Key locations
+
+- [Newcastle](https://www.facilitiesman.com.au/locations/newcastle/)
+- [Maitland](https://www.facilitiesman.com.au/locations/maitland/)
+- [Lake Macquarie](https://www.facilitiesman.com.au/locations/lake-macquarie/)
+- [Hunter Valley](https://www.facilitiesman.com.au/locations/hunter-valley/)
+- [Central Coast](https://www.facilitiesman.com.au/locations/central-coast/)
+- [Sydney](https://www.facilitiesman.com.au/locations/sydney/)
+- [Brisbane](https://www.facilitiesman.com.au/locations/brisbane/)
+- [Melbourne](https://www.facilitiesman.com.au/locations/melbourne/)
+
+## Optional
+
+- Additional Hunter locations: [Cessnock](https://www.facilitiesman.com.au/locations/cessnock/), [Port Stephens](https://www.facilitiesman.com.au/locations/port-stephens/), [Singleton](https://www.facilitiesman.com.au/locations/singleton/), [Muswellbrook](https://www.facilitiesman.com.au/locations/muswellbrook/)
+- Do not invent insurance amounts, ISO dates, founder identity, fake reviews, or case studies — see certifications/reviews/case-studies pages for current shells.
