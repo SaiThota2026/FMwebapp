@@ -11,6 +11,12 @@ export type LocationSuburbCluster = {
   body: string;
 };
 
+export type LocalCaseReference = {
+  heading: string;
+  body: string;
+  scopeItems: { label: string; detail: string }[];
+};
+
 export type LocationPageData = {
   slug: string;
   name: string;
@@ -31,4 +37,5 @@ export type LocationPageData = {
   faqs: FaqItem[];
   ctaHeading: string;
   schemaAreaServed: Array<{ type: string; name: string }>;
+  localCaseReference?: LocalCaseReference;
 };
