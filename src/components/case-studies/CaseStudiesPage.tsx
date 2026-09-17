@@ -387,7 +387,7 @@ export function CaseStudiesPage() {
               ]}
               imageLabel={CASE_STUDIES_VISUAL.sectionLabels[1]}
               imageSrc={contentImg("case-studies-section-2")}
-              tone="gold"
+              tone="cream"
               mediaPosition="right"
               footer={
                 <div className="flex flex-wrap gap-3">
