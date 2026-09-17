@@ -7,6 +7,29 @@ type CtaSectionProps = {
   showFormPreview?: boolean;
 };
 
+const PREVIEW_FIELDS: {
+  label: string;
+  placeholder: string;
+  span?: boolean;
+  multiline?: boolean;
+}[] = [
+  { label: "Full name", placeholder: "Jane Smith" },
+  { label: "Business / organisation", placeholder: "Acme Property Group" },
+  { label: "Phone", placeholder: "04xx xxx xxx" },
+  { label: "Email", placeholder: "you@company.com.au" },
+  {
+    label: "Site address",
+    placeholder: "Building name, suburb, postcode",
+    span: true,
+  },
+  {
+    label: "Additional info",
+    placeholder: "Services needed, frequency, access notes…",
+    span: true,
+    multiline: true,
+  },
+];
+
 export function CtaSection({
   heading = "Get a free quote within 24 hours.",
   subCopy = "No lock-in contracts to start. No call centres. Talk directly with the owner about your facilities needs.",
@@ -30,29 +53,44 @@ export function CtaSection({
             className="mt-8 rounded-lg border border-brand-teal/30 bg-brand-dark/80 p-6"
             aria-label="Quote form preview — submit on Contact page"
           >
-            <p className="mb-4 text-sm text-brand-offwhite/80">
-              The full quote form lives on our{" "}
+            <p className="mb-5 text-sm text-brand-offwhite/80">
+              Preview of what we ask on the{" "}
               <Link
                 href="/contact/"
                 className="font-semibold text-brand-gold underline-offset-2 hover:underline"
               >
                 Contact page
-              </Link>{" "}
-              — tell us your site address, the services you need, and your
-              preferred frequency. We respond within 24 hours with next steps
-              and a free site walk-through.
+              </Link>
+              . Submit the full form there for a free walk-through and written
+              scope within 24 hours.
             </p>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="h-10 rounded border border-brand-offwhite/20 bg-brand-offwhite/5" />
-              <div className="h-10 rounded border border-brand-offwhite/20 bg-brand-offwhite/5" />
-              <div className="h-10 rounded border border-brand-offwhite/20 bg-brand-offwhite/5" />
-              <div className="h-10 rounded border border-brand-offwhite/20 bg-brand-offwhite/5" />
-              <div className="h-10 rounded border border-brand-offwhite/20 bg-brand-offwhite/5 sm:col-span-2" />
-              <div className="h-24 rounded border border-brand-offwhite/20 bg-brand-offwhite/5 sm:col-span-2" />
+            <div
+              className="pointer-events-none grid gap-4 sm:grid-cols-2"
+              aria-hidden="true"
+            >
+              {PREVIEW_FIELDS.map((field) => (
+                <div
+                  key={field.label}
+                  className={field.span ? "sm:col-span-2" : undefined}
+                >
+                  <p className="mb-1.5 text-xs font-medium text-brand-offwhite/70">
+                    {field.label}
+                  </p>
+                  {field.multiline ? (
+                    <div className="flex min-h-24 items-start rounded border border-brand-offwhite/25 bg-brand-offwhite/5 px-3 py-2.5 text-sm text-brand-offwhite/45">
+                      {field.placeholder}
+                    </div>
+                  ) : (
+                    <div className="flex h-10 items-center rounded border border-brand-offwhite/25 bg-brand-offwhite/5 px-3 text-sm text-brand-offwhite/45">
+                      {field.placeholder}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
             <Link
               href="/contact/"
-              className="fm-touch-target mt-4 inline-flex w-full items-center justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-brand-dark fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 sm:w-auto"
+              className="fm-touch-target mt-5 inline-flex w-full items-center justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-brand-dark fm-hover-lift fm-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 sm:w-auto"
             >
               Go to the full quote form
             </Link>
